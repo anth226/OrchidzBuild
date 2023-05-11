@@ -13,7 +13,7 @@ import UsersBlockList from '@components/user/users-block-list';
 
 interface IProps {
   ui: IUIConfig;
-  className: string;
+  // className: string;
 }
 
 class blockPage extends PureComponent<IProps> {

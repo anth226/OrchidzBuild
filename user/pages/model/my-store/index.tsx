@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { IPerformer, IUIConfig } from '@interfaces/index';
 
 interface IProps {
-  user: IPerformer;
+  // user: IPerformer;
   ui: IUIConfig;
 }
 

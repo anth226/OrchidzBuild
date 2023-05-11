@@ -113,7 +113,7 @@ async function auth(
   }
 }
 
-async function updateSettingsStore(ctx: NextPageContext, settings) {
+async function updateSettingsStore(ctx: IApp, settings) {
   const { store } = ctx;
   store.dispatch(
     updateUIValue({

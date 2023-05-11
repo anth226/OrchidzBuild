@@ -20,7 +20,7 @@ interface IProps {
   updateUser: Function;
   updateCurrentUserAvatar: Function;
   updatePassword: Function;
-  updateSuccess: boolean;
+  // updateSuccess: boolean;
   ui: IUIConfig;
   logout: Function;
 }

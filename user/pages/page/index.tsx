@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { PureComponent } from 'react';
 import Head from 'next/head';
 import { Layout } from 'antd';

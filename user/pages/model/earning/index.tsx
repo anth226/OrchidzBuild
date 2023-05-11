@@ -15,7 +15,7 @@ import { SearchFilter } from 'src/components/common/search-filter';
 import PageHeading from '@components/common/page-heading';
 
 interface IProps {
-  performer: IPerformer;
+  // performer: IPerformer;
   ui: IUIConfig;
 }
 interface IStates {
