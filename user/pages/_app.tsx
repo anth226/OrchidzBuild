@@ -78,7 +78,7 @@ function redirectLogin(ctx: any) {
 }
 
 async function auth(
-  ctx: NextPageContext,
+  ctx: IApp,
   noredirect: boolean,
   onlyPerformer: boolean
 ) {
@@ -166,7 +166,7 @@ interface AppComponent extends NextPageContext {
   layout: string;
 }
 
-interface IApp {
+interface IApp extends NextPageContext {
   store: Store;
   layout: string;
   Component: AppComponent;
