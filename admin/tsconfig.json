@@ -19,12 +19,24 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@layouts/*": ["./src/layouts/*"],
-      "@components/*": ["./src/components/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@redux/*": ["./src/redux/*"],
-      "@services/*": ["./src/services/*"],
-      "src/*": ["./src/*"]
+      "@layouts/*": [
+        "./src/layouts/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@redux/*": [
+        "./src/redux/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "src/*": [
+        "./src/*"
+      ]
     }
   },
   "exclude": [
