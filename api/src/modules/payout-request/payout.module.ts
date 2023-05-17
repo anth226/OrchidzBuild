@@ -19,27 +19,27 @@ import { PaymentModule } from '../payment/payment.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    // inject user module because we request guard from auth, need to check and fix dependencies if not needed later
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => EarningModule),
-    forwardRef(() => PaymentModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+// inject user module because we request guard from auth, need to check and fix dependencies if not needed later
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => EarningModule),
+  forwardRef(() => PaymentModule)
   ],
   providers: [
-    ...payoutRequestProviders,
-    PayoutRequestService,
-    UpdatePayoutRequestListener
+  ...payoutRequestProviders,
+  PayoutRequestService,
+  UpdatePayoutRequestListener
   ],
   controllers: [
-    PayoutRequestController,
-    AdminPayoutRequestController,
-    PayoutRequestSearchController
+  PayoutRequestController,
+  AdminPayoutRequestController,
+  PayoutRequestSearchController
   ],
   exports: [PayoutRequestService]
-})
+  })
 export class PayoutRequestModule {}

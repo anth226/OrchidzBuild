@@ -40,26 +40,26 @@ export class PerformerRegisterController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor(
       [
-        {
-          type: 'performer-document',
-          fieldName: 'idVerification',
-          options: {
-            destination: getConfig('file').documentDir,
-            uploadImmediately: true,
-            acl: S3ObjectCannelACL.AuthenticatedRead,
-            server: Storage.S3
-          }
-        },
-        {
-          type: 'performer-document',
-          fieldName: 'documentVerification',
-          options: {
-            destination: getConfig('file').documentDir,
-            uploadImmediately: true,
-            acl: S3ObjectCannelACL.AuthenticatedRead,
-            server: Storage.S3
-          }
-        }
+      {
+      type: 'performer-document',
+      fieldName: 'idVerification',
+      options: {
+      destination: getConfig('file').documentDir,
+      uploadImmediately: true,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
+      }
+      },
+      {
+      type: 'performer-document',
+      fieldName: 'documentVerification',
+      options: {
+      destination: getConfig('file').documentDir,
+      uploadImmediately: true,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
+      }
+      }
       ]
     )
   )

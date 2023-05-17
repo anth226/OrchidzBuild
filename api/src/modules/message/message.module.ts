@@ -17,29 +17,29 @@ import { StreamModule } from '../stream/stream.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    SocketModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => UtilsModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => BlockModule),
-    forwardRef(() => StreamModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  SocketModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => UtilsModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => BlockModule),
+  forwardRef(() => StreamModule)
   ],
   providers: [
-    ...messageProviders,
-    ...conversationProviders,
-    ...notificationMessageProviders,
-    ConversationService,
-    MessageService,
-    NotificationMessageService,
-    MessageListener,
-    DeleteUserMessageListener
+  ...messageProviders,
+  ...conversationProviders,
+  ...notificationMessageProviders,
+  ConversationService,
+  MessageService,
+  NotificationMessageService,
+  MessageListener,
+  DeleteUserMessageListener
   ],
   controllers: [ConversationController, MessageController],
   exports: [ConversationService, MessageService]
-})
+  })
 export class MessageModule { }

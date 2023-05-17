@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
 import { PureComponent, createRef } from 'react';
 import {

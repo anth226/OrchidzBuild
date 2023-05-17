@@ -20,22 +20,22 @@ import { FollowModule } from '../follow/follow.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    AgendaModule.register(),
-    forwardRef(() => AuthModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => ReactionModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => TokenTransactionModule),
-    forwardRef(() => FollowModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  AgendaModule.register(),
+  forwardRef(() => AuthModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => ReactionModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => TokenTransactionModule),
+  forwardRef(() => FollowModule)
   ],
   providers: [...feedProviders, ...pollProviders, ...voteProviders,
-    FeedService, FeedFileService,
-    ReactionFeedListener, CommentFeedListener, PollFeedListener,
-    UpdatePerformerGenderListener, DeletePerformerFeedListener, StreamFeedListener],
+  FeedService, FeedFileService,
+  ReactionFeedListener, CommentFeedListener, PollFeedListener,
+  UpdatePerformerGenderListener, DeletePerformerFeedListener, StreamFeedListener],
   controllers: [PerformerFeedController, FeedFileController, UserFeedController],
   exports: [...feedProviders, FeedService, FeedFileService]
-})
+  })
 export class FeedModule { }

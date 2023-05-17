@@ -17,27 +17,27 @@ export class AgendaService extends Agenda {}
 
 @Module({
   providers: [
-    {
-      provide: AgendaService,
-      useFactory: async (options) => {
-        if (!options) {
-          options = {
-          };
-        }
-        if (!options.db) {
-          options.db = {
-            address: process.env.MONGO_URI
-          };
-        }
-        const agenda = new Agenda(options);
-        await agenda.start();
-        return agenda;
-      },
-      inject: [AGENDA_MODULE_OPTIONS]
-    }
+  {
+  provide: AgendaService,
+  useFactory: async (options) => {
+  if (!options) {
+  options = {
+  };
+  }
+  if (!options.db) {
+  options.db = {
+  address: process.env.MONGO_URI
+  };
+  }
+  const agenda = new Agenda(options);
+  await agenda.start();
+  return agenda;
+  },
+  inject: [AGENDA_MODULE_OPTIONS]
+  }
   ],
   exports: [AgendaService]
-})
+  })
 export class AgendaModule {
   static register(options?: AgendaModuleOptions): DynamicModule {
     return {

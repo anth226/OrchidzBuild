@@ -9,18 +9,18 @@ import {
 
 @Module({
   imports: [
-    MongoDBModule,
-    forwardRef(() => AuthModule)
+  MongoDBModule,
+  forwardRef(() => AuthModule)
   ],
   providers: [
-    ...fileProviders,
-    FileService,
-    ImageService,
-    VideoFileService,
-    AudioFileService],
+  ...fileProviders,
+  FileService,
+  ImageService,
+  VideoFileService,
+  AudioFileService],
   controllers: [FileController],
   exports: [
-    ...fileProviders,
-    FileService]
-})
+  ...fileProviders,
+  FileService]
+  })
 export class FileModule { }

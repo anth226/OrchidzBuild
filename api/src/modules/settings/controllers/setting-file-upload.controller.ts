@@ -26,7 +26,7 @@ export class SettingFileUploadController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadFile(
     @FileUploaded() file: FileDto

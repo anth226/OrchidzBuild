@@ -177,7 +177,7 @@ export class PerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.AuthenticatedRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerDocument(
     @CurrentUser() currentUser: PerformerDto,
@@ -201,7 +201,7 @@ export class PerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerAvatar(
     @FileUploaded() file: FileDto,
@@ -225,7 +225,7 @@ export class PerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerCover(
     @FileUploaded() file: FileDto,
@@ -248,7 +248,7 @@ export class PerformerController {
       destination: getConfig('file').videoDir,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerVideo(
     @FileUploaded() file: FileDto,

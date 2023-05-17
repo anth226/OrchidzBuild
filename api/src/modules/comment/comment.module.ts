@@ -12,22 +12,22 @@ import { ReplyCommentListener, ReactionCommentListener } from './listeners';
 
 @Module({
   imports: [
-    MongoDBModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => ReactionModule)
+  MongoDBModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => ReactionModule)
   ],
   providers: [
-    ...commentProviders,
-    CommentService,
-    ReplyCommentListener,
-    ReactionCommentListener
+  ...commentProviders,
+  CommentService,
+  ReplyCommentListener,
+  ReactionCommentListener
   ],
   controllers: [
-    CommentController
+  CommentController
   ],
   exports: []
-})
+  })
 export class CommentModule {}

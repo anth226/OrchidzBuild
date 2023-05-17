@@ -11,26 +11,26 @@ import { MailerModule } from '../mailer/mailer.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    AgendaModule.register(),
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => MailerModule)
+  MongoDBModule,
+  AgendaModule.register(),
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => MailerModule)
   ],
   providers: [
-    ...blockProviders,
-    PerformerBlockService,
-    SiteBlockCountryService
+  ...blockProviders,
+  PerformerBlockService,
+  SiteBlockCountryService
   ],
   controllers: [
-    PerformerBlockController,
-    SiteBlockCountryController
+  PerformerBlockController,
+  SiteBlockCountryController
   ],
   exports: [
-    ...blockProviders,
-    PerformerBlockService,
-    SiteBlockCountryService
+  ...blockProviders,
+  PerformerBlockService,
+  SiteBlockCountryService
   ]
-})
+  })
 
 export class BlockModule {}

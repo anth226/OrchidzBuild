@@ -42,28 +42,28 @@ export class PerformerProductController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor([
       {
-        type: 'performer-product-image',
-        fieldName: 'image',
-        options: {
-          destination: getConfig('file').imageDir,
-          uploadImmediately: true,
-          generateThumbnail: true,
-          thumbnailSize: getConfig('image').originThumbnail,
-          acl: S3ObjectCannelACL.PublicRead,
-          server: Storage.S3
-        }
+      type: 'performer-product-image',
+      fieldName: 'image',
+      options: {
+      destination: getConfig('file').imageDir,
+      uploadImmediately: true,
+      generateThumbnail: true,
+      thumbnailSize: getConfig('image').originThumbnail,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
       },
       {
-        type: 'performer-product-digital',
-        fieldName: 'digitalFile',
-        options: {
-          destination: getConfig('file').digitalProductDir,
-          uploadImmediately: true,
-          acl: S3ObjectCannelACL.AuthenticatedRead,
-          server: Storage.S3
-        }
+      type: 'performer-product-digital',
+      fieldName: 'digitalFile',
+      options: {
+      destination: getConfig('file').digitalProductDir,
+      uploadImmediately: true,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
       }
-    ])
+      }
+      ])
   )
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(
@@ -88,28 +88,28 @@ export class PerformerProductController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor([
       {
-        type: 'performer-product-image',
-        fieldName: 'image',
-        options: {
-          destination: getConfig('file').imageDir,
-          uploadImmediately: true,
-          generateThumbnail: true,
-          thumbnailSize: getConfig('image').originThumbnail,
-          acl: S3ObjectCannelACL.PublicRead,
-          server: Storage.S3
-        }
+      type: 'performer-product-image',
+      fieldName: 'image',
+      options: {
+      destination: getConfig('file').imageDir,
+      uploadImmediately: true,
+      generateThumbnail: true,
+      thumbnailSize: getConfig('image').originThumbnail,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
       },
       {
-        type: 'performer-product-digital',
-        fieldName: 'digitalFile',
-        options: {
-          destination: getConfig('file').digitalProductDir,
-          uploadImmediately: true,
-          acl: S3ObjectCannelACL.AuthenticatedRead,
-          server: Storage.S3
-        }
+      type: 'performer-product-digital',
+      fieldName: 'digitalFile',
+      options: {
+      destination: getConfig('file').digitalProductDir,
+      uploadImmediately: true,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
       }
-    ])
+      }
+      ])
   )
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(

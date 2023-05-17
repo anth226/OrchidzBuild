@@ -11,17 +11,17 @@ import { PerformerModule } from '../performer/performer.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => AuthModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => AuthModule)
   ],
   providers: [
-    ...assetsProviders,
-    TokenPackageService,
-    TokenPackageSearchService
+  ...assetsProviders,
+  TokenPackageService,
+  TokenPackageSearchService
   ],
   controllers: [AdminTokenPackageController, TokenPackageController],
   exports: [TokenPackageService, TokenPackageSearchService]
-})
+  })
 export class TokenPackageModule {}

@@ -17,27 +17,27 @@ import { BlockModule } from '../block/block.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => ChangeTokenLogModule),
-    forwardRef(() => BlockModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => ChangeTokenLogModule),
+  forwardRef(() => BlockModule)
   ],
   providers: [
-    ...userProviders,
-    UserService,
-    UserSearchService,
-    UserConnectedListener,
-    StripeSettingsUpdatedListener
+  ...userProviders,
+  UserService,
+  UserSearchService,
+  UserConnectedListener,
+  StripeSettingsUpdatedListener
   ],
   controllers: [
-    UserController,
-    AvatarController,
-    AdminUserController,
-    AdminAvatarController
+  UserController,
+  AvatarController,
+  AdminUserController,
+  AdminAvatarController
   ],
   exports: [...userProviders, UserService, UserSearchService]
-})
+  })
 export class UserModule {}

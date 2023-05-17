@@ -37,44 +37,44 @@ import { FollowModule } from './modules/follow/follow.module';
 
 @Module({
   imports: [
-    ConfigModule.resolveRootPath(__dirname).load('config/**/!(*.d).{ts,js}'),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public')
+  ConfigModule.resolveRootPath(__dirname).load('config/**/!(*.d).{ts,js}'),
+  ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', 'public')
     }),
-    StorageModule.forRoot(),
-    AuthModule,
-    UserModule,
-    PostModule,
-    SettingModule,
-    MailerModule,
-    FileModule,
-    UtilsModule,
-    PerformerModule,
-    PerformerAssetsModule,
-    CommentModule,
-    ReactionModule,
-    PaymentModule,
-    SubscriptionModule,
-    BannerModule,
-    SocketModule,
-    MessageModule,
-    CouponModule,
-    FeedModule,
-    StreamModule,
-    ContactModule,
-    SearchModule,
-    StatisticsModule,
-    TokenPackageModule,
-    PayoutRequestModule,
-    OrderModule,
-    ChangeTokenLogModule,
-    BlockModule,
-    ReportModule,
-    FollowModule
+  StorageModule.forRoot(),
+  AuthModule,
+  UserModule,
+  PostModule,
+  SettingModule,
+  MailerModule,
+  FileModule,
+  UtilsModule,
+  PerformerModule,
+  PerformerAssetsModule,
+  CommentModule,
+  ReactionModule,
+  PaymentModule,
+  SubscriptionModule,
+  BannerModule,
+  SocketModule,
+  MessageModule,
+  CouponModule,
+  FeedModule,
+  StreamModule,
+  ContactModule,
+  SearchModule,
+  StatisticsModule,
+  TokenPackageModule,
+  PayoutRequestModule,
+  OrderModule,
+  ChangeTokenLogModule,
+  BlockModule,
+  ReportModule,
+  FollowModule
   ],
   controllers: [AppController],
   providers: [AppService]
-})
+  })
 export class AppModule {}
 
 export default AppModule;

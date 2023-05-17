@@ -13,6 +13,7 @@ import { DataResponse, PageableData } from 'src/kernel';
 import { CategorySearchService, CategoryService } from '../services';
 import { CategorySearchRequestPayload } from '../payloads';
 import { PerformerCategoryDto } from '../dtos';
+
 @Injectable()
 @Controller('performer-categories')
 export class CategoryController {

@@ -11,10 +11,10 @@ import { Socket, Server } from 'socket.io';
 import { WSGuard } from 'src/modules/auth/guards';
 
 // sample to see how to conenct with namesapce
- @WebSocketGateway({
-   namespace: 'message'
- })
- @UseGuards(WSGuard)
+@WebSocketGateway({
+  namespace: 'message'
+  })
+@UseGuards(WSGuard)
 export class MessageGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server: Server;
 

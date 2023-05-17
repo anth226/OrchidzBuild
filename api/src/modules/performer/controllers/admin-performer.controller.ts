@@ -151,7 +151,7 @@ export class AdminPerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.AuthenticatedRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerDocument(
     @FileUploaded() file: FileDto,
@@ -175,7 +175,7 @@ export class AdminPerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerAvatar(
     @FileUploaded() file: FileDto,
@@ -198,7 +198,7 @@ export class AdminPerformerController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerCover(
     @FileUploaded() file: FileDto,
@@ -220,7 +220,7 @@ export class AdminPerformerController {
       destination: getConfig('file').videoDir,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadPerformerVideo(
     @FileUploaded() file: FileDto,

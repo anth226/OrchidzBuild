@@ -13,27 +13,27 @@ import { MenuController } from './controllers/menu.controller';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    MongoDBModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => MailerModule)
+  QueueModule.forRoot(),
+  MongoDBModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => MailerModule)
   ],
   providers: [
-    ...settingProviders,
-    ...menuProviders,
-    SettingService,
-    MenuService
+  ...settingProviders,
+  ...menuProviders,
+  SettingService,
+  MenuService
   ],
   controllers: [
-    SettingController,
-    SettingFileUploadController,
-    AdminSettingController,
-    MenuController
+  SettingController,
+  SettingFileUploadController,
+  AdminSettingController,
+  MenuController
   ],
   exports: [...settingProviders, ...menuProviders, SettingService, MenuService]
-})
+  })
 export class SettingModule {
   constructor(private settingService: SettingService) {
     this.settingService.syncCache();

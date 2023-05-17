@@ -23,39 +23,39 @@ import { SocketModule } from '../socket/socket.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    SocketModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => CouponModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => SubscriptionModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  SocketModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => CouponModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => SubscriptionModule)
   ],
   providers: [
-    ...paymentProviders,
-    PaymentService,
-    CCBillService,
-    BitpayService,
-    StripeService,
-    PaymentSearchService,
-    TransactionMailerListener,
-    UpdateUserBalanceListener,
-    StripeSettingsUpdatedListener
+  ...paymentProviders,
+  PaymentService,
+  CCBillService,
+  BitpayService,
+  StripeService,
+  PaymentSearchService,
+  TransactionMailerListener,
+  UpdateUserBalanceListener,
+  StripeSettingsUpdatedListener
   ],
   controllers: [
-    PaymentController, PaymentSearchController, StripeController,
-    CancelSubscriptionController, PaymentWebhookController
+  PaymentController, PaymentSearchController, StripeController,
+  CancelSubscriptionController, PaymentWebhookController
   ],
   exports: [
-    ...paymentProviders,
-    PaymentService,
-    StripeService,
-    PaymentSearchService
+  ...paymentProviders,
+  PaymentService,
+  StripeService,
+  PaymentSearchService
   ]
-})
+  })
 export class PaymentModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer

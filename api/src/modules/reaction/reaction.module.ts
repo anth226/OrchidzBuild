@@ -13,17 +13,17 @@ import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    MongoDBModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => FeedModule),
-    forwardRef(() => FileModule)
+  QueueModule.forRoot(),
+  MongoDBModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => FeedModule),
+  forwardRef(() => FileModule)
   ],
   providers: [...reactionProviders, ReactionService, DeletePerformerReactionListener, DeleteAssetsListener],
   controllers: [ReactionController],
   exports: [ReactionService]
-})
+  })
 export class ReactionModule {}

@@ -9,14 +9,14 @@ import { PerformerModule } from '../performer/performer.module';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    MongoDBModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule)
+  QueueModule.forRoot(),
+  MongoDBModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule)
   ],
   providers: [...reportProviders, ReportService],
   controllers: [ReportController],
   exports: [ReportService]
-})
+  })
 export class ReportModule {}

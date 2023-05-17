@@ -17,32 +17,32 @@ import { SettingModule } from '../settings/setting.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    forwardRef(() => PerformerModule),
-    forwardRef(() => UserModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => SettingModule)
+  MongoDBModule,
+  forwardRef(() => PerformerModule),
+  forwardRef(() => UserModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => SettingModule)
   ],
   providers: [
-    ...authProviders,
-    AuthService,
-    AuthGuard,
-    RoleGuard,
-    LoadUser
+  ...authProviders,
+  AuthService,
+  AuthGuard,
+  RoleGuard,
+  LoadUser
   ],
   controllers: [
-    RegisterController,
-    LoginController,
-    PasswordController,
-    PerformerRegisterController
+  RegisterController,
+  LoginController,
+  PasswordController,
+  PerformerRegisterController
   ],
   exports: [
-    ...authProviders,
-    AuthService,
-    AuthGuard,
-    RoleGuard,
-    LoadUser
+  ...authProviders,
+  AuthService,
+  AuthGuard,
+  RoleGuard,
+  LoadUser
   ]
-})
+  })
 export class AuthModule { }

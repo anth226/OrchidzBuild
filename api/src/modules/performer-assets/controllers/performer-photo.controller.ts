@@ -40,15 +40,15 @@ export class PerformerPhotoController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor([
       {
-        type: 'performer-photo',
-        fieldName: 'photo',
-        options: {
-          destination: getConfig('file').photoProtectedDir,
-          acl: S3ObjectCannelACL.AuthenticatedRead,
-          server: Storage.S3
-        }
+      type: 'performer-photo',
+      fieldName: 'photo',
+      options: {
+      destination: getConfig('file').photoProtectedDir,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
       }
-    ])
+      }
+      ])
   )
   async upload(
     @FilesUploaded() files: Record<string, any>,

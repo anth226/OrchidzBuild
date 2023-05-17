@@ -5,6 +5,7 @@ import { COUPON_PROVIDER } from '../providers';
 import { CouponModel } from '../models';
 import { CouponSearchRequestPayload } from '../payloads';
 import { CouponDto } from '../dtos';
+
 @Injectable()
 export class CouponSearchService {
   constructor(

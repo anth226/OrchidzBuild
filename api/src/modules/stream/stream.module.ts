@@ -22,32 +22,32 @@ const agent = new https.Agent({
 
 @Module({
   imports: [
-    MongoDBModule,
-    HttpModule.register({
-      timeout: 10000,
-      maxRedirects: 5,
-      httpsAgent: agent
+  MongoDBModule,
+  HttpModule.register({
+    timeout: 10000,
+    maxRedirects: 5,
+    httpsAgent: agent
     }),
-    QueueModule.forRoot(),
-    forwardRef(() => UserModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => MessageModule),
-    forwardRef(() => SocketModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => MessageModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => PaymentModule),
-    forwardRef(() => TokenTransactionModule)
+  QueueModule.forRoot(),
+  forwardRef(() => UserModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => MessageModule),
+  forwardRef(() => SocketModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => MessageModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => PaymentModule),
+  forwardRef(() => TokenTransactionModule)
   ],
   providers: [
-    ...assetsProviders,
-    StreamService,
-    AgoraService,
-    StreamConnectListener,
-    PublicStreamWsGateway
+  ...assetsProviders,
+  StreamService,
+  AgoraService,
+  StreamConnectListener,
+  PublicStreamWsGateway
   ],
   controllers: [StreamController, AgoraController],
   exports: [StreamService]
-})
+  })
 export class StreamModule {}

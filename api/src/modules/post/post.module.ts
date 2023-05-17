@@ -13,24 +13,24 @@ import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    // inject user module because we request guard from auth, need to check and fix dependencies if not needed later
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => FileModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+// inject user module because we request guard from auth, need to check and fix dependencies if not needed later
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => FileModule)
   ],
   providers: [
-    ...postProviders,
-    PostService,
-    CategoryService,
-    PostSearchService
+  ...postProviders,
+  PostService,
+  CategoryService,
+  PostSearchService
   ],
   controllers: [
-    PostController,
-    AdminCategoryController,
-    AdminPostController
+  PostController,
+  AdminCategoryController,
+  AdminPostController
   ],
   exports: [PostService, CategoryService, PostSearchService]
-})
+  })
 export class PostModule {}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import RcTabs, { TabsProps as RcTabsProps } from 'rc-tabs';

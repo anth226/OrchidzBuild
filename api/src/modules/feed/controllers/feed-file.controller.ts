@@ -30,7 +30,7 @@ export class FeedFileController {
       destination: getConfig('file').feedProtectedDir,
       acl: S3ObjectCannelACL.AuthenticatedRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadImage(
     @FileUploaded() file: FileDto
@@ -52,7 +52,7 @@ export class FeedFileController {
       destination: getConfig('file').feedProtectedDir,
       acl: S3ObjectCannelACL.AuthenticatedRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadVideo(
     @FileUploaded() file: FileDto
@@ -74,7 +74,7 @@ export class FeedFileController {
       destination: getConfig('file').feedProtectedDir,
       acl: S3ObjectCannelACL.AuthenticatedRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadAudio(
     @FileUploaded() file: FileDto
@@ -96,7 +96,7 @@ export class FeedFileController {
       destination: getConfig('file').feedDir,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadThumb(
     @FileUploaded() file: FileDto
@@ -118,7 +118,7 @@ export class FeedFileController {
       destination: getConfig('file').feedDir,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadTeaser(
     @FileUploaded() file: FileDto

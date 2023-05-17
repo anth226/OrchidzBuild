@@ -5,10 +5,10 @@ import { ContactService } from './services';
 
 @Module({
   imports: [
-    forwardRef(() => MailerModule)
+  forwardRef(() => MailerModule)
   ],
   providers: [ContactService],
   controllers: [ContactController],
   exports: []
-})
+  })
 export class ContactModule {}

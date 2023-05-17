@@ -24,38 +24,38 @@ import { MessageModule } from '../message/message.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    forwardRef(() => AuthModule),
-    forwardRef(() => UserModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => TokenPackageModule),
-    forwardRef(() => SocketModule),
-    forwardRef(() => FeedModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => StreamModule),
-    forwardRef(() => MessageModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  forwardRef(() => AuthModule),
+  forwardRef(() => UserModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => TokenPackageModule),
+  forwardRef(() => SocketModule),
+  forwardRef(() => FeedModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => StreamModule),
+  forwardRef(() => MessageModule)
   ],
   providers: [
-    ...paymentTokenProviders,
-    TokenTransactionService,
-    TokenTransactionSearchService,
-    TokenTransactionService,
-    PaymentTokenListener
+  ...paymentTokenProviders,
+  TokenTransactionService,
+  TokenTransactionSearchService,
+  TokenTransactionService,
+  PaymentTokenListener
   ],
   controllers: [
-    PaymentTokenController,
-    PaymentTokenSearchController
+  PaymentTokenController,
+  PaymentTokenSearchController
   ],
   exports: [
-    ...paymentTokenProviders,
-    TokenTransactionService,
-    TokenTransactionSearchService,
-    TokenTransactionService
+  ...paymentTokenProviders,
+  TokenTransactionService,
+  TokenTransactionSearchService,
+  TokenTransactionService
   ]
-})
+  })
 export class TokenTransactionModule {}

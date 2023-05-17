@@ -8,25 +8,25 @@ import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
-    QueueModule,
-    AgendaModule.register(),
-    // https://github.com/kyknow/nestjs-redis
-    RedisModule.forRootAsync({
-      // TODO - load config for redis socket
-      useFactory: (configService: ConfigService) => configService.get('redis'),
-      // useFactory: async (configService: ConfigService) => configService.get('redis'),
-      inject: [ConfigService]
+  QueueModule,
+  AgendaModule.register(),
+// https://github.com/kyknow/nestjs-redis
+  RedisModule.forRootAsync({
+// TODO - load config for redis socket
+    useFactory: (configService: ConfigService) => configService.get('redis'),
+// useFactory: async (configService: ConfigService) => configService.get('redis'),
+    inject: [ConfigService]
     }),
-    forwardRef(() => AuthModule)
+  forwardRef(() => AuthModule)
   ],
   providers: [
-    SocketUserService,
-    WsUserConnectedGateway
+  SocketUserService,
+  WsUserConnectedGateway
   ],
   controllers: [
   ],
   exports: [
-    SocketUserService
+  SocketUserService
   ]
-})
+  })
 export class SocketModule {}

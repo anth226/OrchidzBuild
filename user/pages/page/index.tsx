@@ -58,7 +58,7 @@ class PostDetail extends PureComponent<IProps> {
           <title>
             {`${ui?.siteName} | ${post?.title || ''}`}
           </title>
-          <script charSet="utf-8" src="//cdn.iframe.ly/embed.js?api_key=7c5c0f5ad6ebf92379ec3e" />
+          <script src="//cdn.iframe.ly/embed.js?api_key=7c5c0f5ad6ebf92379ec3e" />
         </Head>
         <div className="main-container">
           <div className="page-container">

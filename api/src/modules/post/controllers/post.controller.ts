@@ -14,6 +14,7 @@ import { PostService, PostSearchService } from '../services';
 import { PostDto } from '../dtos';
 import { PostModel } from '../models';
 import { UserSearch } from '../payloads';
+
 @Injectable()
 @Controller('posts')
 export class PostController {

@@ -10,18 +10,18 @@ import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    MongoDBModule,
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => UserModule)
+  QueueModule.forRoot(),
+  MongoDBModule,
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => UserModule)
   ],
   providers: [
-    ...followProviders,
-    FollowService,
-    DeletePerformerFollowListener
+  ...followProviders,
+  FollowService,
+  DeletePerformerFollowListener
   ],
   controllers: [FollowController],
   exports: [FollowService]
-})
+  })
 export class FollowModule {}

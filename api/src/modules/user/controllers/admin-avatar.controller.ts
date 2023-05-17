@@ -33,7 +33,7 @@ export class AdminAvatarController {
       uploadImmediately: true,
       acl: S3ObjectCannelACL.PublicRead,
       server: Storage.S3
-    })
+      })
   )
   async uploadUserAvatar(
     @Param('id') userId: string,

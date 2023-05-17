@@ -43,21 +43,21 @@ export class MessageController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor([
       {
-        type: 'message-photo',
-        fieldName: 'message-photo',
-        options: {
-          destination: getConfig('file').imageDir,
-          uploadImmediately: true,
-          generateThumbnail: true,
-          thumbnailSize: {
-            width: 250,
-            height: 250
-          },
-          acl: S3ObjectCannelACL.PublicRead,
-          server: Storage.S3
-        }
+      type: 'message-photo',
+      fieldName: 'message-photo',
+      options: {
+      destination: getConfig('file').imageDir,
+      uploadImmediately: true,
+      generateThumbnail: true,
+      thumbnailSize: {
+      width: 250,
+      height: 250
+      },
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
       }
-    ])
+      }
+      ])
   )
   async createPrivateFileMessage(
     @FilesUploaded() files: Record<string, any>,

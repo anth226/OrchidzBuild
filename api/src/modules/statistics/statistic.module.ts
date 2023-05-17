@@ -17,22 +17,22 @@ import { OrderModule } from '../order/order.module';
 
 @Module({
   imports: [
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => EarningModule),
-    forwardRef(() => TokenTransactionModule),
-    forwardRef(() => FeedModule),
-    forwardRef(() => OrderModule)
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => EarningModule),
+  forwardRef(() => TokenTransactionModule),
+  forwardRef(() => FeedModule),
+  forwardRef(() => OrderModule)
   ],
   controllers: [
-    StatisticController
+  StatisticController
   ],
   providers: [
-    StatisticService
+  StatisticService
   ],
   exports: [StatisticService]
-})
+  })
 export class StatisticsModule {}

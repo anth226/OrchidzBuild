@@ -12,20 +12,20 @@ import { FeedModule } from '../feed/feed.module';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    AgendaModule.register(),
-    MongoDBModule,
-    forwardRef(() => AuthModule),
-    forwardRef(() => UserModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => FeedModule)
+  QueueModule.forRoot(),
+  AgendaModule.register(),
+  MongoDBModule,
+  forwardRef(() => AuthModule),
+  forwardRef(() => UserModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => FeedModule)
   ],
   controllers: [SearchController],
   providers: [
-    ...searchProviders,
-    SearchKeywordService,
-    CreateSearchKeywordListener],
+  ...searchProviders,
+  SearchKeywordService,
+  CreateSearchKeywordListener],
   exports: [...searchProviders, SearchKeywordService]
-})
+  })
 export class SearchModule { }

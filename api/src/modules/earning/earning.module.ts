@@ -15,18 +15,18 @@ import { OrderModule } from '../order/order.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    SocketModule,
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PaymentModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => TokenTransactionModule),
-    forwardRef(() => OrderModule)
+  MongoDBModule,
+  SocketModule,
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PaymentModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => TokenTransactionModule),
+  forwardRef(() => OrderModule)
   ],
   providers: [...earningProviders, EarningService, TransactionEarningListener, HandleDeleteItemListener],
   controllers: [EarningController],
   exports: [...earningProviders, EarningService]
-})
+  })
 export class EarningModule {}

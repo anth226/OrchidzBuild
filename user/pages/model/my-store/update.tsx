@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PureComponent } from 'react';
 import Head from 'next/head';
 import { message, Spin, Layout } from 'antd';

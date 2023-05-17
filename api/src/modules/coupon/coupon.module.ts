@@ -7,16 +7,17 @@ import { CouponService, CouponSearchService } from './services';
 import { AdminCouponController } from './controllers/coupon.controller';
 import { UpdateCouponUsesListener } from './listeners/coupon-used-listenter';
 import { PerformerModule } from '../performer/performer.module';
+
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PaymentModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PaymentModule)
   ],
   providers: [...couponProviders, CouponService, CouponSearchService, UpdateCouponUsesListener],
   controllers: [AdminCouponController],
   exports: [CouponService, CouponSearchService]
-})
+  })
 export class CouponModule {}

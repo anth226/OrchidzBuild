@@ -11,16 +11,16 @@ import { MailerModule } from '../mailer/mailer.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    AgendaModule.register(),
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => MailerModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  AgendaModule.register(),
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => MailerModule)
   ],
   providers: [...subscriptionProviders, SubscriptionService, TransactionSubscriptionListener],
   controllers: [SubscriptionController],
   exports: [...subscriptionProviders, SubscriptionService, TransactionSubscriptionListener]
-})
+  })
 export class SubscriptionModule {}

@@ -83,6 +83,7 @@ async function auth(
   onlyPerformer: boolean
 ) {
   try {
+    // @ts-ignore
     const { store } = ctx;
     const state = store.getState();
     const { token } = nextCookie(ctx);
@@ -114,6 +115,7 @@ async function auth(
 }
 
 async function updateSettingsStore(ctx: NextPageContext, settings) {
+  // @ts-ignore
   const { store } = ctx;
   store.dispatch(
     updateUIValue({

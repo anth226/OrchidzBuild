@@ -391,7 +391,7 @@ export class PerformerDto {
       paypalSetting: this.paypalSetting,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
-      contractAddress: this.contractAddress,
+      contractAddress: this.contractAddress
     };
 
     if (isAdmin) {

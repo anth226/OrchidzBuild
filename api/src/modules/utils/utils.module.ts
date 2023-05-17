@@ -22,27 +22,27 @@ import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
-    HttpModule.register({
-      timeout: 5000,
-      maxRedirects: 5
+  HttpModule.register({
+    timeout: 5000,
+    maxRedirects: 5
     }),
-    forwardRef(() => AuthModule),
-    forwardRef(() => SettingModule)
+  forwardRef(() => AuthModule),
+  forwardRef(() => SettingModule)
   ],
   controllers: [
-    CountryController,
-    LanguageController,
-    PhoneCodeController,
-    UserAdditionalInfoController,
-    RecaptchaController,
-    StateController,
-    CityController
+  CountryController,
+  LanguageController,
+  PhoneCodeController,
+  UserAdditionalInfoController,
+  RecaptchaController,
+  StateController,
+  CityController
   ],
   providers: [
-    CountryService, LanguageService, PhoneCodeService,
-    UserAdditionalInfoService, RecaptchaService,
-    StateService, CityService
+  CountryService, LanguageService, PhoneCodeService,
+  UserAdditionalInfoService, RecaptchaService,
+  StateService, CityService
   ],
   exports: [CountryService, LanguageService, PhoneCodeService]
-})
+  })
 export class UtilsModule {}

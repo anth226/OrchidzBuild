@@ -16,30 +16,30 @@ import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    QueueModule.forRoot(),
-    forwardRef(() => AuthModule),
-    forwardRef(() => UserModule),
-    forwardRef(() => PerformerModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => TokenTransactionModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => FileModule)
+  MongoDBModule,
+  QueueModule.forRoot(),
+  forwardRef(() => AuthModule),
+  forwardRef(() => UserModule),
+  forwardRef(() => PerformerModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => TokenTransactionModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => FileModule)
   ],
   providers: [
-    ...orderProviders,
-    ...shippingAddressProviders,
-    OrderService,
-    OrderListener,
-    ShippingAddressService
+  ...orderProviders,
+  ...shippingAddressProviders,
+  OrderService,
+  OrderListener,
+  ShippingAddressService
   ],
   controllers: [
-    OrderController,
-    ShippingAddressController
+  OrderController,
+  ShippingAddressController
   ],
   exports: [
-    ...orderProviders,
-    OrderService
+  ...orderProviders,
+  OrderService
   ]
-})
+  })
 export class OrderModule { }

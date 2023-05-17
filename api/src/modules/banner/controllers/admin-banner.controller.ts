@@ -42,16 +42,16 @@ export class AdminBannerController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor([
       {
-        type: 'banner',
-        fieldName: 'banner',
-        options: {
-          destination: getConfig('file').imageDir,
-          uploadImmediately: true,
-          acl: S3ObjectCannelACL.PublicRead,
-          server: Storage.S3
-        }
+      type: 'banner',
+      fieldName: 'banner',
+      options: {
+      destination: getConfig('file').imageDir,
+      uploadImmediately: true,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
       }
-    ])
+      }
+      ])
   )
   async upload(
     @FilesUploaded() files: Record<string, any>,

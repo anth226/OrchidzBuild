@@ -41,36 +41,36 @@ export class PerformerVideosController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor(
       [
-        {
-          type: 'performer-video',
-          fieldName: 'video',
-          options: {
-            destination: getConfig('file').videoProtectedDir,
-            acl: S3ObjectCannelACL.AuthenticatedRead,
-            server: Storage.S3
-          }
-        },
-        {
-          type: 'performer-video-teaser',
-          fieldName: 'teaser',
-          options: {
-            destination: getConfig('file').videoDir,
-            acl: S3ObjectCannelACL.PublicRead,
-            server: Storage.S3
-          }
-        },
-        {
-          type: 'performer-video-thumbnail',
-          fieldName: 'thumbnail',
-          options: {
-            destination: getConfig('file').imageDir,
-            uploadImmediately: true,
-            generateThumbnail: true,
-            thumbnailSize: getConfig('image').blurThumbnail,
-            acl: S3ObjectCannelACL.PublicRead,
-            server: Storage.S3
-          }
-        }
+      {
+      type: 'performer-video',
+      fieldName: 'video',
+      options: {
+      destination: getConfig('file').videoProtectedDir,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
+      }
+      },
+      {
+      type: 'performer-video-teaser',
+      fieldName: 'teaser',
+      options: {
+      destination: getConfig('file').videoDir,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
+      },
+      {
+      type: 'performer-video-thumbnail',
+      fieldName: 'thumbnail',
+      options: {
+      destination: getConfig('file').imageDir,
+      uploadImmediately: true,
+      generateThumbnail: true,
+      thumbnailSize: getConfig('image').blurThumbnail,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
+      }
       ]
     )
   )
@@ -121,36 +121,36 @@ export class PerformerVideosController {
     // TODO - check and support multiple files!!!
     MultiFileUploadInterceptor(
       [
-        {
-          type: 'performer-video',
-          fieldName: 'video',
-          options: {
-            destination: getConfig('file').videoProtectedDir,
-            acl: S3ObjectCannelACL.AuthenticatedRead,
-            server: Storage.S3
-          }
-        },
-        {
-          type: 'performer-video-teaser',
-          fieldName: 'teaser',
-          options: {
-            destination: getConfig('file').videoDir,
-            acl: S3ObjectCannelACL.PublicRead,
-            server: Storage.S3
-          }
-        },
-        {
-          type: 'performer-video-thumbnail',
-          fieldName: 'thumbnail',
-          options: {
-            destination: getConfig('file').imageDir,
-            generateThumbnail: true,
-            uploadImmediately: true,
-            thumbnailSize: getConfig('image').blurThumbnail,
-            acl: S3ObjectCannelACL.PublicRead,
-            server: Storage.S3
-          }
-        }
+      {
+      type: 'performer-video',
+      fieldName: 'video',
+      options: {
+      destination: getConfig('file').videoProtectedDir,
+      acl: S3ObjectCannelACL.AuthenticatedRead,
+      server: Storage.S3
+      }
+      },
+      {
+      type: 'performer-video-teaser',
+      fieldName: 'teaser',
+      options: {
+      destination: getConfig('file').videoDir,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
+      },
+      {
+      type: 'performer-video-thumbnail',
+      fieldName: 'thumbnail',
+      options: {
+      destination: getConfig('file').imageDir,
+      generateThumbnail: true,
+      uploadImmediately: true,
+      thumbnailSize: getConfig('image').blurThumbnail,
+      acl: S3ObjectCannelACL.PublicRead,
+      server: Storage.S3
+      }
+      }
       ]
     )
   )

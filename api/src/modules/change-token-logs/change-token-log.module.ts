@@ -11,19 +11,19 @@ import {
 
 @Module({
   imports: [
-    MongoDBModule,
-    forwardRef(() => AuthModule)
+  MongoDBModule,
+  forwardRef(() => AuthModule)
   ],
   providers: [
-    ...changeTokenLogsProviders,
-    ChangeTokenLogService
+  ...changeTokenLogsProviders,
+  ChangeTokenLogService
   ],
   controllers: [
-    ChangeTokenLogsController
+  ChangeTokenLogsController
   ],
   exports: [
-    ...changeTokenLogsProviders,
-    ChangeTokenLogService
+  ...changeTokenLogsProviders,
+  ChangeTokenLogService
   ]
-})
+  })
 export class ChangeTokenLogModule {}

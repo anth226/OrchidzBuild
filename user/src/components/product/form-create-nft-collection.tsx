@@ -35,6 +35,7 @@ const useCollectionDeployment = () => {
       message.error(error.message);
       setLoading(false);
     }
+    return null;
   };
 
   return {

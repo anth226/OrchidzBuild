@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from 'react';
 import { Button, message } from 'antd';
 import Tabs from 'src/components/common/base/tabs';

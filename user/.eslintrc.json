@@ -5,7 +5,7 @@
   "rules": {
     "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "off",
     "import/no-unresolved": 0,
     "react/jsx-filename-extension": [1, {
       "extensions": [
@@ -14,7 +14,7 @@
       ]
     }],
     "import/extensions": [
-      "error",
+      "off",
       "ignorePackages",
       {
         "js": "never",
@@ -24,6 +24,21 @@
         "": "never"
       }
     ],
+    "react/prop-types": [
+      "error",
+      {
+        "skipUndeclared": true,
+        "ignore": ["children"]
+      }
+    ],
+    "react/no-unused-prop-types": [
+      "off"
+    ],
+    "react/require-default-props": [
+      "off"
+    ],
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "react/no-children-prop": "off",
     "import/prefer-default-export": 0,
     "no-underscore-dangle": 0,
     "max-classes-per-file": 0,

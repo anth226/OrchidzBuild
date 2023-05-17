@@ -5,17 +5,17 @@ import { S3StorageService, S3ConfigurationService } from './services';
 
 @Module({
   imports: [
-    QueueModule.forRoot(),
-    SettingModule
+  QueueModule.forRoot(),
+  SettingModule
   ],
   providers: [
-    S3ConfigurationService,
-    S3StorageService
+  S3ConfigurationService,
+  S3StorageService
   ],
   exports: [
-    S3StorageService
+  S3StorageService
   ]
-})
+  })
 export class StorageModule {
   static forRoot(): DynamicModule {
     return {

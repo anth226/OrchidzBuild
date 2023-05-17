@@ -26,44 +26,44 @@ import { FollowModule } from '../follow/follow.module';
 
 @Module({
   imports: [
-    MongoDBModule,
-    AgendaModule.register(),
-    // inject user module because we request guard from auth, need to check and fix dependencies if not needed later
-    forwardRef(() => UserModule),
-    forwardRef(() => AuthModule),
-    forwardRef(() => FileModule),
-    forwardRef(() => SubscriptionModule),
-    forwardRef(() => PerformerAssetsModule),
-    forwardRef(() => UtilsModule),
-    forwardRef(() => MailerModule),
-    forwardRef(() => SettingModule),
-    forwardRef(() => ReactionModule),
-    forwardRef(() => ChangeTokenLogModule),
-    forwardRef(() => BlockModule),
-    forwardRef(() => PaymentModule),
-    forwardRef(() => FollowModule)
+  MongoDBModule,
+  AgendaModule.register(),
+// inject user module because we request guard from auth, need to check and fix dependencies if not needed later
+  forwardRef(() => UserModule),
+  forwardRef(() => AuthModule),
+  forwardRef(() => FileModule),
+  forwardRef(() => SubscriptionModule),
+  forwardRef(() => PerformerAssetsModule),
+  forwardRef(() => UtilsModule),
+  forwardRef(() => MailerModule),
+  forwardRef(() => SettingModule),
+  forwardRef(() => ReactionModule),
+  forwardRef(() => ChangeTokenLogModule),
+  forwardRef(() => BlockModule),
+  forwardRef(() => PaymentModule),
+  forwardRef(() => FollowModule)
   ],
   providers: [
-    ...performerProviders,
-    CategoryService,
-    CategorySearchService,
-    PerformerService,
-    PerformerSearchService,
-    PerformerAssetsListener,
-    PerformerConnectedListener,
-    UpdatePerformerStatusListener
+  ...performerProviders,
+  CategoryService,
+  CategorySearchService,
+  PerformerService,
+  PerformerSearchService,
+  PerformerAssetsListener,
+  PerformerConnectedListener,
+  UpdatePerformerStatusListener
   ],
   controllers: [
-    CategoryController,
-    AdminCategoryController,
-    AdminPerformerController,
-    PerformerController
+  CategoryController,
+  AdminCategoryController,
+  AdminPerformerController,
+  PerformerController
   ],
   exports: [
-    ...performerProviders,
-    PerformerService,
-    CategoryService,
-    PerformerSearchService
+  ...performerProviders,
+  PerformerService,
+  CategoryService,
+  PerformerSearchService
   ]
-})
+  })
 export class PerformerModule {}
