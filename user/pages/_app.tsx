@@ -239,7 +239,7 @@ class Application extends App<IApp> {
     const { layout } = Component;
     return (
       <ThirdwebProvider
-        activeChain="goerli"
+        activeChain="mumbai"
         supportedChains={[Ethereum, Polygon, Goerli, Sepolia, Mumbai]}
       >
         <Provider store={store}>
