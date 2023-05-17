@@ -38,6 +38,8 @@ class CreateProduct extends PureComponent {
   }
 
   async submit(data: any) {
+    alert('nft minting');
+
     if (data.type === 'digital' && !this._files.digitalFile) {
       message.error('Please select digital file!');
       return;
