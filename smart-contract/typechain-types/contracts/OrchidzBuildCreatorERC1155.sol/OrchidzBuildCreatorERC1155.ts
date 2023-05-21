@@ -28,7 +28,7 @@ import type {
   PromiseOrValue,
 } from "../../common";
 
-export interface MyTokenInterface extends utils.Interface {
+export interface OrchidzBuildCreatorERC1155Interface extends utils.Interface {
   functions: {
     "balanceOf(address,uint256)": FunctionFragment;
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
@@ -280,12 +280,12 @@ export type URIEvent = TypedEvent<[string, BigNumber], URIEventObject>;
 
 export type URIEventFilter = TypedEventFilter<URIEvent>;
 
-export interface MyToken extends BaseContract {
+export interface OrchidzBuildCreatorERC1155 extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: MyTokenInterface;
+  interface: OrchidzBuildCreatorERC1155Interface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,

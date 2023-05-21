@@ -5,3 +5,4 @@ import type * as orchidzBuildCreatorErc1155Sol from "./OrchidzBuildCreatorERC115
 export type { orchidzBuildCreatorErc1155Sol };
 import type * as orchidzBuildNftErc721ASol from "./OrchidzBuildNftErc721A.sol";
 export type { orchidzBuildNftErc721ASol };
+export type { OrchidzBuildManager } from "./OrchidzBuildManager";
