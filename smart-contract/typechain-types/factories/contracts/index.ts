@@ -3,3 +3,4 @@
 /* eslint-disable */
 export * as orchidzBuildCreatorErc1155Sol from "./OrchidzBuildCreatorERC1155.sol";
 export * as orchidzBuildNftErc721ASol from "./OrchidzBuildNftErc721A.sol";
+export { OrchidzBuildManager__factory } from "./OrchidzBuildManager__factory";

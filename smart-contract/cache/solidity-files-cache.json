@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/stoic/Desktop/OrchidzBuild-main/lastest code/OrchidzBuild/smart-contract/contracts/OrchidzBuildCreatorERC1155.sol": {
-      "lastModificationDate": 1684653572328,
-      "contentHash": "89397228fd48f059e414c14e83d5ba82",
+      "lastModificationDate": 1684655880495,
+      "contentHash": "cd1aa3b71637ef821ca5dc775218fe2d",
       "sourceName": "contracts/OrchidzBuildCreatorERC1155.sol",
       "solcConfig": {
         "version": "0.8.18",
@@ -36,7 +36,7 @@
         "^0.8.9"
       ],
       "artifacts": [
-        "MyToken"
+        "OrchidzBuildCreatorERC1155"
       ]
     },
     "/home/stoic/Desktop/OrchidzBuild-main/lastest code/OrchidzBuild/smart-contract/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
@@ -479,6 +479,43 @@
       ],
       "artifacts": [
         "IERC721A"
+      ]
+    },
+    "/home/stoic/Desktop/OrchidzBuild-main/lastest code/OrchidzBuild/smart-contract/contracts/OrchidzBuildManager.sol": {
+      "lastModificationDate": 1684656188026,
+      "contentHash": "9180e550a6525dbc3713c5fcb124b7b2",
+      "sourceName": "contracts/OrchidzBuildManager.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./OrchidzBuildCreatorERC1155.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "OrchidzBuildManager"
       ]
     }
   }

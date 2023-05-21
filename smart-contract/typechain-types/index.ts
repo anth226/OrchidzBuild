@@ -24,6 +24,10 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { MyToken } from "./contracts/OrchidzBuildCreatorERC1155.sol/MyToken";
 export { MyToken__factory } from "./factories/contracts/OrchidzBuildCreatorERC1155.sol/MyToken__factory";
+export type { OrchidzBuildCreatorERC1155 } from "./contracts/OrchidzBuildCreatorERC1155.sol/OrchidzBuildCreatorERC1155";
+export { OrchidzBuildCreatorERC1155__factory } from "./factories/contracts/OrchidzBuildCreatorERC1155.sol/OrchidzBuildCreatorERC1155__factory";
+export type { OrchidzBuildManager } from "./contracts/OrchidzBuildManager";
+export { OrchidzBuildManager__factory } from "./factories/contracts/OrchidzBuildManager__factory";
 export type { OrchidzBuildNft } from "./contracts/OrchidzBuildNftErc721A.sol/OrchidzBuildNft";
 export { OrchidzBuildNft__factory } from "./factories/contracts/OrchidzBuildNftErc721A.sol/OrchidzBuildNft__factory";
 export type { ERC721A__IERC721Receiver } from "./erc721a/contracts/ERC721A.sol/ERC721A__IERC721Receiver";

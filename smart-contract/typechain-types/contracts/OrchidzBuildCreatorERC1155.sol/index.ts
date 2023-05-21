@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { MyToken } from "./MyToken";
+export type { OrchidzBuildCreatorERC1155 } from "./OrchidzBuildCreatorERC1155";

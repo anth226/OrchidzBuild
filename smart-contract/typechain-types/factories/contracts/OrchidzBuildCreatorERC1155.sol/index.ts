@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { MyToken__factory } from "./MyToken__factory";
+export { OrchidzBuildCreatorERC1155__factory } from "./OrchidzBuildCreatorERC1155__factory";
