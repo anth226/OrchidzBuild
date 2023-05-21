@@ -5,13 +5,13 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC1155, Ownable {
-  string public name;
-  string public symbol;
+  string public name = "";
+  string public symbol = "";
 
-  mapping(uint256=>bool) public allowedTokens;
+  mapping(uint256=>bool) public isTokenAllowedTokens;
 
 
-    constructor(string memory _name, string memory symbol) ERC1155("ipfs://_cid_/{id}.json") {
+    constructor(string memory _name, string memory _symbol) ERC1155("ipfs://_cid_/{id}.json") {
         name = _name;
         symbol = _symbol;
     }

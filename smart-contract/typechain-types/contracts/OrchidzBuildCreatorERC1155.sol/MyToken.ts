@@ -32,8 +32,10 @@ export interface MyTokenInterface extends utils.Interface {
     "balanceOf(address,uint256)": FunctionFragment;
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
+    "isTokenAllowedTokens(uint256)": FunctionFragment;
     "mint(address,uint256,uint256,bytes)": FunctionFragment;
     "mintBatch(address,uint256[],uint256[],bytes)": FunctionFragment;
+    "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": FunctionFragment;
@@ -41,6 +43,7 @@ export interface MyTokenInterface extends utils.Interface {
     "setApprovalForAll(address,bool)": FunctionFragment;
     "setURI(string)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
+    "symbol()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "uri(uint256)": FunctionFragment;
   };
@@ -50,8 +53,10 @@ export interface MyTokenInterface extends utils.Interface {
       | "balanceOf"
       | "balanceOfBatch"
       | "isApprovedForAll"
+      | "isTokenAllowedTokens"
       | "mint"
       | "mintBatch"
+      | "name"
       | "owner"
       | "renounceOwnership"
       | "safeBatchTransferFrom"
@@ -59,6 +64,7 @@ export interface MyTokenInterface extends utils.Interface {
       | "setApprovalForAll"
       | "setURI"
       | "supportsInterface"
+      | "symbol"
       | "transferOwnership"
       | "uri"
   ): FunctionFragment;
@@ -74,6 +80,10 @@ export interface MyTokenInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isTokenAllowedTokens",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "mint",
@@ -93,6 +103,7 @@ export interface MyTokenInterface extends utils.Interface {
       PromiseOrValue<BytesLike>
     ]
   ): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
@@ -130,6 +141,7 @@ export interface MyTokenInterface extends utils.Interface {
     functionFragment: "supportsInterface",
     values: [PromiseOrValue<BytesLike>]
   ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "transferOwnership",
     values: [PromiseOrValue<string>]
@@ -148,8 +160,13 @@ export interface MyTokenInterface extends utils.Interface {
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "isTokenAllowedTokens",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mintBatch", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
@@ -172,6 +189,7 @@ export interface MyTokenInterface extends utils.Interface {
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
     data: BytesLike
@@ -298,6 +316,11 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    isTokenAllowedTokens(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
     mint(
       account: PromiseOrValue<string>,
       id: PromiseOrValue<BigNumberish>,
@@ -313,6 +336,8 @@ export interface MyToken extends BaseContract {
       data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    name(overrides?: CallOverrides): Promise<[string]>;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
@@ -354,6 +379,8 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    symbol(overrides?: CallOverrides): Promise<[string]>;
+
     transferOwnership(
       newOwner: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -383,6 +410,11 @@ export interface MyToken extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  isTokenAllowedTokens(
+    arg0: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   mint(
     account: PromiseOrValue<string>,
     id: PromiseOrValue<BigNumberish>,
@@ -398,6 +430,8 @@ export interface MyToken extends BaseContract {
     data: PromiseOrValue<BytesLike>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
+
+  name(overrides?: CallOverrides): Promise<string>;
 
   owner(overrides?: CallOverrides): Promise<string>;
 
@@ -439,6 +473,8 @@ export interface MyToken extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  symbol(overrides?: CallOverrides): Promise<string>;
+
   transferOwnership(
     newOwner: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -468,6 +504,11 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
+    isTokenAllowedTokens(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     mint(
       account: PromiseOrValue<string>,
       id: PromiseOrValue<BigNumberish>,
@@ -483,6 +524,8 @@ export interface MyToken extends BaseContract {
       data: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    name(overrides?: CallOverrides): Promise<string>;
 
     owner(overrides?: CallOverrides): Promise<string>;
 
@@ -521,6 +564,8 @@ export interface MyToken extends BaseContract {
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    symbol(overrides?: CallOverrides): Promise<string>;
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
@@ -610,6 +655,11 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    isTokenAllowedTokens(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     mint(
       account: PromiseOrValue<string>,
       id: PromiseOrValue<BigNumberish>,
@@ -625,6 +675,8 @@ export interface MyToken extends BaseContract {
       data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    name(overrides?: CallOverrides): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -666,6 +718,8 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    symbol(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferOwnership(
       newOwner: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -696,6 +750,11 @@ export interface MyToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    isTokenAllowedTokens(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     mint(
       account: PromiseOrValue<string>,
       id: PromiseOrValue<BigNumberish>,
@@ -711,6 +770,8 @@ export interface MyToken extends BaseContract {
       data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -751,6 +812,8 @@ export interface MyToken extends BaseContract {
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,

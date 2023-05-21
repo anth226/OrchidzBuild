@@ -3,4 +3,3 @@
 /* eslint-disable */
 export * as orchidzBuildCreatorErc1155Sol from "./OrchidzBuildCreatorERC1155.sol";
 export * as orchidzBuildNftErc721ASol from "./OrchidzBuildNftErc721A.sol";
-export { OrchidzBuildNft__factory } from "./OrchidzBuildNft__factory";

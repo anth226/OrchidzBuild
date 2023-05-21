@@ -49,10 +49,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.OrchidzBuildNft__factory>;
     getContractFactory(
-      name: "OrchidzBuildNft",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.OrchidzBuildNft__factory>;
-    getContractFactory(
       name: "ERC721A__IERC721Receiver",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC721A__IERC721Receiver__factory>;
@@ -105,11 +101,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.MyToken>;
-    getContractAt(
-      name: "OrchidzBuildNft",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.OrchidzBuildNft>;
     getContractAt(
       name: "OrchidzBuildNft",
       address: string,
