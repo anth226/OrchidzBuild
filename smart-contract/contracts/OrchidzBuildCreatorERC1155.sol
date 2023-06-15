@@ -12,70 +12,73 @@ contract OrchidzBuildCreatorERC1155 is ERC1155, Ownable {
         bool isCreated;
         string uri;
         uint256 mintPrice;
+        address admin;
     }
 
     mapping(uint256 => NftDetailStruct) public nftDetailOf;
+    mapping(address => uint256) public nftIdOf;
+    mapping (uint256 => uint256) public totalSupplyOf;
 
-    constructor(string memory _name, string memory _symbol)
-        ERC1155("")
-    {
+    uint256 public currectNftId;
+
+    event NftCreated(
+        uint256 indexed id,
+        address indexed admin,
+        uint256 mintPrice
+    );
+
+    constructor(string memory _name, string memory _symbol) ERC1155("") {
         name = _name;
         symbol = _symbol;
+        currectNftId = 1;
+    }
+
+    function createNFTtoMint(
+        string memory __uriN,
+        uint256 __mintP,
+        address _admin
+    ) public {
+        uint256 _id = currectNftId;
+        nftDetailOf[_id] = NftDetailStruct(true, __uriN, __mintP, _admin);
+        nftIdOf[_admin] = _id;
+        emit NftCreated(_id, _admin, __mintP);
+        currectNftId++;
+    }
+
+    function mint(address account, uint256 nftId, uint256 amount) public payable {
+        NftDetailStruct memory _nftDetail = nftDetailOf[nftId];
+        require(_nftDetail.isCreated, "this nft is not created yet");
+        require(
+            _nftDetail.mintPrice * amount <= msg.value,
+            "Send full amount to mint nft"
+        );
+
+        totalSupplyOf[nftId] += amount;
+        _mint(account, nftId, amount, "");
+    }
+
+    function uri(
+        uint256 id
+    ) public view virtual override returns (string memory) {
+        return nftDetailOf[id].uri;
+    }
+
+    function tokenURI(uint256 id) public view returns (string memory) {
+        return nftDetailOf[id].uri;
     }
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
     }
 
-    function mint(
-        address account,
-        uint256 id,
-        uint256 amount
-    ) public payable onlyOwner {
-        NftDetailStruct memory _nftDetail = nftDetailOf[id];
-        require(_nftDetail.isCreated, "this nft is not created yet");
+    function updateNftDetails(
+        uint256 nftId,
+        NftDetailStruct memory _nftDetails
+    ) public {
         require(
-            _nftDetail.mintPrice <= msg.value,
-            "Send full amount to mint nft"
+            msg.sender == nftDetailOf[nftId].admin,
+            "Only Creator of this nft can update these details"
         );
-
-        _mint(account, id, amount, "");
-    }
-
-    // function mintBatch(
-    //     address to,
-    //     uint256[] memory ids,
-    //     uint256[] memory amounts,
-    //     bytes memory data
-    // ) public onlyOwner {
-    //     _mintBatch(to, ids, amounts, data);
-    // }
-
-    function createNFTtoMint(
-        uint256 _nftId,
-        string memory __uriN,
-        uint256 __mintP
-    ) public onlyOwner {
-        require(
-            !nftDetailOf[_nftId].isCreated,
-            "nft details are already set for this token id"
-        );
-
-        nftDetailOf[_nftId] = NftDetailStruct(true, __uriN, __mintP);
-    }
-
-    // uri function
-    function uri(uint256 id)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
-        return nftDetailOf[id].uri;
-    }
-
-    function tokenURI(uint256 id) public view returns (string memory) {
-        return nftDetailOf[id].uri;
+        nftDetailOf[nftId] = _nftDetails;
     }
 }
