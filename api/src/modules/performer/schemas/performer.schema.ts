@@ -271,6 +271,9 @@ const performerSchema = new mongoose.Schema({
   },
   contractAddress: {
     type: String
+  },
+  nftId: {
+    type: Number
   }
 });
 

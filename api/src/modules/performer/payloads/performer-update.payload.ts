@@ -423,6 +423,11 @@ export class SelfUpdatePayload {
   contractAddress: string;
 
   @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  nftId: number;
+
+  @ApiProperty()
   @IsDateString()
   @IsOptional()
   dateOfBirth: string

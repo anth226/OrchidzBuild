@@ -87,6 +87,7 @@ export interface IPerformer {
   isPerformer: boolean;
   isFollowed: boolean;
   contractAddress?: string;
+  nftId?: number;
 }
 
 export interface IBanking {

@@ -151,4 +151,6 @@ export class PerformerModel extends Document {
   commissionPercentage: number;
 
   contractAddress: string;
+
+  nftId: number;
 }

@@ -67,13 +67,13 @@ export class FormProduct extends PureComponent<IProps> {
     }
   }
 
-  static getDerivedStateFromProps(props: IProps, state: any) {
-    return {
-      ...state
-      // contractModalOpen: state.productType === 'nft' && !props.user.contractAddress
-      // contractModalOpen: false
-    };
-  }
+  // static getDerivedStateFromProps(props: IProps, state: any) {
+  //   return {
+  //     ...state
+  //     // contractModalOpen: state.productType === 'nft' && !props.user.contractAddress
+  //     // contractModalOpen: false
+  //   };
+  // }
 
   setFormVal(field: string, val: any) {
     const { user } = this.props;
@@ -406,7 +406,7 @@ export class FormProduct extends PureComponent<IProps> {
             </Col>
           </>
         )}
-        {!user.contractAddress && (
+        {user.contractAddress && (
           <Col xs={24}>
             <Form.Item>
               <Button

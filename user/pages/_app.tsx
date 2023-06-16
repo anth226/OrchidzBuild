@@ -233,14 +233,29 @@ class Application extends App<IApp> {
   }
 
   render() {
+    const Ganache = {
+      chainId: 1337, // Chain ID of the network
+      rpc: ['http://127.0.0.1:8545'],
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Ganache ETH',
+        symbol: 'gETH'
+      },
+      shortName: 'ganache', // Display value shown in the wallet UI
+      slug: 'ganache', // Display value shown in the wallet UI
+      testnet: true, // Boolean indicating whether the chain is a testnet or mainnet
+      chain: 'Ganache', // Name of the network
+      name: 'Ganache Testnet' // Name of the network
+    };
     const {
       Component, pageProps, store, settings
     } = this.props;
     const { layout } = Component;
     return (
       <ThirdwebProvider
-        activeChain="mumbai"
-        supportedChains={[Ethereum, Polygon, Goerli, Sepolia, Mumbai]}
+        activeChain="ganache"
+        // activeChain="mumbai"
+        supportedChains={[Ganache, Polygon, Mumbai]}
       >
         <Provider store={store}>
           <Head>

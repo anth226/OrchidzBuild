@@ -75,7 +75,8 @@ export interface IPerformerResponse {
   stripeAccount?: any;
   isFollowed?: boolean;
   commissionPercentage?: number;
-  contractAddress?: number;
+  contractAddress?: string;
+  nftId?: number;
 }
 
 export class PerformerDto {
@@ -238,7 +239,9 @@ export class PerformerDto {
 
   commissionPercentage?: number;
 
-  contractAddress?: number;
+  contractAddress?: string;
+
+  nftId?: number;
 
   constructor(data?: Partial<any>) {
     Object.assign(
@@ -317,7 +320,8 @@ export class PerformerDto {
         'balance',
         'isFollowed',
         'commissionPercentage',
-        'contractAddress'
+        'contractAddress',
+        'nftId'
       ])
     );
   }
@@ -391,7 +395,8 @@ export class PerformerDto {
       paypalSetting: this.paypalSetting,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
-      contractAddress: this.contractAddress
+      contractAddress: this.contractAddress,
+      nftId: this.nftId
     };
 
     if (isAdmin) {

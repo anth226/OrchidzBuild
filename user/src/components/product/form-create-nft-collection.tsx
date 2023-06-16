@@ -13,36 +13,20 @@ import {
   updatePerformer as updatePerformerAction
 } from 'src/redux/user/actions';
 import {
-  ConnectWallet, useAddress, useSDK, NFTContractDeployMetadata
+  ConnectWallet, useAddress, useSDK, useStorage
 } from '@thirdweb-dev/react';
 
-const useCollectionDeployment = () => {
-  const [loading, setLoading] = useState(false);
-  const sdk = useSDK();
+import { OrchidzBuildContractAddr } from 'src/contract/networkDetails';
+import OrchidzBuildAbi from 'src/contract/OrchidzBuildAbi.json';
+import { ethers } from 'ethers';
 
-  const deploy = async (metadata: NFTContractDeployMetadata) => {
-    try {
-      setLoading(true);
-      const contractAddress = await sdk.deployer.deployEditionDrop({
-        ...metadata,
-        // @TODO: config should come from environment variables
-        seller_fee_basis_points: metadata.seller_fee_basis_points * 100,
-        platform_fee_recipient: '0xa5b586b750Ae4D91780BD50e289e8d267F9C2435',
-        platform_fee_basis_points: 2.5 * 100
-      });
-      return contractAddress;
-    } catch (error) {
-      message.error(error.message);
-      setLoading(false);
-    }
-    return null;
-  };
-
-  return {
-    loading,
-    deploy
-  };
-};
+type CreateNftType = {
+  name:string;
+  image:string;
+  price:number;
+  admin:string;
+  royalyPercent:number;
+}
 
 const layout = {
   labelCol: { span: 24 },
@@ -55,15 +39,51 @@ const validateMessages = {
 
 export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }) => {
   const address = useAddress();
-  const { loading, deploy } = useCollectionDeployment();
+  const storage = useStorage();
+  const sdk = useSDK();
+  const [loading, setLoading] = useState(false);
 
-  const handleOnSubmit = async (metadata: NFTContractDeployMetadata) => {
+  const createNFT = async (metadata: CreateNftType):Promise<number> => {
+    const imageUri = 'ipfs://QmeRgH3a5BYXer6X3KwEpFedTFXz8svSpfC84FvRR3MXSd';
+    const urii = 'ipfs://QmaPtJKTuSWrh566qHZqfFWFy3td4QSNy1ZwSBkQX9V3uG/0';
+    setLoading(true);
+    console.log('uploading ipfs');
+    // const imageUri = await storage.upload();
+    // const urii = await storage.upload({ ...metadata, image: imageUri });
+    console.log(urii);
+    // const durii = await storage.download(urii);
+    // console.log(durii.url);
+    const OrchidzBuildCreatorContract = await sdk.getContract(
+      OrchidzBuildContractAddr,
+      OrchidzBuildAbi
+    );
+
     try {
-      const contractAddress = await deploy(metadata);
-      if (contractAddress) {
+      const tx = await OrchidzBuildCreatorContract.call(
+        'createNFTtoMint', // Name of your function as it is on the smart contract
+        [
+          urii,
+          ethers.utils.parseUnits(String(metadata.price), 'ether'),
+          metadata.admin
+        ]
+      );
+      console.log(Number(tx.receipt.events[0].args.id));
+      setLoading(false);
+      return -1;
+    } catch (err: any) {
+      console.log(err);
+      setLoading(false);
+      return -1;
+    }
+  };
+
+  const handleOnSubmit = async (metadata: CreateNftType) => {
+    try {
+      const nftId = await createNFT(metadata);
+      if (nftId >= 0) {
         await updatePerformer({
           ...user,
-          contractAddress
+          nftId
         });
       }
     } catch (error) {
@@ -86,13 +106,13 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
       {...layout}
       onFinish={handleOnSubmit}
       onFinishFailed={() => message.error('Please complete the required fields')}
-      name="form-create-collection"
+      name="form-create-nftid"
       validateMessages={validateMessages}
       initialValues={{
         name: user.name,
-        primary_sale_recipient: address,
-        fee_recipient: address,
-        seller_fee_basis_points: 2.5
+        admin: address,
+        price: 10,
+        royalyPercent: 2.5
       }}
       scrollToFirstError
     >
@@ -101,12 +121,30 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
           <Form.Item
             name="name"
             rules={[{ required: true, message: 'Please enter a name for your collection' }]}
-            label="Collection Name"
+            label="NFT Name"
           >
             <Input />
           </Form.Item>
         </Col>
-        <Col xs={24}>
+        <Col xs={16}>
+          <Form.Item
+            name="image"
+            rules={[{ required: true, message: 'Please enter a Valid Nft image uri' }]}
+            label="Enter NFT image Uri"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col xs={8}>
+          <Form.Item
+            name="price"
+            rules={[{ required: true, message: 'Please enter a Valid NFT price' }]}
+            label="Enter NFT Price (MATIC)"
+          >
+            <InputNumber style={{ width: '100%' }} min={0} />
+          </Form.Item>
+        </Col>
+        {/* <Col xs={24}>
           <Form.Item
             name="primary_sale_recipient"
             rules={[{ required: true, message: 'Please enter a primary sale recipient address' }]}
@@ -114,8 +152,8 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
           >
             <Input />
           </Form.Item>
-        </Col>
-        <Col xs={18}>
+        </Col> */}
+        {/* <Col xs={18}>
           <Form.Item
             name="fee_recipient"
             rules={[{ required: true, message: 'Please enter a royalties recipient address' }]}
@@ -123,10 +161,19 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
           >
             <Input />
           </Form.Item>
-        </Col>
-        <Col xs={6}>
+        </Col> */}
+        <Col xs={16}>
           <Form.Item
-            name="seller_fee_basis_points"
+            name="admin"
+            rules={[{ required: true, message: 'Please enter a admin address' }]}
+            label="Admin Address"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col xs={8}>
+          <Form.Item
+            name="royalyPercent"
             rules={[{ required: true, message: 'Please enter a royalty percentage' }]}
             label="Royalty Percentage"
           >
