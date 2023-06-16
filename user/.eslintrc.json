@@ -37,6 +37,8 @@
     "react/require-default-props": [
       "off"
     ],
+    "implicit-arrow-linebreak": "off",
+    "object-curly-newline": 0,
     "@typescript-eslint/ban-ts-ignore": "off",
     "react/no-children-prop": "off",
     "import/prefer-default-export": 0,

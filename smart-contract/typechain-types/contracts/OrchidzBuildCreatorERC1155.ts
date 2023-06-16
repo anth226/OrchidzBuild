@@ -390,8 +390,8 @@ export interface OrchidzBuildCreatorERC1155 extends BaseContract {
     ): Promise<[BigNumber[]]>;
 
     createNFTtoMint(
-      __uriN: PromiseOrValue<string>,
-      __mintP: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
+      _price: PromiseOrValue<BigNumberish>,
       _admin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -512,8 +512,8 @@ export interface OrchidzBuildCreatorERC1155 extends BaseContract {
   ): Promise<BigNumber[]>;
 
   createNFTtoMint(
-    __uriN: PromiseOrValue<string>,
-    __mintP: PromiseOrValue<BigNumberish>,
+    _uri: PromiseOrValue<string>,
+    _price: PromiseOrValue<BigNumberish>,
     _admin: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -634,8 +634,8 @@ export interface OrchidzBuildCreatorERC1155 extends BaseContract {
     ): Promise<BigNumber[]>;
 
     createNFTtoMint(
-      __uriN: PromiseOrValue<string>,
-      __mintP: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
+      _price: PromiseOrValue<BigNumberish>,
       _admin: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -824,8 +824,8 @@ export interface OrchidzBuildCreatorERC1155 extends BaseContract {
     ): Promise<BigNumber>;
 
     createNFTtoMint(
-      __uriN: PromiseOrValue<string>,
-      __mintP: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
+      _price: PromiseOrValue<BigNumberish>,
       _admin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -940,8 +940,8 @@ export interface OrchidzBuildCreatorERC1155 extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     createNFTtoMint(
-      __uriN: PromiseOrValue<string>,
-      __mintP: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
+      _price: PromiseOrValue<BigNumberish>,
       _admin: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;

@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
-import { PureComponent, createRef } from 'react';
+import { PureComponent, createRef, useContext } from 'react';
 import {
   Form,
   Input,
@@ -18,6 +18,7 @@ import { IProduct, IPerformer } from 'src/interfaces';
 import { FileAddOutlined, CameraOutlined } from '@ant-design/icons';
 import { FormInstance } from 'antd/lib/form';
 import { getGlobalConfig } from '@services/config';
+import { Web3ConnectionContext } from 'src/smartContract/Web3ConnectionContext';
 import FormCreateNftCollection from './form-create-nft-collection';
 
 enum ProductType {
@@ -325,7 +326,9 @@ export class FormProduct extends PureComponent<IProps> {
     } = this.props;
     const { contractModalOpen, previewImageProduct } = this.state;
     const haveProduct = !!product;
+    const { address, loading } = this.context;
 
+    console.log(address, loading);
     console.log('user');
     console.log(user);
     console.log('user');
@@ -334,6 +337,10 @@ export class FormProduct extends PureComponent<IProps> {
       <>
         {user.contractAddress && (
           <>
+            <h1>
+              You have Created Nft. Your Nft Id:
+              {user.nftId}
+            </h1>
             <Col md={12} xs={24}>
               <Form.Item
                 name="name"
@@ -400,35 +407,37 @@ export class FormProduct extends PureComponent<IProps> {
                   loading={uploading}
                   disabled={uploading}
                 >
-                  {haveProduct ? 'Update' : 'Create'}
+                  Update
                 </Button>
               </Form.Item>
             </Col>
           </>
         )}
-        {user.contractAddress && (
-          <Col xs={24}>
-            <Form.Item>
-              <Button
-                className="primary"
-                type="primary"
-                onClick={() => this.setState({ contractModalOpen: true })}
-              >
-                Create Your NFT
-              </Button>
-            </Form.Item>
-          </Col>
+        {!user.nftId && (
+          <>
+            <Col xs={24}>
+              <Form.Item>
+                <Button
+                  className="primary"
+                  type="primary"
+                  onClick={() => this.setState({ contractModalOpen: true })}
+                >
+                  Create Your NFT
+                </Button>
+              </Form.Item>
+            </Col>
+            <Modal
+              title="Configure NFT Collection"
+              centered
+              open={contractModalOpen}
+              footer={null}
+              width={600}
+              onCancel={() => this.setState({ contractModalOpen: false })}
+            >
+              <FormCreateNftCollection user={user} />
+            </Modal>
+          </>
         )}
-        <Modal
-          title="Configure NFT Collection"
-          centered
-          open={contractModalOpen}
-          footer={null}
-          width={600}
-          onCancel={() => this.setState({ contractModalOpen: false })}
-        >
-          <FormCreateNftCollection user={user} />
-        </Modal>
       </>
     );
   }
@@ -503,3 +512,5 @@ export class FormProduct extends PureComponent<IProps> {
     );
   }
 }
+
+FormProduct.contextType = Web3ConnectionContext;

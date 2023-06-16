@@ -32,14 +32,14 @@ contract OrchidzBuildCreatorERC1155 is ERC1155, Ownable {
     }
 
     function createNFTtoMint(
-        string memory uri,
-        uint256 price,
+        string memory _uri,
+        uint256 _price,
         address _admin
     ) public {
         uint256 _id = currectNftId;
-        nftDetailOf[_id] = NftDetailStruct(true, uri, price, _admin);
+        nftDetailOf[_id] = NftDetailStruct(true, _uri, _price, _admin);
         nftIdOf[_admin] = _id;
-        emit NftCreated(_id, _admin, price);
+        emit NftCreated(_id, _admin, _price);
         currectNftId++;
     }
 

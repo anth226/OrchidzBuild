@@ -28,6 +28,7 @@ import { pick } from 'lodash';
 import { updateLiveStreamSettings } from '@redux/streaming/actions';
 import { updateSettings } from '@redux/settings/actions';
 import { setGlobalConfig } from '@services/config';
+import Web3ConnectionWrapper from 'src/smartContract/Web3ConnectionContext';
 
 require('../style/default.less');
 require('../style/mixin.less');
@@ -257,41 +258,43 @@ class Application extends App<IApp> {
         // activeChain="mumbai"
         supportedChains={[Ganache, Polygon, Mumbai]}
       >
-        <Provider store={store}>
-          <Head>
-            <title>{settings?.siteName}</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-            {/* GA code */}
-            {settings && settings.gaCode && [
-              <script async src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaCode}`} />,
-              <script
+        <Web3ConnectionWrapper>
+          <Provider store={store}>
+            <Head>
+              <title>{settings?.siteName}</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+              {/* GA code */}
+              {settings && settings.gaCode && [
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaCode}`} />,
+                <script
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${settings.gaCode}');
+                `
+                  }}
+                />
+              ]}
+              {/* extra script */}
+              {settings && settings.headerScript && (
                 // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `
-                   window.dataLayer = window.dataLayer || [];
-                   function gtag(){dataLayer.push(arguments);}
-                   gtag('js', new Date());
-                   gtag('config', '${settings.gaCode}');
-               `
-                }}
-              />
-            ]}
-            {/* extra script */}
-            {settings && settings.headerScript && (
+                <div dangerouslySetInnerHTML={{ __html: settings.headerScript }} />
+              )}
+            </Head>
+            <Socket>
+              <BaseLayout layout={layout} maintenance={settings.maintenanceMode}>
+                <Component {...pageProps} />
+              </BaseLayout>
+            </Socket>
+            {settings && settings.afterBodyScript && (
               // eslint-disable-next-line react/no-danger
-              <div dangerouslySetInnerHTML={{ __html: settings.headerScript }} />
+              <div dangerouslySetInnerHTML={{ __html: settings.afterBodyScript }} />
             )}
-          </Head>
-          <Socket>
-            <BaseLayout layout={layout} maintenance={settings.maintenanceMode}>
-              <Component {...pageProps} />
-            </BaseLayout>
-          </Socket>
-          {settings && settings.afterBodyScript && (
-            // eslint-disable-next-line react/no-danger
-            <div dangerouslySetInnerHTML={{ __html: settings.afterBodyScript }} />
-          )}
-        </Provider>
+          </Provider>
+        </Web3ConnectionWrapper>
       </ThirdwebProvider>
     );
   }

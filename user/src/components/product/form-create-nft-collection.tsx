@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Form,
   Input,
@@ -6,27 +6,28 @@ import {
   Button,
   message,
   Row,
-  Col
+  Col,
+  Upload
 } from 'antd';
+import { CameraOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
+import { updatePerformer as updatePerformerAction } from 'src/redux/user/actions';
 import {
-  updatePerformer as updatePerformerAction
-} from 'src/redux/user/actions';
-import {
-  ConnectWallet, useAddress, useSDK, useStorage
+  ConnectWallet,
+  useAddress,
+  useSDK,
+  useStorage
 } from '@thirdweb-dev/react';
 
-import { OrchidzBuildContractAddr } from 'src/contract/networkDetails';
-import OrchidzBuildAbi from 'src/contract/OrchidzBuildAbi.json';
 import { ethers } from 'ethers';
+import { Web3ConnectionContext } from 'src/smartContract/Web3ConnectionContext';
 
 type CreateNftType = {
-  name:string;
-  image:string;
-  price:number;
-  admin:string;
-  royalyPercent:number;
-}
+  name: string;
+  price: number;
+  admin: string;
+  royalyPercent: number;
+};
 
 const layout = {
   labelCol: { span: 24 },
@@ -37,28 +38,29 @@ const validateMessages = {
   required: 'This field is required!'
 };
 
-export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }) => {
-  const address = useAddress();
-  const storage = useStorage();
+export const CreateNftCollectionForm: React.FC<any> = ({
+  user,
+  updatePerformer
+}) => {
+  const { address, storage, getOrchidzContract } = useContext(
+    Web3ConnectionContext
+  );
+  // const address = useAddress();
+  // const storage = useStorage();
   const sdk = useSDK();
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [imgUrlIPFS, setimgUrlIPFS] = useState('');
+  const [preUrl, setPreUrl] = useState('');
 
-  const createNFT = async (metadata: CreateNftType):Promise<number> => {
-    const imageUri = 'ipfs://QmeRgH3a5BYXer6X3KwEpFedTFXz8svSpfC84FvRR3MXSd';
-    const urii = 'ipfs://QmaPtJKTuSWrh566qHZqfFWFy3td4QSNy1ZwSBkQX9V3uG/0';
+  const createNFT = async (metadata: CreateNftType): Promise<number> => {
     setLoading(true);
-    console.log('uploading ipfs');
-    // const imageUri = await storage.upload();
-    // const urii = await storage.upload({ ...metadata, image: imageUri });
-    console.log(urii);
-    // const durii = await storage.download(urii);
-    // console.log(durii.url);
-    const OrchidzBuildCreatorContract = await sdk.getContract(
-      OrchidzBuildContractAddr,
-      OrchidzBuildAbi
-    );
+    const urii = await storage.upload({ ...metadata, image: imgUrlIPFS });
+    const durii = await storage.download(urii);
+    // console.log('metadata', durii.url);
 
     try {
+      const OrchidzBuildCreatorContract = await getOrchidzContract();
       const tx = await OrchidzBuildCreatorContract.call(
         'createNFTtoMint', // Name of your function as it is on the smart contract
         [
@@ -67,9 +69,9 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
           metadata.admin
         ]
       );
-      console.log(Number(tx.receipt.events[0].args.id));
+      console.log('nft id', Number(tx.receipt.events[0].args.id));
       setLoading(false);
-      return -1;
+      return Number(tx.receipt.events[0].args.id);
     } catch (err: any) {
       console.log(err);
       setLoading(false);
@@ -78,6 +80,7 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
   };
 
   const handleOnSubmit = async (metadata: CreateNftType) => {
+    if (imgUrlIPFS === '') return;
     try {
       const nftId = await createNFT(metadata);
       if (nftId >= 0) {
@@ -101,6 +104,18 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
     );
   }
 
+  async function uploadImageIpfs(file) {
+    setUploading(true);
+    const _uri = await storage.upload(file);
+    setimgUrlIPFS(_uri);
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setPreUrl(String(reader.result));
+    });
+    reader.readAsDataURL(file);
+    setUploading(false);
+  }
+
   return (
     <Form
       {...layout}
@@ -120,64 +135,71 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
         <Col xs={24}>
           <Form.Item
             name="name"
-            rules={[{ required: true, message: 'Please enter a name for your collection' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please enter a name for your collection'
+              }
+            ]}
             label="NFT Name"
           >
             <Input />
           </Form.Item>
         </Col>
-        <Col xs={16}>
-          <Form.Item
-            name="image"
-            rules={[{ required: true, message: 'Please enter a Valid Nft image uri' }]}
-            label="Enter NFT image Uri"
-          >
-            <Input />
-          </Form.Item>
-        </Col>
-        <Col xs={8}>
+        <Col xs={12}>
           <Form.Item
             name="price"
-            rules={[{ required: true, message: 'Please enter a Valid NFT price' }]}
+            rules={[
+              { required: true, message: 'Please enter a Valid NFT price' }
+            ]}
             label="Enter NFT Price (MATIC)"
           >
             <InputNumber style={{ width: '100%' }} min={0} />
           </Form.Item>
         </Col>
-        {/* <Col xs={24}>
+        <Col xs={12}>
           <Form.Item
-            name="primary_sale_recipient"
-            rules={[{ required: true, message: 'Please enter a primary sale recipient address' }]}
-            label="Primary Sale Recipient Address"
+            name="royalyPercent"
+            rules={[
+              { required: true, message: 'Please enter a royalty percentage' }
+            ]}
+            label="Royalty Percentage"
           >
-            <Input />
+            <InputNumber style={{ width: '100%' }} min={0} />
           </Form.Item>
-        </Col> */}
-        {/* <Col xs={18}>
-          <Form.Item
-            name="fee_recipient"
-            rules={[{ required: true, message: 'Please enter a royalties recipient address' }]}
-            label="Royalty Recipient Address"
-          >
-            <Input />
-          </Form.Item>
-        </Col> */}
-        <Col xs={16}>
+        </Col>
+        <Col xs={24}>
           <Form.Item
             name="admin"
-            rules={[{ required: true, message: 'Please enter a admin address' }]}
+            rules={[
+              { required: true, message: 'Please enter a admin address' }
+            ]}
             label="Admin Address"
           >
             <Input />
           </Form.Item>
         </Col>
-        <Col xs={8}>
-          <Form.Item
-            name="royalyPercent"
-            rules={[{ required: true, message: 'Please enter a royalty percentage' }]}
-            label="Royalty Percentage"
-          >
-            <InputNumber style={{ width: '100%' }} min={0} />
+        <Col md={12} xs={12}>
+          <Form.Item label="Image">
+            <Upload
+              accept="image/*"
+              listType="picture-card"
+              className="avatar-uploader"
+              multiple={false}
+              showUploadList={false}
+              disabled={uploading}
+              beforeUpload={uploadImageIpfs.bind(this)}
+              customRequest={() => false}
+            >
+              {preUrl !== '' && (
+                <img
+                  src={preUrl}
+                  alt="file"
+                  style={{ width: '100%' }}
+                />
+              )}
+              <CameraOutlined />
+            </Upload>
           </Form.Item>
         </Col>
         <Col xs={24}>
@@ -185,18 +207,17 @@ export const CreateNftCollectionForm: React.FC<any> = ({ user, updatePerformer }
             className="primary"
             type="primary"
             htmlType="submit"
-            loading={loading}
-            disabled={loading}
+            loading={loading || uploading}
+            disabled={loading || uploading}
             style={{ marginRight: 10 }}
           >
-            Configure NFT Collection
+            {uploading ? 'Uploading Files' : 'Create NFT'}
           </Button>
         </Col>
       </Row>
     </Form>
   );
 };
-
 const mapDispatch = {
   updatePerformer: updatePerformerAction
 };
