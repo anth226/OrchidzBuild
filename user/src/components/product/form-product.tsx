@@ -69,8 +69,9 @@ export class FormProduct extends PureComponent<IProps> {
 
   static getDerivedStateFromProps(props: IProps, state: any) {
     return {
-      ...state,
-      contractModalOpen: state.productType === 'nft' && !props.user.contractAddress
+      ...state
+      // contractModalOpen: state.productType === 'nft' && !props.user.contractAddress
+      // contractModalOpen: false
     };
   }
 
@@ -81,7 +82,8 @@ export class FormProduct extends PureComponent<IProps> {
       [field]: val
     });
     if (field === 'type') {
-      this.setState({ productType: val, contractModalOpen: val === 'nft' && !user.contractAddress });
+      this.setState({ productType: val });
+      // this.setState({ productType: val, contractModalOpen: val === 'nft' && !user.contractAddress });
     }
   }
 
@@ -324,6 +326,10 @@ export class FormProduct extends PureComponent<IProps> {
     const { contractModalOpen, previewImageProduct } = this.state;
     const haveProduct = !!product;
 
+    console.log('user');
+    console.log(user);
+    console.log('user');
+
     return (
       <>
         {user.contractAddress && (
@@ -408,7 +414,7 @@ export class FormProduct extends PureComponent<IProps> {
                 type="primary"
                 onClick={() => this.setState({ contractModalOpen: true })}
               >
-                Configure NFT Collection
+                Create Your NFT
               </Button>
             </Form.Item>
           </Col>

@@ -5,8 +5,8 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract OrchidzBuildCreatorERC1155 is ERC1155, Ownable {
-    string public name;
-    string public symbol;
+    string public name = "OrchidzBuildCreatorERC1155";
+    string public symbol = "OBC";
 
     struct NftDetailStruct {
         bool isCreated;
@@ -27,9 +27,7 @@ contract OrchidzBuildCreatorERC1155 is ERC1155, Ownable {
         uint256 mintPrice
     );
 
-    constructor(string memory _name, string memory _symbol) ERC1155("") {
-        name = _name;
-        symbol = _symbol;
+    constructor() ERC1155("") {
         currectNftId = 1;
     }
 

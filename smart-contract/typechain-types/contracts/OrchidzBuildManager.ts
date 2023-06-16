@@ -29,7 +29,7 @@ import type {
 export interface OrchidzBuildManagerInterface extends utils.Interface {
   functions: {
     "collectionAddressOfCreator(address)": FunctionFragment;
-    "createCollectionForCreator(string,string)": FunctionFragment;
+    "createCollectionForCreator()": FunctionFragment;
   };
 
   getFunction(
@@ -44,7 +44,7 @@ export interface OrchidzBuildManagerInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "createCollectionForCreator",
-    values: [PromiseOrValue<string>, PromiseOrValue<string>]
+    values?: undefined
   ): string;
 
   decodeFunctionResult(
@@ -110,8 +110,6 @@ export interface OrchidzBuildManager extends BaseContract {
     ): Promise<[string]>;
 
     createCollectionForCreator(
-      _name: PromiseOrValue<string>,
-      _symbol: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
@@ -122,8 +120,6 @@ export interface OrchidzBuildManager extends BaseContract {
   ): Promise<string>;
 
   createCollectionForCreator(
-    _name: PromiseOrValue<string>,
-    _symbol: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -133,11 +129,7 @@ export interface OrchidzBuildManager extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    createCollectionForCreator(
-      _name: PromiseOrValue<string>,
-      _symbol: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+    createCollectionForCreator(overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -158,8 +150,6 @@ export interface OrchidzBuildManager extends BaseContract {
     ): Promise<BigNumber>;
 
     createCollectionForCreator(
-      _name: PromiseOrValue<string>,
-      _symbol: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
@@ -171,8 +161,6 @@ export interface OrchidzBuildManager extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     createCollectionForCreator(
-      _name: PromiseOrValue<string>,
-      _symbol: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };

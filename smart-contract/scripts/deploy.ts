@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function main() {
 
-  const OrchidzBuildNft = await ethers.getContractFactory("OrchidzBuildNft");
+  const OrchidzBuildNft = await ethers.getContractFactory("OrchidzBuildCreatorERC1155");
   const orchidzBuildNft = await OrchidzBuildNft.deploy();
 
   await orchidzBuildNft.deployed();

@@ -20,8 +20,8 @@ contract OrchidzBuildManager {
     {
     }
 
-    function createCollectionForCreator(string memory _name, string memory _symbol) public {
-     OrchidzBuildCreatorERC1155 _coll = new OrchidzBuildCreatorERC1155(_name, _symbol);
+    function createCollectionForCreator() public {
+     OrchidzBuildCreatorERC1155 _coll = new OrchidzBuildCreatorERC1155();
      emit collectionCreatedForCreator(msg.sender, address(_coll));
     }
 }
