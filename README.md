@@ -9,6 +9,21 @@ This product is private. do NOT copy or use if have not license.
 
 ## Setup
 
+### System
+- [NodeJS](https://nodejs.org/en/) v16.x - To install please download NodeJS [here](https://nodejs.org/en/download/)
+- [MongoDB](https://www.mongodb.com/) >= v3.6 - To install please [download MongoDB](https://docs.mongodb.com/manual/installation/)
+- [Redis server](https://redis.io/) >= v2.8 - To install please [download](https://redis.io/download) and setup Redis
+- [FFMPEG](https://ffmpeg.org/download.html)
+- [Nginx](https://www.nginx.com/) >= v1.3 with `http_auth_module` enabled
+- [PM2](https://pm2.keymetrics.io/) - Daemon process manager that will help you manage and keep your application online 24/7
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable) or npm to manage the NodeJS package
+
+#### After installion
+
+1. start mongoDB server `sudo systemctl start mongod`
+2. start Redis server `redis-server`
+
+
 ### API
 1. Go to api folder, create `.env` file from `config-example > env > api.env`
 2. Replace with your configuration
