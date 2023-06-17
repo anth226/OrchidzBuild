@@ -40,19 +40,21 @@ class PrimaryLayout extends PureComponent<DefaultProps> {
     return (
       <>
         <Layout>
-          <div className="flex">
-            <div className="bg-red-500">
-              <Header />
-            </div>
-            <div className="bg-blue-500 flex-auto">
-              <Layout.Content>
-                {routerChange && <Loader />}
-                {children}
-              </Layout.Content>
-            </div>
+          <div
+            className={ui?.theme === 'dark' ? 'dark' : ''}
+            id="primaryLayout"
+          >
+            <Header />
+            <Layout.Content
+              className="content"
+              style={{ position: 'relative' }}
+            >
+              {routerChange && <Loader />}
+              {children}
+            </Layout.Content>
+            <BackTop className="backTop" />
+            <Footer />
           </div>
-          <BackTop className="backTop" />
-          <Footer />
         </Layout>
       </>
     );

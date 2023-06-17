@@ -127,7 +127,7 @@ class Header extends PureComponent<IProps> {
     } = this.state;
 
     return (
-      <div className="">
+      <div className="main-header">
         <Event
           event="nofify_read_messages_in_conversation"
           handler={this.handleMessage.bind(this)}
@@ -140,76 +140,78 @@ class Header extends PureComponent<IProps> {
           event="payment_status_callback"
           handler={this.handlePaymentStatusCallback.bind(this)}
         />
-        <div className="">
+        <div className="main-container">
           <Layout.Header className="header" id="layoutHeader">
-            <div className="flex flex-col">
-              {user._id && (
-                <Link href="/home">
-                  <a>
-                    <HomeIcon
-                      className={router.pathname === '/home' ? 'active' : ''}
-                    />
-                  </a>
-                </Link>
-              )}
-              {user._id && (
-                <>
-                  {user?.isPerformer && (
-                    <Link href="/model/my-post/create">
+            <div className="nav-bar">
+              <ul className={user._id ? 'nav-icons' : 'nav-icons custom'}>
+                {user._id && (
+                  <li className={router.pathname === '/home' ? 'active' : ''}>
+                    <Link href="/home">
                       <a>
-                        <PlusIcon
-                          className={router.pathname === '/model/my-post/create' ? 'active' : ''}
+                        <HomeIcon />
+                      </a>
+                    </Link>
+                  </li>
+                )}
+                {user._id && (
+                  <>
+                    {user?.isPerformer && (
+                    <li className={router.pathname === '/model/my-post/create' ? 'active' : ''}>
+                      <Link href="/model/my-post/create">
+                        <a>
+                          <PlusIcon />
+                        </a>
+                      </Link>
+                    </li>
+                    )}
+                  </>
+                )}
+                {user._id && !user.isPerformer && (
+                  <li key="model" className={router.pathname === '/model' ? 'active' : ''}>
+                    <Link href="/model">
+                      <a>
+                        <ModelIcon />
+                      </a>
+                    </Link>
+                  </li>
+                )}
+                {user._id && (
+                  <li key="messenger" className={router.pathname === '/messages' ? 'active' : ''}>
+                    <Link href="/messages">
+                      <a>
+                        <MessageIcon />
+                        <Badge
+                          className="cart-total"
+                          count={totalNotReadMessage}
+                          showZero
                         />
                       </a>
                     </Link>
-                  )}
-                </>
-              )}
-              {user._id && !user.isPerformer && (
-                <Link href="/model">
-                  <a>
-                    <ModelIcon
-                      className={router.pathname === '/model' ? 'active' : ''}
-                    />
-                  </a>
-                </Link>
-              )}
-              {user._id && (
-                <Link href="/messages">
-                  <a>
-                    <MessageIcon
-                      className={router.pathname === '/messages' ? "text-primaryOrange" : ''}
-                    />
-                    <Badge
-                      className="cart-total"
-                      count={totalNotReadMessage}
-                      showZero
-                    />
-                  </a>
-                </Link>
-              )}
-              {!user._id && [
-                <li key="logo" className="logo-nav">
-                  <Link href="/home">
-                    <a>{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</a>
-                  </Link>
-                </li>,
-                <li key="login" className={router.pathname === '/' ? 'active' : ''}>
-                  <Link href="/">
-                    <a>Log In</a>
-                  </Link>
-                </li>,
-                <li key="signup" className={router.pathname === '/auth/register' ? 'active' : ''}>
-                  <Link href="/auth/register">
-                    <a>Sign Up</a>
-                  </Link>
-                </li>
-              ]}
-              {user._id && (
-                <li key="avatar" aria-hidden onClick={() => this.setState({ openProfile: true })}>
-                  {user?.avatar ? <Avatar src={user?.avatar || '/static/no-avatar.png'} /> : <UserIcon />}
-                </li>
-              )}
+                  </li>
+                )}
+                {!user._id && [
+                  <li key="logo" className="logo-nav">
+                    <Link href="/home">
+                      <a>{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</a>
+                    </Link>
+                  </li>,
+                  <li key="login" className={router.pathname === '/' ? 'active' : ''}>
+                    <Link href="/">
+                      <a>Log In</a>
+                    </Link>
+                  </li>,
+                  <li key="signup" className={router.pathname === '/auth/register' ? 'active' : ''}>
+                    <Link href="/auth/register">
+                      <a>Sign Up</a>
+                    </Link>
+                  </li>
+                ]}
+                {user._id && (
+                  <li key="avatar" aria-hidden onClick={() => this.setState({ openProfile: true })}>
+                    {user?.avatar ? <Avatar src={user?.avatar || '/static/no-avatar.png'} /> : <UserIcon />}
+                  </li>
+                )}
+              </ul>
             </div>
           </Layout.Header>
           <Drawer
@@ -269,13 +271,13 @@ class Header extends PureComponent<IProps> {
             {user.isPerformer && (
               <div className="profile-menu-item">
                 {settings?.agoraEnable && (
-                  <Link href={{ pathname: '/model/live' }} as="/model/live">
-                    <div className={router.asPath === '/model/live' ? 'menu-item active' : 'menu-item'}>
-                      <LiveIcon />
-                      {' '}
-                      Go Live
-                    </div>
-                  </Link>
+                <Link href={{ pathname: '/model/live' }} as="/model/live">
+                  <div className={router.asPath === '/model/live' ? 'menu-item active' : 'menu-item'}>
+                    <LiveIcon />
+                    {' '}
+                    Go Live
+                  </div>
+                </Link>
                 )}
                 <Divider />
                 <Link href={{ pathname: '/model/profile', query: { username: user.username || user._id } }} as={`/${user.username || user._id}`}>
@@ -384,13 +386,13 @@ class Header extends PureComponent<IProps> {
                   </div>
                 </Link>
                 {config.paymentGateway === 'stripe' && (
-                  <Link href="/user/cards" as="/user/cards">
-                    <div className={router.pathname === '/user/cards' ? 'menu-item active' : 'menu-item'}>
-                      <CreditCardOutlined />
-                      {' '}
-                      Add Card
-                    </div>
-                  </Link>
+                <Link href="/user/cards" as="/user/cards">
+                  <div className={router.pathname === '/user/cards' ? 'menu-item active' : 'menu-item'}>
+                    <CreditCardOutlined />
+                    {' '}
+                    Add Card
+                  </div>
+                </Link>
                 )}
                 <Link href="/user/bookmarks" as="/user/bookmarks">
                   <div className={router.pathname === '/user/bookmarks' ? 'menu-item active' : 'menu-item'}>
