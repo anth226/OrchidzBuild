@@ -30,6 +30,8 @@ import { updateSettings } from '@redux/settings/actions';
 import { setGlobalConfig } from '@services/config';
 import Web3ConnectionWrapper from 'src/smartContract/Web3ConnectionContext';
 
+import '../style/globals.css';
+
 require('../style/default.less');
 require('../style/mixin.less');
 require('../style/index.less');
