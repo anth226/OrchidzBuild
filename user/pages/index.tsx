@@ -14,6 +14,8 @@ import Router from 'next/router';
 import { TwitterOutlined } from '@ant-design/icons';
 import Loader from '@components/common/base/loader';
 import GoogleLoginButton from '@components/auth/google-login-button';
+import { FaTwitter } from 'react-icons/fa';
+import RoundedLoadingButton from '@components/buttons/loadingButton';
 
 interface IProps {
   loginAuth: any;
@@ -165,33 +167,28 @@ class Login extends PureComponent<IProps> {
           <meta name="twitter:image" content={ui && ui.logo} />
           <meta name="twitter:description" content={settings && settings.metaDescription} />
         </Head>
-        <div className="main-container">
-          <div className="login-box">
-            <Row>
-              <Col xs={24} sm={24} md={12} lg={12}>
-                <div
-                  className="login-content left"
-                  style={ui.loginPlaceholderImage ? { backgroundImage: `url(${ui.loginPlaceholderImage})` } : null}
-                />
-              </Col>
-              <Col xs={24} sm={24} md={12} lg={12}>
+        <div className="flex items-center justify-center h-screen w-screen bg-slate-100 ">
+          <div className="bg-white w-4/6 rounded-xl box shadow-md transform transition-transform hover:translate-z-1 hover:shadow-lg">
+            <div className="flex">
+              <div className="flex-1 rounded-l-xl mx-6 my-12">
                 <div className="login-content right">
-                  <div className="login-logo">
-                    <a href="/">{ui.logo ? <img alt="logo" src={ui.logo} height="80px" /> : ui.siteName}</a>
+                  <div className="text-center text-4xl">
+                    {/* <a href="/">{ui.logo ? <img alt="logo" src={ui.logo} height="80px" /> : ui.siteName}</a> */}
+                    <a href="/" className="text-primaryOrange ">{ui.siteName}</a>
                   </div>
                   <p className="text-center">
                     <small>Sign up to make money and interact with your fans!</small>
                   </p>
-                  <div className="social-login">
+                  <h1 className="text-center text-3xl text-black font-extrabold">Sign in</h1>
+                  <div className="flex justify-center items-center gap-4">
+
                     <button
                       type="button"
                       disabled={!settings.twitterClientId}
                       onClick={() => this.loginTwitter()}
-                      className="twitter-button"
+                      className="flex items-center justify-center h-10 w-10 rounded-full border-black border-2"
                     >
-                      <TwitterOutlined />
-                      {' '}
-                      LOG IN / SIGN UP WITH TWITTER
+                      <FaTwitter />
                     </button>
                     <GoogleLoginButton
                       clientId={settings.googleClientId}
@@ -199,11 +196,11 @@ class Login extends PureComponent<IProps> {
                       onFailure={this.onGoogleLogin.bind(this)}
                     />
                   </div>
-                  <Divider>Or</Divider>
-                  <div className="login-form">
+                  <p className="text-center text-sm mt-4">Or use your account</p>
+                  <div className="">
                     <Form
                       name="normal_login"
-                      className="login-form"
+                      className="text-center"
                       initialValues={{ remember: true }}
                       onFinish={this.handleLogin.bind(this)}
                     >
@@ -221,30 +218,28 @@ class Login extends PureComponent<IProps> {
                       >
                         <Input.Password disabled={loginAuth.requesting || isLoading} placeholder="Password" />
                       </Form.Item>
-                      <p style={{ padding: '0 20px' }}>
-                        <Link
-                          href={{
-                            pathname: '/auth/forgot-password'
-                          }}
-                        >
-                          <a className="sub-text">Forgot password?</a>
-                        </Link>
-                      </p>
+                      <Link
+                        href={{
+                          pathname: '/auth/forgot-password'
+                        }}
+                      >
+                        <a className="text-black">Forgot password?</a>
+                      </Link>
                       {/* <GoogleReCaptcha ui={ui} handleVerify={this.handleVerifyCapcha.bind(this)} /> */}
                       <Form.Item style={{ textAlign: 'center' }}>
-                        <Button
+                        <RoundedLoadingButton
                           disabled={loginAuth.requesting || isLoading}
                           loading={loginAuth.requesting || isLoading}
-                          type="primary"
-                          htmlType="submit"
-                          className="login-form-button"
-                        >
-                          LOG IN
-                        </Button>
-                        <p style={{ fontSize: 11 }}>
+                          className="mb-4 px-14 py-3 mt-2"
+                          text="Log in"
+                        />
+                      </Form.Item>
+                    </Form>
+                    <div className="text-center">
+                        <p className="text-black text-sm">
                           Visit
                           {' '}
-                          <a href="/page/help">Help Center</a>
+                          <a href="/page/help" className="text-primaryOrange">Help Center</a>
                           {' '}
                           for any help if you are not able to login with your
                           existing
@@ -257,19 +252,25 @@ class Login extends PureComponent<IProps> {
                         <p style={{ marginBottom: 5 }}>Don&apos;t have an account yet?</p>
                         <p>
                           <Link href="/auth/register">
-                            <a>
+                            <a className="text-primaryOrange">
                               Sign up for
                               {' '}
                               {ui?.siteName}
                             </a>
                           </Link>
                         </p>
-                      </Form.Item>
-                    </Form>
+                    </div>
                   </div>
                 </div>
-              </Col>
-            </Row>
+              </div>
+              <div className="flex-1 rounded-r-xl red-gradient flex flex-col justify-center items-center text-white">
+                <h2 className="text-white text-5xl font-extrabold">Hello, Friend</h2>
+                <p className="w-5/12 text-center text-sm">Enter your personal details and start journey with us</p>
+                <button className="rounded-full bg-transparent border-white border-2 text-white font-semibold py-2 px-4">
+                  SIGN UP
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         {isLoading && <Loader />}

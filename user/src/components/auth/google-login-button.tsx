@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleOutlined } from '@ant-design/icons';
 import useGoogleLogin from '@lib/hook/use-google-login';
 import { Typography } from 'antd';
+import { FaGoogle } from 'react-icons/fa';
 
 const { Text } = Typography;
 
@@ -33,10 +33,8 @@ const GoogleLoginButton = ({ clientId, onSuccess, onFailure }: IProps) => {
 
   return (
     <>
-      <button type="button" disabled={!clientId || !loaded} onClick={() => loginWithGoogle()} className="google-button">
-        <GoogleOutlined />
-        {' '}
-        LOG IN / SIGN UP WITH GOOGLE
+      <button type="button" disabled={!clientId || !loaded} onClick={() => loginWithGoogle()} className="flex items-center justify-center h-10 w-10 rounded-full border-black border-2">
+        <FaGoogle />
       </button>
       {clickedOnGoogleLoginButton && (
         <div className="btn-google-login-box">
