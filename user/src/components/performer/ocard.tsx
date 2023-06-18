@@ -88,39 +88,45 @@ class PerformerCard extends PureComponent<IProps> {
         as={`/${performer?.username || performer?._id}`}
       >
         <div
-          className="bg-center py-6 rounded-2xl"
+          className="model-card"
           style={{
             backgroundImage: `url(${performer?.cover || '/static/banner-image.jpg'})`
           }}
         >
-          <div className="flex items-center ml-12">
-            <div className="">
-              <div className="bg-primaryOrange rounded-full ">
-                <div className="relative p-1">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <img
-                      className=" w-full h-full"
-                      src={performer?.avatar || '/static/no-avatar.png'}
-                      alt="Profile"
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="hovering">
+            {performer?.isFreeSubscription && (
+              <span className="card-free">Free</span>
+            )}
+            {performer?.live > 0 && <span className="live-status" aria-hidden onClick={this.handleJoinStream.bind(this)}>Live</span>}
+
+            <span className="card-age">
+              {moment().diff(moment(performer.dateOfBirth), 'years') > 0 && `${moment().diff(moment(performer.dateOfBirth), 'years')}+`}
+            </span>
+            <div className="card-img">
+              <Avatar alt="avatar" src={performer?.avatar || '/static/no-avatar.png'} />
             </div>
-            <div className="flex flex-col items-start ml-6">
-              <div className="flex">
-                <span className="text-2xl text-white">
+            <span className={performer?.isOnline > 0 ? 'online-status active' : 'online-status'} />
+
+              <div className="model-name">
+                <div className="name">
                   {performer?.name || 'N/A'}
-                </span>
-                {performer?.verifiedAccount && <TickIcon className="text-white" />}
-                {country && (
-                  <img alt="performer-country" className="model-country" src={country?.flag} />
-                )}
+                  {' '}
+                  {country && (
+                    <img alt="performer-country" className="model-country" src={country?.flag} />
+                  )}
+                  {' '}
+                  {performer?.verifiedAccount && <TickIcon />}
+                </div>
+                <p>
+                  {`@${performer?.username || 'n/a'}`}
+                </p>
               </div>
-                <span className="text-lg text-white">
-                {`@${performer?.username || 'n/a'}`}
-              </span>
-            </div>
+
+            {!user?.isPerformer && (
+              <a aria-hidden onClick={() => this.handleFollow()} className={!isFollowed ? 'follow-btn' : 'follow-btn active'}>
+                {isFollowed ? <Tooltip title="Following"><HeartFilled /></Tooltip> : <Tooltip title="Follow"><HeartOutlined /></Tooltip>}
+              </a>
+            )}
           </div>
         </div>
       </Link>

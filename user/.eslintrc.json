@@ -9,6 +9,7 @@
     "jsx-a11y/click-events-have-key-events":"off",
     "jsx-a11y/no-static-element-interactions":"off",
     "react/jsx-closing-bracket-location":"off",
+    "jsx-a11y/label-has-associated-control":"off",
     "react/jsx-first-prop-new-line":"off",
     "eact/jsx-indent-props":"off",
     "react/jsx-indent-props":"off",

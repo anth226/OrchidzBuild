@@ -23,6 +23,7 @@ import Router from 'next/router';
 import { debounce } from 'lodash';
 import dynamic from 'next/dynamic';
 import Carousel from '@components/Carousel/Carousel';
+import SearchInputBox from '@components/inputbox/SearchInputBox';
 
 const StreamListItem = dynamic(() => import('@components/streaming/stream-list-item'), { ssr: false });
 
@@ -302,9 +303,8 @@ class HomePage extends PureComponent<IProps> {
             </h1>
             <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
 
-            <div className="main-container">
-              <div className="home-container">
-                <div className="left-container">
+            <div className="flex justify-evenly w-full">
+                <div className="">
                     <Carousel items={topBanners} />
                   {user._id && !user.verifiedEmail && settings.requireEmailVerification && <Link href={user.isPerformer ? '/model/account' : '/user/account'}><a><Alert type="error" style={{ margin: '15px 0', textAlign: 'center' }} message="Please verify your email address, click here to update!" /></a></Link>}
                   {fakeSteams?.length > 0 && (
@@ -344,39 +344,31 @@ class HomePage extends PureComponent<IProps> {
                     loadMore={this.loadmoreFeeds.bind(this)}
                   />
                 </div>
-                <div className="right-container" id="home-right-container">
-                  <div className="home-heading">
-                    <div className="search-bar-feed ">
-                      <Input
-                        className={openSearch ? 'active' : ''}
-                        prefix={<SearchOutlined />}
-                        placeholder="Type to search here ..."
-                        onChange={(e) => {
+                <div className="">
+                  <div className="">
+                      <SearchInputBox onChange={(e) => {
                           e.persist();
                           this.onSearchFeed(e.target.value);
-                        }}
-                      />
-                      <a aria-hidden className="open-search" onClick={() => this.setState({ openSearch: !openSearch })}>
-                        {!openSearch ? <SearchOutlined /> : <CloseOutlined />}
-                      </a>
-                    </div>
+                        }} />
                   </div>
-                  <div className="suggestion-bl">
-                    <div className="sug-top">
-                      <span className="sug-text">SUGGESTIONS</span>
-                      <span className="btns-grp" style={{ textAlign: randomPerformers.length < 5 ? 'right' : 'left' }}>
-                        <a aria-hidden className="free-btn" onClick={this.onGetFreePerformers.bind(this)}><Tooltip title={isFreeSubscription ? 'Show all' : 'Show only free'}><TagOutlined className={isFreeSubscription ? 'active' : ''} /></Tooltip></a>
-                        <a aria-hidden className="reload-btn" onClick={this.getPerformers.bind(this)}><Tooltip title="Refresh"><SyncOutlined spin={loadingPerformer} /></Tooltip></a>
-                      </span>
+                  <div className="">
+                    <div className="flex justify-between my-4">
+                      <span className="text-2xl">Who to Follow</span>
+                      {/* <span className="">
+                        <span className="text-lg " onClick={this.onGetFreePerformers.bind(this)}><Tooltip title={isFreeSubscription ? 'Show all' : 'Show only free'}><TagOutlined className={isFreeSubscription ? 'active' : ''} /></Tooltip></span>
+                        <span className="ml-4 text-lg " onClick={this.getPerformers.bind(this)}><Tooltip title="Refresh"><SyncOutlined spin={loadingPerformer} /></Tooltip></span>
+                      </span> */}
                     </div>
                     <HomePerformers countries={countries} performers={randomPerformers} />
+                    <Link href="/model">
+                      <span className="text-xl">Show more</span>
+                    </Link>
                     {!loadingPerformer && !randomPerformers?.length && <p className="text-center">No profile was found</p>}
                     <div className={!showFooter ? 'home-footer' : 'home-footer active'}>
                       <HomeFooter customId="home-footer" />
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </>

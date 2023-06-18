@@ -8,7 +8,7 @@
 
 @layer components {
   .carousel-container {
-    @apply relative h-60 w-8/12;
+    @apply relative h-60 w-9/12;
     perspective: 450px;
     transform-style: preserve-3d;
   }

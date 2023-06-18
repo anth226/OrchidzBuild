@@ -39,17 +39,6 @@ export default function StreamListItem({ stream, user }: Props) {
 
   return (
     <>
-      {/* <div
-        aria-hidden
-        onClick={handleClick}
-        key={stream?._id}
-        className="story-per-card"
-        title={stream?.performerInfo?.name || stream?.performerInfo?.username || 'N/A'}
-      >
-        <div className="blink-border" />
-        <img className="per-avatar" alt="avatar" src={stream?.performerInfo?.avatar || '/static/no-avatar.png'} />
-        <div className="live-tag">LIVE</div>
-      </div> */}
       <div className="bg-primaryOrange rounded-full ">
         <div className="relative p-1">
           <div className="w-20 h-20 rounded-full overflow-hidden">
