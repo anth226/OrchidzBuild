@@ -19,9 +19,9 @@ class Footer extends PureComponent<IProps> {
       ? ui.menus.filter((m) => m.section === 'footer')
       : [];
     return (
-      <div className="" id={customId || 'main-footer'}>
-        <div className="">
-          {/* <div className="flex">
+      <div className="main-footer" id={customId || 'main-footer'}>
+        <div className="main-container">
+          <ul>
             {!currentUser._id ? (
               <>
                 <li key="login" className={router.pathname === '/' ? 'active' : ''}>
@@ -63,13 +63,22 @@ class Footer extends PureComponent<IProps> {
                   </a>
                 </li>
               ))}
-          </div> */}
+          </ul>
           {/* eslint-disable-next-line react/no-danger */}
-
-          <div className="flex items-center">
-            <p><strong>example.com © Copyright {new Date().getFullYear()}</strong></p>
-            <img width={100} src="https://www.dmca.com/img/dmca_logo.png?=sd" alt="" />
-          </div>
+          {ui.footerContent ? <div className="footer-content" dangerouslySetInnerHTML={{ __html: ui.footerContent }} />
+            : (
+              <div className="copyright-text">
+                <span>
+                  <Link href="/home">
+                    <a>{ui?.siteName}</a>
+                  </Link>
+                  {' '}
+                  © Copyright
+                  {' '}
+                  {new Date().getFullYear()}
+                </span>
+              </div>
+            )}
         </div>
       </div>
     );

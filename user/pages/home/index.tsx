@@ -344,7 +344,7 @@ class HomePage extends PureComponent<IProps> {
                   loadMore={this.loadmoreFeeds.bind(this)}
                 />
               </div>
-              <div className="flex flex-col justify-between">
+              <div className="flex flex-col justify-between w-[30rem]">
                 <div>
                   <div>
                     <SearchInputBox onChange={(e) => {
@@ -364,8 +364,8 @@ class HomePage extends PureComponent<IProps> {
 
                   </div>
                 </div>
-                <div className="home-footer active">
-                  <HomeFooter customId="home-footer" />
+                <div className="">
+                  <HomeFooter />
                 </div>
               </div>
             </div>
