@@ -202,10 +202,19 @@ class HomePage extends PureComponent<IProps> {
       ui, feedState, user, settings, banners, countries, streams
     } = this.props;
     const { items: feeds, total: totalFeeds, requesting: loadingFeed } = feedState;
-    const topBanners = banners && banners.length > 0 && banners.filter((b) => b.position === 'top');
+    // const topBanners = banners && banners.length > 0 && banners.filter((b) => b.position === 'top');
     const {
       randomPerformers, loadingPerformer, isFreeSubscription, openSearch, showFooter
     } = this.state;
+
+    // _id: string;
+    // title: string;
+    // description?: string;
+    // status?: string;
+    // position?: string;
+    // photo?: { url: string; thumbnails: string[] };
+
+    const topBanners = [{ _id: 1, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }, { _id: 2, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }]
     return (
       <Layout>
         <>
@@ -242,18 +251,18 @@ class HomePage extends PureComponent<IProps> {
                 <div className="left-container">
                   {user._id && !user.verifiedEmail && settings.requireEmailVerification && <Link href={user.isPerformer ? '/model/account' : '/user/account'}><a><Alert type="error" style={{ margin: '15px 0', textAlign: 'center' }} message="Please verify your email address, click here to update!" /></a></Link>}
                   {streams?.length > 0 && (
-                  <div className="visit-history">
-                    <div className="top-story">
-                      <a>Live Videos</a>
-                      <a href="/model"><small>View all</small></a>
+                    <div className="visit-history">
+                      <div className="top-story">
+                        <a>Live Videos</a>
+                        <a href="/model"><small>View all</small></a>
+                      </div>
+                      <div className="story-list">
+                        {streams.length > 0 && streams.map((s) => (
+                          <StreamListItem stream={s} user={user} key={s._id} />
+                        ))}
+                        {/* {!streams?.length && <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>} */}
+                      </div>
                     </div>
-                    <div className="story-list">
-                      {streams.length > 0 && streams.map((s) => (
-                        <StreamListItem stream={s} user={user} key={s._id} />
-                      ))}
-                      {/* {!streams?.length && <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>} */}
-                    </div>
-                  </div>
                   )}
                   {!loadingFeed && !totalFeeds && (
                     <div className="main-container custom text-center" style={{ margin: '10px 0' }}>
