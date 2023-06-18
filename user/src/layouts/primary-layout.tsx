@@ -41,18 +41,20 @@ class PrimaryLayout extends PureComponent<DefaultProps> {
       <>
         <Layout>
           <div className="flex">
-            <div className="bg-red-500">
+            <div className="h-screen">
               <Header />
             </div>
-            <div className="bg-blue-500 flex-auto">
+            <div className=" flex-auto ">
               <Layout.Content>
-                {routerChange && <Loader />}
-                {children}
+                {routerChange ? <Loader /> :
+                  children
+                }
+                {/* <Loader /> */}
               </Layout.Content>
             </div>
           </div>
           <BackTop className="backTop" />
-          <Footer />
+          {/* <Footer /> */}
         </Layout>
       </>
     );

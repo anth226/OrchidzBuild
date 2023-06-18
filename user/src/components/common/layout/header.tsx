@@ -28,6 +28,9 @@ import { updateUIValue } from 'src/redux/ui/actions';
 import { updateBalance } from '@redux/user/actions';
 import { shortenLargeNumber } from '@lib/number';
 import { SubscribePerformerModal } from 'src/components/subscription/subscribe-performer-modal';
+import { FaHome, FaPlus, FaPlusSquare, FaRegPlusSquare, FaUser } from 'react-icons/fa';
+import { AiOutlineMessage } from 'react-icons/ai';
+import { CgMoreO } from 'react-icons/cg';
 
 interface IProps {
   updateBalance: Function;
@@ -141,51 +144,51 @@ class Header extends PureComponent<IProps> {
           handler={this.handlePaymentStatusCallback.bind(this)}
         />
         <div className="">
-          <Layout.Header className="header" id="layoutHeader">
-            <div className="flex flex-col">
+          <div className="">
+            <div className="flex flex-col mx-16 mt-6 gap-8">
+              <Link href="/home">
+                <div className="text-primaryOrange text-center text-xl mt-4 mb-2">{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</div>
+              </Link>
               {user._id && (
                 <Link href="/home">
-                  <a>
-                    <HomeIcon
-                      className={router.pathname === '/home' ? 'active' : ''}
-                    />
-                  </a>
+                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/home' && "text-primaryOrange"}`}>
+                    <FaHome />
+                    Home
+                  </div>
                 </Link>
               )}
               {user._id && (
                 <>
                   {user?.isPerformer && (
                     <Link href="/model/my-post/create">
-                      <a>
-                        <PlusIcon
-                          className={router.pathname === '/model/my-post/create' ? 'active' : ''}
-                        />
-                      </a>
+                      <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model/my-post/create' && "text-primaryOrange"}`}>
+                        <FaRegPlusSquare /> Create
+                      </div>
                     </Link>
                   )}
                 </>
               )}
               {user._id && !user.isPerformer && (
                 <Link href="/model">
-                  <a>
-                    <ModelIcon
-                      className={router.pathname === '/model' ? 'active' : ''}
-                    />
-                  </a>
+                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model' && "text-primaryOrange"}`}>
+                    <ModelIcon /> Explore
+                  </div>
                 </Link>
               )}
               {user._id && (
                 <Link href="/messages">
-                  <a>
-                    <MessageIcon
-                      className={router.pathname === '/messages' ? "text-primaryOrange" : ''}
-                    />
-                    <Badge
-                      className="cart-total"
-                      count={totalNotReadMessage}
-                      showZero
-                    />
-                  </a>
+                  <div className={`flex gap-1 items-center text-3xl cursor-pointer ${router.pathname === '/messages' && "text-primaryOrange"}`}>
+                    <div className="flex">
+                      <AiOutlineMessage />
+                      <Badge
+                        className=""
+                        count={totalNotReadMessage}
+                        showZero
+                        size="small"
+                      />
+                    </div>
+                    Message
+                  </div>
                 </Link>
               )}
               {!user._id && [
@@ -206,12 +209,13 @@ class Header extends PureComponent<IProps> {
                 </li>
               ]}
               {user._id && (
-                <li key="avatar" aria-hidden onClick={() => this.setState({ openProfile: true })}>
-                  {user?.avatar ? <Avatar src={user?.avatar || '/static/no-avatar.png'} /> : <UserIcon />}
-                </li>
+                <div className="flex gap-4 items-center text-3xl cursor-pointer" key="avatar" aria-hidden onClick={() => this.setState({ openProfile: true })}>
+                  {user?.avatar ? <Avatar src={user?.avatar || '/static/no-avatar.png'} /> : <FaUser />}
+                  More
+                </div>
               )}
             </div>
-          </Layout.Header>
+          </div>
           <Drawer
             title={(
               <>
@@ -265,6 +269,7 @@ class Header extends PureComponent<IProps> {
             key="profile-drawer"
             className={ui.theme === 'light' ? 'profile-drawer' : 'profile-drawer dark'}
             width={280}
+            // placement="left"
           >
             {user.isPerformer && (
               <div className="profile-menu-item">
