@@ -27,36 +27,38 @@ export default function Carousel({ width, height, items }: CarouselProps) {
     }
 
     return (
-        <div className="carousel-container ">
-            <button
-                className="carousel-btn-switch-card-left carousel-btn-switch-card"
-                onClick={handleNextItemBtn}
-                disabled={activeIndex === items.length - 1}
-            >
-                <FaAngleRight
-                    style={{ transform: 'rotate(180deg)' }} />
-            </button>
-            {items?.map((item, index) => (
-                <CarouselItem key={index} index={index} activeIndex={activeIndex}>
-                    {item}
-                </CarouselItem>
-            ))}
-            <button
-                className="carousel-btn-switch-card-right carousel-btn-switch-card"
-                onClick={handlePrevItemBtn}
-                disabled={activeIndex === 0}
-            >
-                <FaAngleLeft
-                    style={{ transform: 'rotate(180deg)' }} />
-            </button>
+        <div className="w-full flex justify-center items-center">
+            <div className="carousel-container ">
+                <button
+                    className="carousel-btn-switch-card-left carousel-btn-switch-card"
+                    onClick={handleNextItemBtn}
+                    disabled={activeIndex === items.length - 1}
+                >
+                    <FaAngleRight
+                        style={{ transform: 'rotate(180deg)' }} />
+                </button>
+                {items?.map((item, index) => (
+                    <CarouselItem key={index} index={index} activeIndex={activeIndex}>
+                        {item}
+                    </CarouselItem>
+                ))}
+                <button
+                    className="carousel-btn-switch-card-right carousel-btn-switch-card"
+                    onClick={handlePrevItemBtn}
+                    disabled={activeIndex === 0}
+                >
+                    <FaAngleLeft
+                        style={{ transform: 'rotate(180deg)' }} />
+                </button>
 
-            <CarouselIndicator
-                activeIndex={activeIndex}
-                length={items.length}
-                onSetActiveIndex={(_activeIndex) => {
-                    setActiveIndex(_activeIndex);
-                }}
-            />
+                <CarouselIndicator
+                    activeIndex={activeIndex}
+                    length={items.length}
+                    onSetActiveIndex={(_activeIndex) => {
+                        setActiveIndex(_activeIndex);
+                    }}
+                />
+            </div>
         </div>
     );
 }

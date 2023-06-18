@@ -6,7 +6,6 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import { HomePerformers } from '@components/performer';
-import { Banner } from '@components/common';
 import HomeFooter from '@components/common/layout/footer';
 import { getFeeds, moreFeeds, removeFeedSuccess } from '@redux/feed/actions';
 import {
@@ -23,6 +22,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { debounce } from 'lodash';
 import dynamic from 'next/dynamic';
+import Carousel from '@components/Carousel/Carousel';
 
 const StreamListItem = dynamic(() => import('@components/streaming/stream-list-item'), { ssr: false });
 
@@ -206,15 +206,86 @@ class HomePage extends PureComponent<IProps> {
     const {
       randomPerformers, loadingPerformer, isFreeSubscription, openSearch, showFooter
     } = this.state;
+    const topBanners = [
+      <img width={200} className="h-full w-full" src="https://picsum.photos/100/800/?random" alt="teste" />,
+      <img width={200} className="h-full w-full" src="https://picsum.photos/200/800/?random" alt="teste" />,
+      <img width={200} className="h-full w-full" src="https://picsum.photos/800/200/?random" alt="teste" />,
+      <img width={200} className="h-full w-full" src="https://picsum.photos/400/800/?random" alt="teste" />,
+      <img width={200} className="h-full w-full" src="https://picsum.photos/800/400/?random" alt="teste" />,
+    ];
 
-    // _id: string;
-    // title: string;
-    // description?: string;
-    // status?: string;
-    // position?: string;
-    // photo?: { url: string; thumbnails: string[] };
+    // const topBanners = [{ _id: 1, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }, { _id: 2, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }]
 
-    const topBanners = [{ _id: 1, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }, { _id: 2, description: "this is dess", tittle: "banner full", photo: { url: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80" } }]
+    const fakeSteams = [{
+      _id: "1",
+      title: "new Stream",
+      description: "this is details",
+      performerId: "string",
+      // performerInfo: IPerformer,
+      type: 'public',
+      sessionId: "string",
+      isStreaming: 1,
+      streamingTime: 203,
+      lastStreamingTime: new Date(),
+      isFree: true,
+      price: 10,
+      stats: {
+        members: 55,
+        likes: 555,
+      },
+      isSubscribed: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      conversationId: "stringcon",
+      hasPurchased: true
+    }, {
+      _id: "2",
+      title: "new Stream",
+      description: "this is details",
+      performerId: "string",
+      // performerInfo: IPerformer,
+      type: 'public',
+      sessionId: "string",
+      isStreaming: 1,
+      streamingTime: 203,
+      lastStreamingTime: new Date(),
+      isFree: true,
+      price: 0,
+      stats: {
+        members: 55,
+        likes: 555,
+      },
+      isSubscribed: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      conversationId: "stringcon",
+      hasPurchased: true
+    }]
+
+    // export interface IStream {
+    //   _id: string;
+    //   title: string;
+    //   description: string;
+    //   performerId: string;
+    //   performerInfo: IPerformer;
+    //   type: 'public' | 'group' | 'private';
+    //   sessionId: string;
+    //   isStreaming: number;
+    //   streamingTime: number;
+    //   lastStreamingTime: Date;
+    //   isFree: boolean;
+    //   price: number;
+    //   stats: {
+    //     members: number;
+    //     likes: number;
+    //   };
+    //   isSubscribed: boolean;
+    //   createdAt: Date;
+    //   updatedAt: Date;
+    //   conversationId: string;
+    //   hasPurchased: boolean;
+    // }
+
     return (
       <Layout>
         <>
@@ -225,42 +296,29 @@ class HomePage extends PureComponent<IProps> {
               | Home
             </title>
           </Head>
-          <div className="home-page">
-            <Banner banners={topBanners} />
+          <div className="w-full">
+            <h1 className="text-4xl font-bold">
+              HOME
+            </h1>
+            <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
+
             <div className="main-container">
-              <div className="home-heading">
-                <h3>
-                  HOME
-                </h3>
-                <div className="search-bar-feed">
-                  <Input
-                    className={openSearch ? 'active' : ''}
-                    prefix={<SearchOutlined />}
-                    placeholder="Type to search here ..."
-                    onChange={(e) => {
-                      e.persist();
-                      this.onSearchFeed(e.target.value);
-                    }}
-                  />
-                  <a aria-hidden className="open-search" onClick={() => this.setState({ openSearch: !openSearch })}>
-                    {!openSearch ? <SearchOutlined /> : <CloseOutlined />}
-                  </a>
-                </div>
-              </div>
               <div className="home-container">
                 <div className="left-container">
+                    <Carousel items={topBanners} />
                   {user._id && !user.verifiedEmail && settings.requireEmailVerification && <Link href={user.isPerformer ? '/model/account' : '/user/account'}><a><Alert type="error" style={{ margin: '15px 0', textAlign: 'center' }} message="Please verify your email address, click here to update!" /></a></Link>}
-                  {streams?.length > 0 && (
-                    <div className="visit-history">
-                      <div className="top-story">
-                        <a>Live Videos</a>
-                        <a href="/model"><small>View all</small></a>
+                  {fakeSteams?.length > 0 && (
+                    <div className="mt-8">
+                      <div className="flex justify-between">
+                        <span>Live Videos</span>
+                        <a href="/model" className="text-black"><span>View all</span></a>
                       </div>
-                      <div className="story-list">
-                        {streams.length > 0 && streams.map((s) => (
+                      <div className="flex gap-4 w-full overflow-x-auto">
+                        {fakeSteams.length > 0 ? fakeSteams.map((s) => (
                           <StreamListItem stream={s} user={user} key={s._id} />
-                        ))}
-                        {/* {!streams?.length && <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>} */}
+                        )) :
+                          <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>
+                        }
                       </div>
                     </div>
                   )}
@@ -287,6 +345,22 @@ class HomePage extends PureComponent<IProps> {
                   />
                 </div>
                 <div className="right-container" id="home-right-container">
+                  <div className="home-heading">
+                    <div className="search-bar-feed ">
+                      <Input
+                        className={openSearch ? 'active' : ''}
+                        prefix={<SearchOutlined />}
+                        placeholder="Type to search here ..."
+                        onChange={(e) => {
+                          e.persist();
+                          this.onSearchFeed(e.target.value);
+                        }}
+                      />
+                      <a aria-hidden className="open-search" onClick={() => this.setState({ openSearch: !openSearch })}>
+                        {!openSearch ? <SearchOutlined /> : <CloseOutlined />}
+                      </a>
+                    </div>
+                  </div>
                   <div className="suggestion-bl">
                     <div className="sug-top">
                       <span className="sug-text">SUGGESTIONS</span>

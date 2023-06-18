@@ -27,8 +27,9 @@ This product is private. do NOT copy or use if have not license.
 ### API
 1. Go to api folder, create `.env` file from `config-example > env > api.env`
 2. Replace with your configuration
-3. Run `yarn` to install dependecies
-4. Run `yarn start:dev` for dev env or `yarn build && yarn start` from prod env
+3. Run `npm run migrate`
+4. Run `yarn` to install dependecies
+5. Run `yarn start:dev` for dev env or `yarn build && yarn start` from prod env
 
 ### User
 1. Go to user folder, create `.env` file from `config-example > env > user.env`

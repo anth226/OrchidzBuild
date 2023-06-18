@@ -130,7 +130,7 @@ class Header extends PureComponent<IProps> {
     } = this.state;
 
     return (
-      <div className="">
+      <div className="h-full">
         <Event
           event="nofify_read_messages_in_conversation"
           handler={this.handleMessage.bind(this)}
@@ -143,9 +143,9 @@ class Header extends PureComponent<IProps> {
           event="payment_status_callback"
           handler={this.handlePaymentStatusCallback.bind(this)}
         />
-        <div className="">
-          <div className="">
-            <div className="flex flex-col mx-16 mt-6 gap-8">
+        <div className="h-full">
+          <div className="flex flex-col mx-16 h-full">
+            <div className="flex-auto flex flex-col gap-8 mt-16">
               <Link href="/home">
                 <div className="text-primaryOrange text-center text-xl mt-4 mb-2">{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</div>
               </Link>
@@ -208,6 +208,8 @@ class Header extends PureComponent<IProps> {
                   </Link>
                 </li>
               ]}
+            </div>
+            <div className="mb-12">
               {user._id && (
                 <div className="flex gap-4 items-center text-3xl cursor-pointer" key="avatar" aria-hidden onClick={() => this.setState({ openProfile: true })}>
                   {user?.avatar ? <Avatar src={user?.avatar || '/static/no-avatar.png'} /> : <FaUser />}
@@ -269,7 +271,7 @@ class Header extends PureComponent<IProps> {
             key="profile-drawer"
             className={ui.theme === 'light' ? 'profile-drawer' : 'profile-drawer dark'}
             width={280}
-            // placement="left"
+          // placement="left"
           >
             {user.isPerformer && (
               <div className="profile-menu-item">
