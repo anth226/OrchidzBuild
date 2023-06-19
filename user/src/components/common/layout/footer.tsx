@@ -68,7 +68,6 @@ class Footer extends PureComponent<IProps> {
 
           <div className="flex items-center">
             <p><strong>example.com © Copyright {new Date().getFullYear()}</strong></p>
-            <img width={100} src="https://www.dmca.com/img/dmca_logo.png?=sd" alt="" />
           </div>
         </div>
       </div>

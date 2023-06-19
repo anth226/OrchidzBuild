@@ -94,30 +94,28 @@ class PerformerCard extends PureComponent<IProps> {
           }}
         >
           <div className="flex items-center ml-12">
-            <div className="">
-              <div className="bg-primaryOrange rounded-full ">
-                <div className="relative p-1">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <img
-                      className=" w-full h-full"
-                      src={performer?.avatar || '/static/no-avatar.png'}
-                      alt="Profile"
-                    />
-                  </div>
+            <div className="bg-primaryOrange rounded-full ">
+              <div className="relative p-1">
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <img
+                    className=" w-full h-full"
+                    src={performer?.avatar || '/static/no-avatar.png'}
+                    alt="Profile"
+                  />
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-start ml-6">
               <div className="flex">
-                <span className="text-2xl text-white">
+                <span className="text-2xl text-white stroke-black">
                   {performer?.name || 'N/A'}
                 </span>
-                {performer?.verifiedAccount && <TickIcon className="text-white" />}
+                {performer?.verifiedAccount && <TickIcon className="text-white " />}
                 {country && (
                   <img alt="performer-country" className="model-country" src={country?.flag} />
                 )}
               </div>
-                <span className="text-lg text-white">
+              <span className="text-lg text-white">
                 {`@${performer?.username || 'n/a'}`}
               </span>
             </div>

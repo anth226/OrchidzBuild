@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body{
+  margin: 0;
+  padding: 0;
+}
 .red-gradient{
     background: linear-gradient(to right, #FF4B2B, #FF416C);
 }

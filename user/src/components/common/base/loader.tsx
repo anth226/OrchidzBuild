@@ -13,8 +13,8 @@ class Loader extends PureComponent<IProps> {
   render() {
     const { ui, customText } = this.props;
     return (
-      <div className="text-center ">
-        <div className="mb-6">
+      <div className="text-center flex justify-center items-center flex-col">
+        <div className="mb-6 w-56">
           {ui.logo ? <img alt="loading-ico" src={ui.logo} /> : ui.siteName ? <span>{ui.siteName}</span> : <Spin size="large" />}
         </div>
         <div className="h-full w-full flex justify-center items-center">

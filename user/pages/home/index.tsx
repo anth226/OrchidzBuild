@@ -288,90 +288,91 @@ class HomePage extends PureComponent<IProps> {
     // }
 
     return (
-      <Layout>
-        <>
-          <Head>
-            <title>
-              {ui && ui.siteName}
-              {' '}
-              | Home
-            </title>
-          </Head>
-          <div className="w-full">
-            <h1 className="text-4xl font-bold">
-              HOME
-            </h1>
-            <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
+      <>
+        <Head>
+          <title>
+            {ui && ui.siteName}
+            {' '}
+            | Home
+          </title>
+        </Head>
+        <div className="w-full min-h-screen  flex flex-col">
+          <div className="">
 
-            <div className="flex justify-evenly w-full">
-              <div className="">
-                <Carousel items={topBanners} />
-                {user._id && !user.verifiedEmail && settings.requireEmailVerification && <Link href={user.isPerformer ? '/model/account' : '/user/account'}><a><Alert type="error" style={{ margin: '15px 0', textAlign: 'center' }} message="Please verify your email address, click here to update!" /></a></Link>}
-                {fakeSteams?.length > 0 && (
-                  <div className="mt-8">
-                    <div className="flex justify-between">
-                      <span>Live Videos</span>
-                      <a href="/model" className="text-black"><span>View all</span></a>
-                    </div>
-                    <div className="flex gap-4 w-full overflow-x-auto">
-                      {fakeSteams.length > 0 ? fakeSteams.map((s) => (
-                        <StreamListItem stream={s} user={user} key={s._id} />
-                      )) :
-                        <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>
-                      }
-                    </div>
+          <h1 className="text-4xl font-bold">
+            HOME
+          </h1>
+          <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
+          </div>
+
+          <div className="flex flex-auto justify-evenly">
+            <div className="">
+              <Carousel items={topBanners} />
+              {user._id && !user.verifiedEmail && settings.requireEmailVerification && <Link href={user.isPerformer ? '/model/account' : '/user/account'}><a><Alert type="error" style={{ margin: '15px 0', textAlign: 'center' }} message="Please verify your email address, click here to update!" /></a></Link>}
+              {fakeSteams?.length > 0 && (
+                <div className="mt-8">
+                  <div className="flex justify-between items-stretch">
+                    <span>Live Videos</span>
+                    <a href="/model" className="text-black"><span>View all</span></a>
                   </div>
-                )}
-                {!loadingFeed && !totalFeeds && (
-                  <div className="main-container custom text-center" style={{ margin: '10px 0' }}>
-                    <Alert
-                      type="warning"
-                      message={(
-                        <a href="/model">
-                          <SearchOutlined />
-                          {' '}
-                          Find someone to follow
-                        </a>
-                      )}
-                    />
+                  <div className="flex gap-4 w-full overflow-x-auto">
+                    {fakeSteams.length > 0 ? fakeSteams.map((s) => (
+                      <StreamListItem stream={s} user={user} key={s._id} />
+                    )) :
+                      <p className="text-center" style={{ margin: '30px 0' }}>No live for now</p>
+                    }
                   </div>
-                )}
-                <ScrollListFeed
-                  items={feeds}
-                  canLoadmore={feeds && feeds.length < totalFeeds}
-                  loading={loadingFeed}
-                  onDelete={this.onDeleteFeed.bind(this)}
-                  loadMore={this.loadmoreFeeds.bind(this)}
-                />
-              </div>
-              <div className="flex flex-col justify-between w-[30rem]">
+                </div>
+              )}
+              {!loadingFeed && !totalFeeds && (
+                <div className="main-container custom text-center" style={{ margin: '10px 0' }}>
+                  <Alert
+                    type="warning"
+                    message={(
+                      <a href="/model">
+                        <SearchOutlined />
+                        {' '}
+                        Find someone to follow
+                      </a>
+                    )}
+                  />
+                </div>
+              )}
+              <ScrollListFeed
+                items={feeds}
+                canLoadmore={feeds && feeds.length < totalFeeds}
+                loading={loadingFeed}
+                onDelete={this.onDeleteFeed.bind(this)}
+                loadMore={this.loadmoreFeeds.bind(this)}
+              />
+            </div>
+            <div className="flex flex-col justify-between w-[30rem]">
+              <div>
                 <div>
-                  <div>
-                    <SearchInputBox onChange={(e) => {
-                      e.persist();
-                      this.onSearchFeed(e.target.value);
-                    }} />
-                  </div>
-                  <div className="">
-                    <div className="flex justify-between my-4">
-                      <span className="text-2xl">Who to Follow</span>
-                    </div>
-                    <HomePerformers countries={countries} performers={randomPerformers} />
-                    <Link href="/model">
-                      <span className="text-xl">Show more</span>
-                    </Link>
-                    {!loadingPerformer && !randomPerformers?.length && <p className="text-center">No profile was found</p>}
-
-                  </div>
+                  <SearchInputBox onChange={(e) => {
+                    e.persist();
+                    this.onSearchFeed(e.target.value);
+                  }} />
                 </div>
                 <div className="">
-                  <HomeFooter />
+                  <div className="my-4">
+                    <span className="text-2xl">Who to Follow</span>
+                  </div>
+                  <HomePerformers countries={countries} performers={randomPerformers} />
+                  <Link href="/model" >
+                    <span className="text-xl">Show more</span>
+                  </Link>
+                  {!loadingPerformer && !randomPerformers?.length && <p className="text-center">No profile was found</p>}
+
                 </div>
+              </div>
+              <div className="">
+                <HomeFooter />
               </div>
             </div>
           </div>
-        </>
-      </Layout>
+        </div>
+      </>
     );
   }
 }
