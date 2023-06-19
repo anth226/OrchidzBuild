@@ -145,7 +145,7 @@ class Header extends PureComponent<IProps> {
         />
         <div className="h-full">
           <div className="flex flex-col mx-16 h-full">
-            <div className="flex-auto flex flex-col gap-8 mt-16">
+            <div className="flex-auto flex flex-col gap-8 mt-20">
               <Link href="/home">
                 <div className="text-primaryOrange text-center w-44 mt-4 mb-2">{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</div>
               </Link>

@@ -32,7 +32,6 @@ import { IFeed, ISettings, IUser } from 'src/interfaces';
 import { PurchaseFeedForm } from './confirm-purchase';
 import FeedSlider from './post-slider';
 import './index.less';
-import { FaComment, FaCommentAlt, FaComments, FaHeart, FaRegComment, FaRegComments, FaRegHeart } from 'react-icons/fa';
 
 interface IProps {
   feed: IFeed;
@@ -356,9 +355,9 @@ class FeedCard extends Component<IProps> {
       openTeaser, openSubscriptionModal, openReportModal, requesting, subscriptionType
     } = this.state;
     let canView = (!feed.isSale && feed.isSubscribed)
-      || (feed.isSale && isBought)
-      || feed.type === 'text'
-      || (feed.isSale && !feed.price);
+    || (feed.isSale && isBought)
+    || feed.type === 'text'
+    || (feed.isSale && !feed.price);
 
     if (!user?._id || (`${user?._id}` !== `${feed?.fromSourceId}` && user?.isPerformer)) {
       canView = false;
@@ -403,14 +402,14 @@ class FeedCard extends Component<IProps> {
     );
     const dropdown = (
       <Dropdown overlay={menu}>
-        <span aria-hidden className="text-2xl cursor-pointer" onClick={(e) => e.preventDefault()}>
+        <a aria-hidden className="dropdown-options" onClick={(e) => e.preventDefault()}>
           <MoreOutlined />
-        </span>
+        </a>
       </Dropdown>
     );
 
     return (
-      <div className="feed-card border-gray-200 border-2 shadow-lg rounded-lg px-4 py-2">
+      <div className="feed-card">
         <div className="flex items-center justify-between">
           <Link href={{ pathname: '/model/profile', query: { username: performer?.username || performer?._id } }} as={`/${performer?.username || performer?._id}`}>
             <div className="flex items-center ">
@@ -428,18 +427,17 @@ class FeedCard extends Component<IProps> {
                   {performer?.username || 'n/a'}
                 </span>
               </div>
+              {/* {!performer?.isOnline ? <span className="online-status" /> : <span className="online-status active" />} */}
             </div>
           </Link>
-          <div className="">
-          <span className="feed-time mr-4">{formatDate(feed.updatedAt, 'MMM DD')}</span>
-          {dropdown}
+          <div className="feed-top-right">
+            <span className="feed-time">{formatDate(feed.updatedAt, 'MMM DD')}</span>
+            {dropdown}
           </div>
         </div>
-        <div className="mt-2">
-          <div className="">
-            <span className="text-sm">
+        <div className="feed-container">
+          <div className="feed-text">
             {feed.text}
-            </span>
             {polls && polls.length > 0 && (
               <div className="feed-polls">
                 {feed.pollDescription && <h4 className="p-question">{feed.pollDescription}</h4>}
@@ -505,15 +503,15 @@ class FeedCard extends Component<IProps> {
                   </Button>
                 )}
                 {(feed.isSale && !feed.price && !user._id) && (
-                  <Button
-                    onMouseEnter={() => this.setState({ isHovered: true })}
-                    onMouseLeave={() => this.setState({ isHovered: false })}
-                    disabled={user.isPerformer}
-                    className="secondary"
-                    onClick={() => Router.push({ pathname: '/model/profile', query: { username: performer?.username || performer?._id } }, `/${performer?.username || performer?._id}`)}
-                  >
-                    Follow for free
-                  </Button>
+                <Button
+                  onMouseEnter={() => this.setState({ isHovered: true })}
+                  onMouseLeave={() => this.setState({ isHovered: false })}
+                  disabled={user.isPerformer}
+                  className="secondary"
+                  onClick={() => Router.push({ pathname: '/model/profile', query: { username: performer?.username || performer?._id } }, `/${performer?.username || performer?._id}`)}
+                >
+                  Follow for free
+                </Button>
                 )}
                 {feed.teaser && (
                   <Button className="teaser-btn" type="link" onClick={() => this.setState({ openTeaser: true })}>
@@ -551,25 +549,20 @@ class FeedCard extends Component<IProps> {
         <div className="feed-bottom">
           <div className="feed-actions">
             <div className="action-item">
-              <span aria-hidden onClick={this.handleLike.bind(this)} className="flex gap-1 items-center cursor-pointer">
-              {isLiked ? 
-                <FaHeart className="text-primaryOrange text-2xl " />
-                :
-                <FaRegHeart className="text-2xl" />
-              }
-              {shortenLargeNumber(totalLike)}
+              <span aria-hidden className={isLiked ? 'action-ico active' : 'action-ico'} onClick={this.handleLike.bind(this)}>
+                <HeartOutlined />
+                {' '}
+                {shortenLargeNumber(totalLike)}
               </span>
-              <span aria-hidden className="mx-2 flex items-center gap-1 cursor-pointer" onClick={this.onOpenComment.bind(this)}>
-                {isOpenComment ?
-                <FaComments className="text-primaryOrange text-2xl" />
-                : 
-                <FaRegComments className="text-2xl" />
-                }
+              <span aria-hidden className={isOpenComment ? 'action-ico active' : 'action-ico'} onClick={this.onOpenComment.bind(this)}>
+                <CommentOutlined />
+                {' '}
                 {shortenLargeNumber(totalComment)}
               </span>
               {performer && (
-                <span aria-hidden className="action-ico " onClick={() => this.setState({ openTipModal: true })}>
+                <span aria-hidden className="action-ico" onClick={() => this.setState({ openTipModal: true })}>
                   <DollarOutlined />
+                  {' '}
                   Send tip
                 </span>
               )}
@@ -658,43 +651,43 @@ class FeedCard extends Component<IProps> {
             >
               <h2 style={{ paddingTop: 25 }}>SUBSCRIBE TO UNLOCK</h2>
               {feed?.performer?.isFreeSubscription && (
-                <Button
-                  className="primary"
-                  disabled={!user || !user._id || (submiting && subscriptionType === 'free')}
-                  onClick={() => {
-                    this.setState({ openSubscriptionModal: true, subscriptionType: 'free' });
-                  }}
-                >
-                  SUBSCRIBE FOR FREE FOR
-                  {' '}
-                  {feed?.performer?.durationFreeSubscriptionDays || 1}
-                  {' '}
-                  {feed?.performer?.durationFreeSubscriptionDays > 1 ? 'DAYS' : 'DAY'}
-                </Button>
+              <Button
+                className="primary"
+                disabled={!user || !user._id || (submiting && subscriptionType === 'free')}
+                onClick={() => {
+                  this.setState({ openSubscriptionModal: true, subscriptionType: 'free' });
+                }}
+              >
+                SUBSCRIBE FOR FREE FOR
+                {' '}
+                {feed?.performer?.durationFreeSubscriptionDays || 1}
+                {' '}
+                {feed?.performer?.durationFreeSubscriptionDays > 1 ? 'DAYS' : 'DAY'}
+              </Button>
               )}
               {feed?.performer?.monthlyPrice && (
-                <Button
-                  className="primary"
-                  disabled={!user || !user._id || (submiting && subscriptionType === 'monthly')}
-                  onClick={() => {
-                    this.setState({ openSubscriptionModal: true, subscriptionType: 'monthly' });
-                  }}
-                >
-                  MONTHLY SUBSCRIPTION FOR $
-                  {(feed?.performer?.monthlyPrice || 0).toFixed(2)}
-                </Button>
+              <Button
+                className="primary"
+                disabled={!user || !user._id || (submiting && subscriptionType === 'monthly')}
+                onClick={() => {
+                  this.setState({ openSubscriptionModal: true, subscriptionType: 'monthly' });
+                }}
+              >
+                MONTHLY SUBSCRIPTION FOR $
+                {(feed?.performer?.monthlyPrice || 0).toFixed(2)}
+              </Button>
               )}
               {feed?.performer.yearlyPrice && (
-                <Button
-                  className="secondary"
-                  disabled={!user || !user._id || (submiting && subscriptionType === 'yearly')}
-                  onClick={() => {
-                    this.setState({ openSubscriptionModal: true, subscriptionType: 'yearly' });
-                  }}
-                >
-                  YEARLY SUBSCRIPTON FOR $
-                  {(feed?.performer?.yearlyPrice || 0).toFixed(2)}
-                </Button>
+              <Button
+                className="secondary"
+                disabled={!user || !user._id || (submiting && subscriptionType === 'yearly')}
+                onClick={() => {
+                  this.setState({ openSubscriptionModal: true, subscriptionType: 'yearly' });
+                }}
+              >
+                YEARLY SUBSCRIPTON FOR $
+                {(feed?.performer?.yearlyPrice || 0).toFixed(2)}
+              </Button>
               )}
             </div>
           ) : (

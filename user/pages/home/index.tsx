@@ -296,13 +296,13 @@ class HomePage extends PureComponent<IProps> {
             | Home
           </title>
         </Head>
-        <div className="w-full min-h-screen  flex flex-col">
+        <div className="w-full min-h-screen  flex flex-col pt-20">
           <div className="">
 
-          <h1 className="text-4xl font-bold">
-            HOME
-          </h1>
-          <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
+            <h1 className="text-4xl font-bold">
+              HOME
+            </h1>
+            <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />
           </div>
 
           <div className="flex flex-auto justify-evenly">
@@ -338,13 +338,16 @@ class HomePage extends PureComponent<IProps> {
                   />
                 </div>
               )}
-              <ScrollListFeed
-                items={feeds}
-                canLoadmore={feeds && feeds.length < totalFeeds}
-                loading={loadingFeed}
-                onDelete={this.onDeleteFeed.bind(this)}
-                loadMore={this.loadmoreFeeds.bind(this)}
-              />
+              <div className="mt-8 overflow-auto">
+
+                <ScrollListFeed
+                  items={feeds}
+                  canLoadmore={feeds && feeds.length < totalFeeds}
+                  loading={loadingFeed}
+                  onDelete={this.onDeleteFeed.bind(this)}
+                  loadMore={this.loadmoreFeeds.bind(this)}
+                />
+              </div>
             </div>
             <div className="flex flex-col justify-between w-[30rem]">
               <div>
