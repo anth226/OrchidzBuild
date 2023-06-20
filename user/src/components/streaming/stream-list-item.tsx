@@ -39,7 +39,7 @@ export default function StreamListItem({ stream, user }: Props) {
 
   return (
     <>
-      <div className="bg-primaryOrange rounded-full ">
+      <div className="bg-primaryColor rounded-full ">
         <div className="relative p-1">
           <div className="w-20 h-20 rounded-full overflow-hidden">
             <img
@@ -49,11 +49,11 @@ export default function StreamListItem({ stream, user }: Props) {
             />
           </div>
           <div className="absolute inset-0 text-center flex justify-center items-end ">
-            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryOrange">LIVE</p>
+            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryColor">LIVE</p>
           </div>
         </div>
       </div>
-      <div className="bg-primaryOrange rounded-full ">
+      <div className="bg-primaryColor rounded-full ">
         <div className="relative p-1">
           <div className="w-20 h-20 rounded-full overflow-hidden">
             <img
@@ -63,11 +63,11 @@ export default function StreamListItem({ stream, user }: Props) {
             />
           </div>
           <div className="absolute inset-0 text-center flex justify-center items-end ">
-            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryOrange">LIVE</p>
+            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryColor">LIVE</p>
           </div>
         </div>
       </div>
-      <div className="bg-primaryOrange rounded-full ">
+      <div className="bg-primaryColor rounded-full ">
         <div className="relative p-1">
           <div className="w-20 h-20 rounded-full overflow-hidden">
             <img
@@ -77,11 +77,11 @@ export default function StreamListItem({ stream, user }: Props) {
             />
           </div>
           <div className="absolute inset-0 text-center flex justify-center items-end ">
-            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryOrange">LIVE</p>
+            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryColor">LIVE</p>
           </div>
         </div>
       </div>
-      <div className="bg-primaryOrange rounded-full ">
+      <div className="bg-primaryColor rounded-full ">
         <div className="relative p-1">
           <div className="w-20 h-20 rounded-full overflow-hidden">
             <img
@@ -91,7 +91,7 @@ export default function StreamListItem({ stream, user }: Props) {
             />
           </div>
           <div className="absolute inset-0 text-center flex justify-center items-end ">
-            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryOrange">LIVE</p>
+            <p className="text-white leading-3 px-2 py-1 text-[10px] text-he border border-white rounded-md font-semibold bg-primaryColor">LIVE</p>
           </div>
         </div>
       </div>

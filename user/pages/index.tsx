@@ -174,7 +174,7 @@ class Login extends PureComponent<IProps> {
                 <div className="login-content right">
                   <div className="text-center text-4xl">
                     {/* <a href="/">{ui.logo ? <img alt="logo" src={ui.logo} height="80px" /> : ui.siteName}</a> */}
-                    <a href="/" className="text-primaryOrange ">{ui.siteName}</a>
+                    <a href="/" className="text-primaryColor ">{ui.siteName}</a>
                   </div>
                   <p className="text-center">
                     <small>Sign up to make money and interact with your fans!</small>
@@ -239,7 +239,7 @@ class Login extends PureComponent<IProps> {
                         <p className="text-black text-sm">
                           Visit
                           {' '}
-                          <a href="/page/help" className="text-primaryOrange">Help Center</a>
+                          <a href="/page/help" className="text-primaryColor">Help Center</a>
                           {' '}
                           for any help if you are not able to login with your
                           existing
@@ -252,7 +252,7 @@ class Login extends PureComponent<IProps> {
                         <p style={{ marginBottom: 5 }}>Don&apos;t have an account yet?</p>
                         <p>
                           <Link href="/auth/register">
-                            <a className="text-primaryOrange">
+                            <a className="text-primaryColor">
                               Sign up for
                               {' '}
                               {ui?.siteName}

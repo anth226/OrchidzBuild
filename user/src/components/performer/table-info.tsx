@@ -34,7 +34,7 @@ export class PerformerInfo extends PureComponent<IProps> {
     const { performer, countries = [] } = this.props;
     const country = countries.length && countries.find((c) => c.code === performer?.country);
     return (
-      <div className="per-infor">
+      <div className="per-infor mx-1 my-2 rounded-lg px-2 py-1">
         <Collapse defaultActiveKey={['1']} bordered={false} accordion>
           <Collapse.Panel
             header={performer?.country ? (
@@ -46,6 +46,8 @@ export class PerformerInfo extends PureComponent<IProps> {
             ) : 'BIOGRAPHY'}
             key="1"
           >
+            <h1>{country?.flag}</h1>
+            
             <p
               className="bio"
               // eslint-disable-next-line react/no-danger

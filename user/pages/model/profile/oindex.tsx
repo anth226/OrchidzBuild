@@ -413,7 +413,7 @@ class PerformerProfile extends PureComponent<IProps> {
       isFollowed
     } = this.state;
     return (
-      <>
+      <Layout>
         <Head>
           <title>
             {`${ui?.siteName} | ${performer?.name || performer?.username}`}
@@ -441,55 +441,55 @@ class PerformerProfile extends PureComponent<IProps> {
           <meta name="twitter:image" content={performer?.avatar || '/static/no-avatar.png'} />
           <meta name="twitter:description" content={performer?.bio} />
         </Head>
-        <div className="mt-20">
-          <div className="top-profile max-w-[1280px] m-auto rounded-t-3xl" style={{ backgroundImage: `url('${performer?.cover || '/static/banner-image.jpg'}')` }}>
-            <div className="bg-2nd rounded-t-3xl">
-              <div className="top-banner rounded-t-3xl">
+        <div className="main-container ">
+          <div className="top-profile" style={{ backgroundImage: `url('${performer?.cover || '/static/banner-image.jpg'}')` }}>
+            <div className="bg-2nd">
+              <div className="top-banner">
                 {/* <a aria-hidden className="arrow-back" onClick={() => Router.back()}>
                   <ArrowLeftOutlined />
                 </a> */}
-                <div className="stats-row ">
-                  <div className="tab-stat ml-4 mt-2">
-                    <div className="tab-item ">
+                <div className="stats-row">
+                  <div className="tab-stat">
+                    <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.totalFeeds || 0)}
                         {' '}
-                        <FireOutlined className="text-2xl" />
+                        <FireOutlined />
                       </span>
                     </div>
                     <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.totalVideos || 0)}
                         {' '}
-                        <VideoCameraOutlined className="text-2xl" />
+                        <VideoCameraOutlined />
                       </span>
                     </div>
                     <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.totalPhotos || 0)}
                         {' '}
-                        <PictureOutlined className="text-2xl" />
+                        <PictureOutlined />
                       </span>
                     </div>
                     <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.totalProducts || 0)}
                         {' '}
-                        <ShoppingOutlined className="text-2xl" />
+                        <ShoppingOutlined />
                       </span>
                     </div>
                     <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.likes || 0)}
                         {' '}
-                        <HeartOutlined className="text-2xl" />
+                        <HeartOutlined />
                       </span>
                     </div>
                     <div className="tab-item">
                       <span>
                         {shortenLargeNumber(performer?.stats?.subscribers || 0)}
                         {' '}
-                        <UsergroupAddOutlined className="text-2xl" />
+                        <UsergroupAddOutlined />
                       </span>
                     </div>
                   </div>
@@ -509,9 +509,7 @@ class PerformerProfile extends PureComponent<IProps> {
               {user?._id !== performer?._id && <span className={performer?.isOnline > 0 ? 'online-status' : 'online-status off'} />}
               <div className="m-user-name">
                 <h4>
-                  <span className="text-xl">
-                    {performer?.name || 'N/A'}
-                  </span>
+                  {performer?.name || 'N/A'}
                   &nbsp;
                   {performer?.verifiedAccount && (
                     <TickIcon />
@@ -634,50 +632,18 @@ class PerformerProfile extends PureComponent<IProps> {
             )}
           </div>
         </div>
-        {/* <div style={{ marginTop: '20px' }} /> */}
+        <div style={{ marginTop: '20px' }} />
         <div className="main-container">
           <div className="model-content">
-            <ul className="grid grid-flow-col text-center text-gray-500 bg-gray-100 rounded-xl p-1">
-              <li>
-                <a href="#"
-                  className={`${tab === "post" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
-                  onClick={() => {
-                    this.setState({ tab: "post" }, () => this.loadItems());
-                  }}>
-                  <FireOutlined className="text-2xl text-black" />
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  className={`${tab === "video" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
-                  onClick={() => {
-                    this.setState({ tab: "video" }, () => this.loadItems());
-                  }}>                  <VideoCameraOutlined className="text-2xl" />
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  className={`${tab === "photo" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
-                  onClick={() => {
-                    this.setState({ tab: "photo" }, () => this.loadItems());
-                  }}>                  <PictureOutlined className="text-2xl" />
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  className={`${tab === "store" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
-                  onClick={() => {
-                    this.setState({ tab: "store" }, () => this.loadItems());
-                  }}>                  <ShoppingOutlined className="text-2xl" />
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="w-9/12 m-auto">
-            {/* <div className={!isGrid ? 'main-container' : 'main-container custom'}> */}
-            {tab === "post" ?
-              <>
-                <div className="heading-tab mt-4 mb-6">
+            <Tabs
+              defaultActiveKey="post"
+              size="large"
+              onTabClick={(t: string) => {
+                this.setState({ tab: t, filter: initialFilter, isGrid: false }, () => this.loadItems());
+              }}
+            >
+              <TabPane tab={<FireOutlined />} key="post">
+                <div className="heading-tab">
                   <h4>
                     {totalFeed > 0 && totalFeed}
                     {' '}
@@ -685,71 +651,73 @@ class PerformerProfile extends PureComponent<IProps> {
                   </h4>
                   <SearchPostBar searching={loadingFeed} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} handleViewGrid={(val) => this.setState({ isGrid: val })} />
                 </div>
-                <ScrollListFeed
-                  items={feeds}
-                  loading={loadingFeed}
-                  canLoadmore={feeds && feeds.length < totalFeed}
-                  loadMore={this.loadMoreItem.bind(this)}
-                  isGrid={isGrid}
-                  onDelete={this.handleDeleteFeed.bind(this)}
-                />
-              </>
-              : tab === "video" ?
-                <>
-                  <div className="heading-tab mt-4 mb-6">
-                    <h4>
-                      {totalVideos > 0 && totalVideos}
-                      {' '}
-                      {totalVideos > 1 ? 'VIDEOS' : 'VIDEO'}
-                    </h4>
-                    <SearchPostBar searching={loadingVideo} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} handleViewGrid={(val) => this.setState({ isGrid: val })} />
-                  </div>
+                <div className={isGrid ? 'main-container' : 'main-container custom'}>
+                  <ScrollListFeed
+                    items={feeds}
+                    loading={loadingFeed}
+                    canLoadmore={feeds && feeds.length < totalFeed}
+                    loadMore={this.loadMoreItem.bind(this)}
+                    isGrid={isGrid}
+                    onDelete={this.handleDeleteFeed.bind(this)}
+                  />
+                </div>
+              </TabPane>
+              <TabPane tab={<VideoCameraOutlined />} key="video">
+                <div className="heading-tab">
+                  <h4>
+                    {totalVideos > 0 && totalVideos}
+                    {' '}
+                    {totalVideos > 1 ? 'VIDEOS' : 'VIDEO'}
+                  </h4>
+                  <SearchPostBar searching={loadingVideo} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} handleViewGrid={(val) => this.setState({ isGrid: val })} />
+                </div>
+                <div className="main-container">
                   <ScrollListVideo
                     items={videos}
                     loading={loadingVideo}
                     canLoadmore={videos && videos.length < totalVideos}
                     loadMore={this.loadMoreItem.bind(this)}
                   />
-                </>
-                : tab === "photo" ?
-                  <>
-                    <div className="heading-tab mt-4 mb-6">
-                      <h4>
-                        {totalGalleries > 0 && totalGalleries}
-                        {' '}
-                        {totalGalleries > 1 ? 'GALLERIES' : 'GALLERY'}
-                      </h4>
-                      <SearchPostBar searching={loadingGallery} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} handleViewGrid={(val) => this.setState({ isGrid: val })} />
-                    </div>
-                    <ScrollListGallery
-                      items={galleries}
-                      loading={loadingGallery}
-                      canLoadmore={galleries && galleries.length < totalGalleries}
-                      loadMore={this.loadMoreItem.bind(this)}
-                    />
-                  </>
-                  : tab === "store" &&
-                  <>
-                    <div className="heading-tab mt-4 mb-6">
-                      <h4>
-                        {totalProducts > 0 && totalProducts}
-                        {' '}
-                        {totalProducts > 1 ? 'PRODUCTS' : 'PRODUCT'}
-                      </h4>
-                      <SearchPostBar searching={loadingPrd} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} />
-                    </div>
-                    <ScrollListProduct
-                      items={products}
-                      loading={loadingPrd}
-                      canLoadmore={products && products.length < totalProducts}
-                      loadMore={this.loadMoreItem.bind(this)}
-                    />
-                  </>
-            }
+                </div>
+              </TabPane>
+              <TabPane tab={<PictureOutlined />} key="photo">
+                <div className="heading-tab">
+                  <h4>
+                    {totalGalleries > 0 && totalGalleries}
+                    {' '}
+                    {totalGalleries > 1 ? 'GALLERIES' : 'GALLERY'}
+                  </h4>
+                  <SearchPostBar searching={loadingGallery} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} handleViewGrid={(val) => this.setState({ isGrid: val })} />
+                </div>
+                <div className="main-container">
+                  <ScrollListGallery
+                    items={galleries}
+                    loading={loadingGallery}
+                    canLoadmore={galleries && galleries.length < totalGalleries}
+                    loadMore={this.loadMoreItem.bind(this)}
+                  />
+                </div>
+              </TabPane>
+              <TabPane tab={<ShoppingOutlined />} key="store">
+                <div className="heading-tab">
+                  <h4>
+                    {totalProducts > 0 && totalProducts}
+                    {' '}
+                    {totalProducts > 1 ? 'PRODUCTS' : 'PRODUCT'}
+                  </h4>
+                  <SearchPostBar searching={loadingPrd} tab={tab} handleSearch={this.handleFilterSearch.bind(this)} />
+                </div>
+                <ScrollListProduct
+                  items={products}
+                  loading={loadingPrd}
+                  canLoadmore={products && products.length < totalProducts}
+                  loadMore={this.loadMoreItem.bind(this)}
+                />
+              </TabPane>
+            </Tabs>
           </div>
         </div>
-        {
-          performer
+        {performer
           && performer?.welcomeVideoPath
           && performer?.activateWelcomeVideo
           && (
@@ -794,8 +762,7 @@ class PerformerProfile extends PureComponent<IProps> {
               }}
               />
             </Modal>
-          )
-        }
+          )}
         <Modal
           key="tip_performer"
           className="subscription-modal"
@@ -832,7 +799,7 @@ class PerformerProfile extends PureComponent<IProps> {
           />
         </Modal>
         {submiting && <Loader customText="We are processing your payment, please do not reload this page until it's done." />}
-      </>
+      </Layout>
     );
   }
 }

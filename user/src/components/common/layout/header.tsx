@@ -147,11 +147,11 @@ class Header extends PureComponent<IProps> {
           <div className="flex flex-col mx-16 h-full">
             <div className="flex-auto flex flex-col gap-8 mt-20">
               <Link href="/home">
-                <div className="text-primaryOrange text-center w-44 mt-4 mb-2">{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</div>
+                <div className="text-primaryColor text-center w-44 mt-4 mb-2">{ui.logo ? <img src={ui.logo} alt="logo" /> : `${ui.siteName}`}</div>
               </Link>
               {user._id && (
                 <Link href="/home">
-                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/home' && "text-primaryOrange"}`}>
+                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/home' && "text-primaryColor"}`}>
                     <FaHome />
                     Home
                   </div>
@@ -161,7 +161,7 @@ class Header extends PureComponent<IProps> {
                 <>
                   {user?.isPerformer && (
                     <Link href="/model/my-post/create">
-                      <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model/my-post/create' && "text-primaryOrange"}`}>
+                      <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model/my-post/create' && "text-primaryColor"}`}>
                         <FaRegPlusSquare /> Create
                       </div>
                     </Link>
@@ -170,14 +170,14 @@ class Header extends PureComponent<IProps> {
               )}
               {user._id && !user.isPerformer && (
                 <Link href="/model">
-                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model' && "text-primaryOrange"}`}>
+                  <div className={`flex gap-4 items-center text-3xl cursor-pointer ${router.pathname === '/model' && "text-primaryColor"}`}>
                     <ModelIcon /> Explore
                   </div>
                 </Link>
               )}
               {user._id && (
                 <Link href="/messages">
-                  <div className={`flex gap-1 items-center text-3xl cursor-pointer ${router.pathname === '/messages' && "text-primaryOrange"}`}>
+                  <div className={`flex gap-1 items-center text-3xl cursor-pointer ${router.pathname === '/messages' && "text-primaryColor"}`}>
                     <div className="flex">
                       <AiOutlineMessage />
                       <Badge

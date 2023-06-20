@@ -94,7 +94,7 @@ class PerformerCard extends PureComponent<IProps> {
           }}
         >
           <div className="flex items-center ml-12">
-            <div className="bg-primaryOrange rounded-full ">
+            <div className="bg-primaryColor rounded-full ">
               <div className="relative p-1">
                 <div className="w-16 h-16 rounded-full overflow-hidden">
                   <img

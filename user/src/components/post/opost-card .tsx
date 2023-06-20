@@ -420,7 +420,7 @@ class FeedCard extends Component<IProps> {
                   {' '}
                   {performer?.verifiedAccount && <TickIcon />}
                   &nbsp;&nbsp;
-                  {performer?.live > 0 && user?._id !== performer?._id && <span aria-hidden onClick={this.handleJoinStream} className="text-primaryOrange">Live</span>}
+                  {performer?.live > 0 && user?._id !== performer?._id && <span aria-hidden onClick={this.handleJoinStream} className="text-primaryColor">Live</span>}
                 </span>
                 <span className="">
                   @

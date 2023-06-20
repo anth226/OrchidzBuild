@@ -421,7 +421,7 @@ class FeedCard extends Component<IProps> {
                   {' '}
                   {performer?.verifiedAccount && <TickIcon />}
                   &nbsp;&nbsp;
-                  {performer?.live > 0 && user?._id !== performer?._id && <span aria-hidden onClick={this.handleJoinStream} className="text-primaryOrange">Live</span>}
+                  {performer?.live > 0 && user?._id !== performer?._id && <span aria-hidden onClick={this.handleJoinStream} className="text-primaryColor">Live</span>}
                 </span>
                 <span className="">
                   @
@@ -553,7 +553,7 @@ class FeedCard extends Component<IProps> {
             <div className="action-item">
               <span aria-hidden onClick={this.handleLike.bind(this)} className="flex gap-1 items-center cursor-pointer">
               {isLiked ? 
-                <FaHeart className="text-primaryOrange text-2xl " />
+                <FaHeart className="text-primaryColor text-2xl " />
                 :
                 <FaRegHeart className="text-2xl" />
               }
@@ -561,7 +561,7 @@ class FeedCard extends Component<IProps> {
               </span>
               <span aria-hidden className="mx-2 flex items-center gap-1 cursor-pointer" onClick={this.onOpenComment.bind(this)}>
                 {isOpenComment ?
-                <FaComments className="text-primaryOrange text-2xl" />
+                <FaComments className="text-primaryColor text-2xl" />
                 : 
                 <FaRegComments className="text-2xl" />
                 }
