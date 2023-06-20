@@ -87,7 +87,7 @@ class Performers extends PureComponent<IProps> {
     } = this.state;
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -95,16 +95,20 @@ class Performers extends PureComponent<IProps> {
             | Models
           </title>
         </Head>
-        <div className="main-container">
-          <PageHeading title="Models" icon={<ModelIcon />} />
-          <PerformerAdvancedFilter
-            onSubmit={this.handleFilter.bind(this)}
-            countries={countries}
-            bodyInfo={bodyInfo}
-          />
+        <div className="w-full min-h-screen  flex flex-col pt-20 max-w-[1024px] margin-auto">
+          <div className="flex text-4xl gap-4 mb-4">
+            <ModelIcon className="" /> Models
+          </div>
+          <div className="my-4">
+            <PerformerAdvancedFilter
+              onSubmit={this.handleFilter.bind(this)}
+              countries={countries}
+              bodyInfo={bodyInfo}
+            />
+          </div>
           <Row>
             {performers && performers.length > 0 && performers.map((p) => (
-              <Col xs={12} sm={12} md={8} lg={6} key={p._id}>
+              <Col xs={12} sm={12} md={8} lg={6} key={p._id} className="ml-4">
                 <PerformerGridCard performer={p} countries={countries} />
               </Col>
             ))}
@@ -125,7 +129,7 @@ class Performers extends PureComponent<IProps> {
             />
           ) : null}
         </div>
-      </Layout>
+      </>
     );
   }
 }
@@ -134,5 +138,5 @@ const mapStates = (state: any) => ({
   ui: { ...state.ui }
 });
 
-const mapDispatch = { };
+const mapDispatch = {};
 export default connect(mapStates, mapDispatch)(Performers);

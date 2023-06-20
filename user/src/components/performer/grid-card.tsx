@@ -78,7 +78,7 @@ class PerformerGridCard extends PureComponent<IProps> {
     const country = countries && countries.length && countries.find((c) => c.code === performer.country);
 
     return (
-      <div className="grid-card" style={{ backgroundImage: `url(${performer?.avatar || '/static/no-avatar.png'})` }}>
+      <div className="grid-card " style={{ backgroundImage: `url(${performer?.avatar || '/static/no-avatar.png'})` }}>
         {/* {performer?.isFreeSubscription && <span className="free-status">Free</span>} */}
         <span className={performer?.isOnline > 0 ? 'online-status active' : 'online-status'} />
         {performer?.live > 0 && <div className="live-status">Live</div>}
