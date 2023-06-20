@@ -41,10 +41,10 @@ class PrimaryLayout extends PureComponent<DefaultProps> {
       <>
         <Layout>
           <div className="flex">
-            <div className="h-screen">
+            <div className="h-screen w-2/12">
               <Header />
             </div>
-            <div className="flex-auto h-screen overflow-auto">
+            <div className="flex-auto overflow-y-auto h-screen w-8/12">
               <Layout.Content>
                 {routerChange ? <Loader /> :
                   children

@@ -410,7 +410,7 @@ class FeedCard extends Component<IProps> {
     );
 
     return (
-      <div className="feed-card border-gray-200 border-2 shadow-lg rounded-lg px-4 py-2">
+      <div className="bg-white feed-card border-gray-200 border-2 shadow-xl rounded-2xl px-4 py-2 drop-shadow-lg translateZ(100px)">
         <div className="flex items-center justify-between">
           <Link href={{ pathname: '/model/profile', query: { username: performer?.username || performer?._id } }} as={`/${performer?.username || performer?._id}`}>
             <div className="flex items-center ">
