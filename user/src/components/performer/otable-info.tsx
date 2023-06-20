@@ -35,12 +35,16 @@ export class PerformerInfo extends PureComponent<IProps> {
     const country = countries.length && countries.find((c) => c.code === performer?.country);
     return (
       <div className="per-infor mx-1 my-2 rounded-lg px-2 py-1">
-        <Collapse defaultActiveKey={['0']} bordered={false} accordion>
+        <Collapse defaultActiveKey={['1']} bordered={false} accordion>
           <Collapse.Panel
-            header={<span className="flex items-center text-lg text-primaryColor">
-              BIOGRAPHY
-            </span>
-            }
+            header={performer?.country ? (
+              <span className="flex items-center">
+                Information
+                {/* <img alt="flag" src={country?.flag} width="25px" /> */}
+                &nbsp;
+                {country?.name}
+              </span>
+            ) : 'BIOGRAPHY'}
             key="1"
           >
 
@@ -59,7 +63,6 @@ export class PerformerInfo extends PureComponent<IProps> {
               {performer?.dateOfBirth && <Descriptions.Item label="Date of Birth">{formatDate(performer?.dateOfBirth, 'DD/MM/YYYY')}</Descriptions.Item>}
               {performer?.bodyType && <Descriptions.Item label="Body Type">{performer?.bodyType}</Descriptions.Item>}
               {performer?.state && <Descriptions.Item label="State">{performer?.state}</Descriptions.Item>}
-              {performer?.state && <Descriptions.Item label="County">{country.name}</Descriptions.Item>}
               {performer?.city && <Descriptions.Item label="City">{performer?.city}</Descriptions.Item>}
               {performer?.height && <Descriptions.Item label="Height">{performer?.height}</Descriptions.Item>}
               {performer?.weight && <Descriptions.Item label="Weight">{performer?.weight}</Descriptions.Item>}
