@@ -267,7 +267,7 @@ class FavouriteVideoPage extends PureComponent<IProps, IStates> {
     } = this.state;
     const { ui, countries } = this.props;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -275,15 +275,61 @@ class FavouriteVideoPage extends PureComponent<IProps, IStates> {
             | Bookmarks
           </title>
         </Head>
-        <div className="main-container">
-          <PageHeading title="Bookmarks" icon={<BookOutlined />} />
-          <div className="user-account">
-            <Tabs
-              defaultActiveKey={tab || 'feeds'}
-              size="large"
-              onChange={this.onTabsChange.bind(this)}
-            >
-              <Tabs.TabPane tab={<FireOutlined />} key="feeds">
+        <div className="main-container pt-4">
+        <PageHeading title="Bookmarks" icon={<BookOutlined />} />
+          <div className="model-content">
+            <ul className="grid grid-flow-col text-center text-white bg-secoundaryColor rounded-xl p-2">
+              <li>
+                <a href="#"
+                  className={`${tab === "feeds" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
+                  onClick={() => {
+                    this.setState({ tab: "feeds" })
+                  }}>
+                  <FireOutlined className="text-2xl " />
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  className={`${tab === "videos" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
+                  onClick={() => {
+                    this.setState({ tab: "videos" })
+                  }}>
+                  <VideoCameraOutlined className="text-2xl" />
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  className={`${tab === "galleries" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
+                  onClick={() => {
+                    this.setState({ tab: "galleries" })
+                  }}>
+                  <PictureOutlined className="text-2xl" />
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  className={`${tab === "products" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
+                  onClick={() => {
+                    this.setState({ tab: "products" })
+                  }}>
+                  <ShopOutlined className="text-2xl" />
+                </a>
+              </li>
+              <li>
+                <a href="#"
+                  className={`${tab === "performers" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
+                  onClick={() => {
+                    this.setState({ tab: "performers" })
+                  }}>
+                  <ModelIcon className="text-2xl" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="w-9/12 m-auto">
+            {/* <div className={!isGrid ? 'main-container' : 'main-container custom'}> */}
+            {tab === "feeds" ?
+              <>
                 <div className="heading-tab">
                   <h4>
                     {totalFeeds > 0 && totalFeeds}
@@ -300,79 +346,84 @@ class FavouriteVideoPage extends PureComponent<IProps, IStates> {
                   loadMore={this.handlePagechange.bind(this, 'feeds')}
                   notFoundText="No bookmarked posts found"
                 />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab={<VideoCameraOutlined />} key="videos">
-                <div className="heading-tab">
-                  <h4>
-                    {totalVideos > 0 && totalVideos}
-                    {' '}
-                    {totalVideos > 1 ? 'VIDEOS' : 'VIDEO'}
-                  </h4>
-                </div>
-                <ScrollListVideo
-                  items={videos.map((f) => f.objectInfo)}
-                  loading={loading}
-                  canLoadmore={totalVideos > videos.length}
-                  loadMore={this.handlePagechange.bind(this, 'videos')}
-                  notFoundText="No bookmarked videos found"
-                />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab={<PictureOutlined />} key="galleries">
-                <div className="heading-tab">
-                  <h4>
-                    {totalGalleries > 0 && totalGalleries}
-                    {' '}
-                    {totalGalleries > 1 ? 'GALLERIES' : 'GALLERY'}
-                  </h4>
-                </div>
-                <ScrollListGallery
-                  items={galleries.map((f) => f.objectInfo)}
-                  loading={loading}
-                  canLoadmore={totalGalleries > galleries.length}
-                  loadMore={this.handlePagechange.bind(this, 'galleries')}
-                  notFoundText="No bookmarked galleries found"
-                />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab={<ShopOutlined />} key="products">
-                <div className="heading-tab">
-                  <h4>
-                    {totalProducts > 0 && totalProducts}
-                    {' '}
-                    {totalProducts > 1 ? 'PRODUCTS' : 'PRODUCT'}
-                  </h4>
-                </div>
-                <ScrollListProduct
-                  loading={loading}
-                  items={products.map((p) => p.objectInfo)}
-                  canLoadmore={totalProducts > products.length}
-                  loadMore={this.handlePagechange.bind(this, 'products')}
-                  notFoundText="No bookmarked products found"
-                />
-              </Tabs.TabPane>
-              <Tabs.TabPane tab={<ModelIcon />} key="performers">
-                <div className="heading-tab">
-                  <h4>
-                    {totalPerformers > 0 && totalPerformers}
-                    {' '}
-                    {totalPerformers > 1 ? 'MODELS' : 'MODEL'}
-                  </h4>
-                </div>
-                <ScrollListPerformers
-                  loading={loading}
-                  performers={performers.map((p) => p.objectInfo)}
-                  total={totalPerformers}
-                  loadMore={this.handlePagechange.bind(
-                    this,
-                    'performers'
-                  )}
-                  notFoundText="No bookmarked profiles found"
-                  countries={countries}
-                />
-              </Tabs.TabPane>
-            </Tabs>
+              </>
+              : tab === "videos" ?
+                <>
+                  <div className="heading-tab">
+                    <h4>
+                      {totalVideos > 0 && totalVideos}
+                      {' '}
+                      {totalVideos > 1 ? 'VIDEOS' : 'VIDEO'}
+                    </h4>
+                  </div>
+                  <ScrollListVideo
+                    items={videos.map((f) => f.objectInfo)}
+                    loading={loading}
+                    canLoadmore={totalVideos > videos.length}
+                    loadMore={this.handlePagechange.bind(this, 'videos')}
+                    notFoundText="No bookmarked videos found"
+                  />
+                </>
+                : tab === "galleries" ?
+                  <>
+                    <div className="heading-tab">
+                      <h4>
+                        {totalGalleries > 0 && totalGalleries}
+                        {' '}
+                        {totalGalleries > 1 ? 'GALLERIES' : 'GALLERY'}
+                      </h4>
+                    </div>
+                    <ScrollListGallery
+                      items={galleries.map((f) => f.objectInfo)}
+                      loading={loading}
+                      canLoadmore={totalGalleries > galleries.length}
+                      loadMore={this.handlePagechange.bind(this, 'galleries')}
+                      notFoundText="No bookmarked galleries found"
+                    />
+                  </>
+                  : tab === "products" ?
+                    <>
+                      <div className="heading-tab">
+                        <h4>
+                          {totalProducts > 0 && totalProducts}
+                          {' '}
+                          {totalProducts > 1 ? 'PRODUCTS' : 'PRODUCT'}
+                        </h4>
+                      </div>
+                      <ScrollListProduct
+                        loading={loading}
+                        items={products.map((p) => p.objectInfo)}
+                        canLoadmore={totalProducts > products.length}
+                        loadMore={this.handlePagechange.bind(this, 'products')}
+                        notFoundText="No bookmarked products found"
+                      />
+                    </>
+                    : tab === "performers" &&
+                    <>
+                      <div className="heading-tab">
+                        <h4>
+                          {totalPerformers > 0 && totalPerformers}
+                          {' '}
+                          {totalPerformers > 1 ? 'MODELS' : 'MODEL'}
+                        </h4>
+                      </div>
+                      <ScrollListPerformers
+                        loading={loading}
+                        performers={performers.map((p) => p.objectInfo)}
+                        total={totalPerformers}
+                        loadMore={this.handlePagechange.bind(
+                          this,
+                          'performers'
+                        )}
+                        notFoundText="No bookmarked profiles found"
+                        countries={countries}
+                      />
+                    </>
+            }
           </div>
+
         </div>
-      </Layout>
+      </>
     );
   }
 }
