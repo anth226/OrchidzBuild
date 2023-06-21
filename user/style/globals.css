@@ -11,12 +11,16 @@ html, body{
 }
 
 @layer components {
+
+  .flex-col-center{
+    @apply flex items-center justify-center;
+  }
+
   .carousel-container {
     @apply relative h-60 w-9/12;
     perspective: 450px;
     transform-style: preserve-3d;
   }
-
     .carousel-btn-switch-card {
       @apply  absolute z-40 flex h-9 w-9 cursor-pointer items-center justify-center text-white
         rounded-full border-2 border-[#302e30] bg-[#181818] text-2xl opacity-75 transition duration-300 hover:opacity-100 md:h-12 md:w-12;
@@ -41,4 +45,9 @@ html, body{
     .carousel-item {
       @apply absolute h-full w-full cursor-pointer overflow-hidden rounded-3xl drop-shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-700 ease-in-out;
     }
+
+    .carousel-item-inner {
+      @apply absolute h-full cursor-pointer overflow-hidden rounded-3xl;
+    }
+
   }

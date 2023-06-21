@@ -272,10 +272,10 @@ class HomePage extends PureComponent<IProps> {
             | Home
           </title>
         </Head>
-        <div className="w-full min-h-screen  flex flex-col pt-20">
+        <div className="w-full min-h-screen  flex flex-col pt-20 ">
           <div className="">
 
-            <h1 className="text-4xl font-bold">
+            <h1 className="text-4xl font-bold text-textColor">
               HOME
             </h1>
             <hr className="my-6 h-0.5 border-t-0 shadow-lg bg-neutral-200 opacity-100 dark:opacity-50" />

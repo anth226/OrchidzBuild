@@ -29,16 +29,17 @@ export default function CarouselItem({ index, activeIndex, children }: CardProps
   `;
 
     return (
-        <div className="carousel-item" 
-        style={{
+        // <div className="carousel-item border-2 border-secoundaryColor"
+        <div className="carousel-item "
+            style={{
                 transform: cssTransformProperties,
                 opacity: cssOpacity,
                 display: cssDisplay,
                 zIndex: `${scaled ? 100 : 1}`,
             }}
-            // onClick={() => {
-            //     setScaled(!scaled);
-            // }}
+        // onClick={() => {
+        //     setScaled(!scaled);
+        // }}
         >
             {children}
         </div>

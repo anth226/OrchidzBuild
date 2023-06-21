@@ -39,7 +39,7 @@ export default function Carousel({ width, height, items }: CarouselProps) {
                 </button>
                 {items?.map((item, index) => (
                     <CarouselItem key={index} index={index} activeIndex={activeIndex}>
-                        {item}
+                            {item}
                     </CarouselItem>
                 ))}
                 <button
