@@ -133,7 +133,7 @@ class PurchasedItemHistoryPage extends PureComponent<IProps, IStates> {
       }
     ];
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -141,7 +141,7 @@ class PurchasedItemHistoryPage extends PureComponent<IProps, IStates> {
             | Wallet Transactions
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="Wallet Transactions" icon={<HistoryOutlined />} />
           <SearchFilter
             type={type}
@@ -157,7 +157,7 @@ class PurchasedItemHistoryPage extends PureComponent<IProps, IStates> {
             loading={loading}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

@@ -151,7 +151,7 @@ class Login extends PureComponent<IProps> {
     const { ui, settings, loginAuth } = this.props;
     const { isLoading } = this.state;
     return (
-      <Layout>
+      <>
         <Head>
           <title>{ui && ui.siteName}</title>
           <meta name="keywords" content={settings && settings.metaKeywords} />
@@ -167,14 +167,14 @@ class Login extends PureComponent<IProps> {
           <meta name="twitter:image" content={ui && ui.logo} />
           <meta name="twitter:description" content={settings && settings.metaDescription} />
         </Head>
-        <div className="flex items-center justify-center h-screen w-screen bg-slate-100 ">
+        <div className="text-textColor bg-gradient-to-bl from-primaryColor from-1% via-bgColor via-20% to-bgColor to-79% flex items-center justify-center h-screen w-screen">
+
           <div className="bg-white w-4/6 rounded-xl box shadow-md transform transition-transform hover:translate-z-1 hover:shadow-lg">
             <div className="flex">
               <div className="flex-1 rounded-l-xl mx-6 my-12">
                 <div className="login-content right">
-                  <div className="text-center text-4xl">
-                    {/* <a href="/">{ui.logo ? <img alt="logo" src={ui.logo} height="80px" /> : ui.siteName}</a> */}
-                    <a href="/" className="text-primaryColor ">{ui.siteName}</a>
+                  <div className="text-4xl flex justify-center">
+                    <a href="/">{ui.logo ? <img alt="logo" width={200} src={ui.logo} height="80px" /> : ui.siteName}</a>
                   </div>
                   <p className="text-center">
                     <small>Sign up to make money and interact with your fans!</small>
@@ -188,7 +188,7 @@ class Login extends PureComponent<IProps> {
                       onClick={() => this.loginTwitter()}
                       className="flex items-center justify-center h-10 w-10 rounded-full border-black border-2"
                     >
-                      <FaTwitter />
+                      <FaTwitter className="text-primaryColor" />
                     </button>
                     <GoogleLoginButton
                       clientId={settings.googleClientId}
@@ -263,7 +263,7 @@ class Login extends PureComponent<IProps> {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 rounded-r-xl red-gradient flex flex-col justify-center items-center text-white">
+              <div className="flex-1 rounded-r-xl primary-gradient flex flex-col justify-center items-center text-white">
                 <h2 className="text-white text-5xl font-extrabold">Hello, Friend</h2>
                 <p className="w-5/12 text-center text-sm">Enter your personal details and start journey with us</p>
                 <button className="rounded-full bg-transparent border-white border-2 text-white font-semibold py-2 px-4">
@@ -274,7 +274,7 @@ class Login extends PureComponent<IProps> {
           </div>
         </div>
         {isLoading && <Loader />}
-      </Layout>
+      </>
     );
   }
 }

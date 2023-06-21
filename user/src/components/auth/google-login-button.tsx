@@ -34,7 +34,7 @@ const GoogleLoginButton = ({ clientId, onSuccess, onFailure }: IProps) => {
   return (
     <>
       <button type="button" disabled={!clientId || !loaded} onClick={() => loginWithGoogle()} className="flex items-center justify-center h-10 w-10 rounded-full border-black border-2">
-        <FaGoogle />
+        <FaGoogle className="text-red-500" />
       </button>
       {clickedOnGoogleLoginButton && (
         <div className="btn-google-login-box">

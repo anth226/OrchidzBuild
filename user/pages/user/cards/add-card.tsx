@@ -50,7 +50,7 @@ class NewCardPage extends PureComponent<IProps> {
     const { submiting } = this.state;
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -60,7 +60,7 @@ class NewCardPage extends PureComponent<IProps> {
         </Head>
         <div className="main-container">
           <PageHeading title="Add new Card" icon={<CreditCardOutlined />} />
-          <div className="card-form">
+          <div className="card-form bg-white">
             <Elements stripe={loadStripe(settings.stripePublishableKey || '')}>
               <ElementsConsumer>
                 {({ stripe, elements }) => (
@@ -71,7 +71,7 @@ class NewCardPage extends PureComponent<IProps> {
             </Elements>
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

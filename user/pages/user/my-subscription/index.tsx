@@ -143,7 +143,7 @@ class SubscriptionPage extends PureComponent<IProps> {
     } = this.state;
     const { ui } = this.props;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -188,7 +188,7 @@ class SubscriptionPage extends PureComponent<IProps> {
           </Modal>
           {submiting && <Loader customText="We are processing your payment, please do not reload this page until it's done." />}
         </div>
-      </Layout>
+      </>
     );
   }
 }

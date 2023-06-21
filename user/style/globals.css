@@ -11,6 +11,10 @@ html, body{
 }
 
 @layer components {
+  
+  .primary-gradient{
+    @apply bg-gradient-to-r from-secoundaryColor to-primaryColor
+  }
 
   .flex-col-center{
     @apply flex items-center justify-center;

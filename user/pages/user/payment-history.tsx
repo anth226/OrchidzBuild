@@ -116,7 +116,7 @@ class PaymentHistoryPage extends PureComponent<IProps> {
       }
     ];
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -124,7 +124,7 @@ class PaymentHistoryPage extends PureComponent<IProps> {
             | Payment History
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="Payment History" icon={<HistoryOutlined />} />
           <SearchFilter
             statuses={statuses}
@@ -140,7 +140,7 @@ class PaymentHistoryPage extends PureComponent<IProps> {
             rowKey="_id"
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

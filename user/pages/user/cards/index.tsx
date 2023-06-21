@@ -68,7 +68,7 @@ class CardsPage extends PureComponent<IProps> {
     } = this.state;
     const { ui } = this.props;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -76,7 +76,7 @@ class CardsPage extends PureComponent<IProps> {
             | My Payment Card
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Payment Card" icon={<CreditCardOutlined />} />
           <div className="card-list">
             {!loading && !cards.length && (
@@ -111,7 +111,7 @@ class CardsPage extends PureComponent<IProps> {
             {loading && <div className="text-center"><Spin /></div>}
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

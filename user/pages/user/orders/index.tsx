@@ -92,7 +92,7 @@ class UserOrderPage extends PureComponent<IProps> {
     const { list, searching, pagination } = this.state;
     const { ui, user } = this.props;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -100,7 +100,7 @@ class UserOrderPage extends PureComponent<IProps> {
             | My Orders
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Orders" icon={<ShoppingCartOutlined />} />
           <OrderSearchFilter
             onSubmit={this.handleFilter.bind(this)}
@@ -114,7 +114,7 @@ class UserOrderPage extends PureComponent<IProps> {
             onChange={this.handleTableChange.bind(this)}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

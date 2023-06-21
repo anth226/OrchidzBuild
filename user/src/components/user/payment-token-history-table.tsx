@@ -191,7 +191,9 @@ const PaymentTableList = ({
     }
   ];
   return (
-    <div className="table-responsive">
+    <div 
+    className=" table-responsive"
+    >
       <Table
         dataSource={dataSource}
         columns={columns}

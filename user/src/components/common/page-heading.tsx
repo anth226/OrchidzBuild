@@ -9,9 +9,9 @@ interface Iprops {
 }
 
 const PageHeading = ({ title, icon }: Iprops) => (
-  <div className="page-heading">
-    <span aria-hidden onClick={() => Router.back()}>
-      {icon || <ArrowLeftOutlined />}
+  <div className="page-heading ">
+    <span className="text-3xl" aria-hidden onClick={() => Router.back()}>
+      {icon || <ArrowLeftOutlined className="text-xl" />}
       {' '}
       {title}
     </span>
