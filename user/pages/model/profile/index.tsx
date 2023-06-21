@@ -509,7 +509,7 @@ class PerformerProfile extends PureComponent<IProps> {
               {user?._id !== performer?._id && <span className={performer?.isOnline > 0 ? 'online-status' : 'online-status off'} />}
               <div className="m-user-name">
                 <h4>
-                  <span className="text-xl">
+                  <span className="text-2xl">
                     {performer?.name || 'N/A'}
                   </span>
                   &nbsp;
@@ -637,35 +637,37 @@ class PerformerProfile extends PureComponent<IProps> {
         {/* <div style={{ marginTop: '20px' }} /> */}
         <div className="main-container">
           <div className="model-content">
-            <ul className="grid grid-flow-col text-center text-gray-500 bg-gray-100 rounded-xl p-1">
+            <ul className="grid grid-flow-col text-center text-white bg-secoundaryColor rounded-xl p-2">
               <li>
                 <a href="#"
-                  className={`${tab === "post" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
+                  className={`${tab === "post" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
                   onClick={() => {
                     this.setState({ tab: "post" }, () => this.loadItems());
                   }}>
-                  <FireOutlined className="text-2xl text-black" />
+                  <FireOutlined className="text-2xl " />
                 </a>
               </li>
               <li>
                 <a href="#"
-                  className={`${tab === "video" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
+                  className={`${tab === "video" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
                   onClick={() => {
                     this.setState({ tab: "video" }, () => this.loadItems());
-                  }}>                  <VideoCameraOutlined className="text-2xl" />
+                  }}>
+                  <VideoCameraOutlined className="text-2xl" />
                 </a>
               </li>
               <li>
                 <a href="#"
-                  className={`${tab === "photo" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
+                  className={`${tab === "photo" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
                   onClick={() => {
                     this.setState({ tab: "photo" }, () => this.loadItems());
-                  }}>                  <PictureOutlined className="text-2xl" />
+                  }}>
+                  <PictureOutlined className="text-2xl" />
                 </a>
               </li>
               <li>
                 <a href="#"
-                  className={`${tab === "store" ? "bg-white rounded-lg shadow" : "text-black"}  flex justify-center py-4`}
+                  className={`${tab === "store" ? "border-primaryColor bg-primaryColor text-white rounded-lg shadow" : ""}  flex justify-center py-4`}
                   onClick={() => {
                     this.setState({ tab: "store" }, () => this.loadItems());
                   }}>                  <ShoppingOutlined className="text-2xl" />

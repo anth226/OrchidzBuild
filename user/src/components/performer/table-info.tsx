@@ -51,7 +51,7 @@ export class PerformerInfo extends PureComponent<IProps> {
             />
             <Descriptions className="performer-info">
               {performer?.gender && (
-                <Descriptions.Item label="Gender">
+                <Descriptions.Item className="one-info" label="Gender">
                   {performer?.gender}
                 </Descriptions.Item>
               )}
