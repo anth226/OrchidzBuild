@@ -422,29 +422,48 @@
   justify-content: space-between;
   width: 100%;
 
+
   .filter-item {
     width: 100%;
-    padding: 5px
+    padding: 5px;
   }
+
 
   &.hide {
     display: none;
   }
 
+
   &.custom {
     flex-wrap: wrap;
-
     .filter-item {
       padding: 2px 5px;
       width: 33.33%;
     }
+    .filter-item div{
+      background-color: @secondary-color;
+      color: @white;
+      // border: 1px solid @primary-color;
+      border-radius: 10px;
+      // border: 1px solid @primary-color;
+    }
+
+    .filter-item a, ul, p, h1,h2,h3,h4,h5,h6, button, li{
+      background-color: @secondary-color;
+      color: @black;
+      border: 1px solid @primary-color;
+      // border-radius: 10px;
+      // border: 1px solid @primary-color;
+    }
+  
   }
 
   input {
     height: 40px;
-    background-color: @white;
-    border: 1px solid @border-select;
-    border-radius: 3px;
+    background-color: @secondary-color;
+    border: 1px solid @primary-color;
+    color: @white;
+    border-radius: 8px;
   }
 
   .ant-select-selector {

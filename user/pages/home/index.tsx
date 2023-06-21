@@ -338,9 +338,11 @@ class HomePage extends PureComponent<IProps> {
                     <span className="text-2xl">Who to Follow</span>
                   </div>
                   <HomePerformers countries={countries} performers={randomPerformers} />
-                  <Link href="/model" >
-                    <span className="text-xl">Show more</span>
-                  </Link>
+                  <div className="mt-4">
+                    <Link href="/model">
+                      <span className="text-xl">Show more</span>
+                    </Link>
+                  </div>
                   {!loadingPerformer && !randomPerformers?.length && <p className="text-center">No profile was found</p>}
 
                 </div>

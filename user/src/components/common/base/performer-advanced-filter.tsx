@@ -36,31 +36,51 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
           <div className="filter-item custom">
             <Input
               placeholder="Enter keyword"
+              className="bg-secoundaryColor"
               onChange={(evt) => this.setState({ q: evt.target.value })}
               onPressEnter={this.handleSubmit.bind(this)}
             />
           </div>
           <div className="filter-item">
-            <Select style={{ width: '100%' }} defaultValue="live" onChange={(val) => this.setState({ sortBy: val }, () => this.handleSubmit())}>
+            <Select className="" style={{ width: '100%' }} defaultValue="live" onChange={(val) => this.setState({ sortBy: val }, () => this.handleSubmit())}>
               <Select.Option value="" disabled>
-                <FilterOutlined />
-                {' '}
-                Sort By
+                <div className="text-primaryColor">
+
+                  <FilterOutlined />
+                  {' '}
+                  Sort By
+                </div>
+
               </Select.Option>
               <Select.Option value="popular">
-                Popular
+                <div className="text-primaryColor">
+                  Popular
+                </div>
+
               </Select.Option>
               <Select.Option label="" value="latest">
-                Latest
+                <div className="text-primaryColor">
+                  Latest
+                </div>
+
               </Select.Option>
               <Select.Option value="oldest">
-                Oldest
+                <div className="text-primaryColor">
+                  Oldest
+                </div>
+
               </Select.Option>
               <Select.Option value="online">
-                Online
+                <div className="text-primaryColor">
+                  Online
+                </div>
+
               </Select.Option>
               <Select.Option value="live">
-                Live
+                <div className="text-primaryColor">
+                  Live
+                </div>
+
               </Select.Option>
             </Select>
           </div>
@@ -85,38 +105,58 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All subscriptions
+                <div className="text-primaryColor">
+
+                  All subscriptions
+                </div>
+
               </Select.Option>
               <Select.Option key="false" value="false">
-                Non-free subscription
+                <div className="text-primaryColor">
+
+                  Non-free subscription
+                </div>
+
               </Select.Option>
               <Select.Option key="true" value="true">
-                Free subscription
+                <div className="text-primaryColor">
+
+                  Free subscription
+                </div>
+
               </Select.Option>
             </Select>
           </div>
           {countries && countries.length > 0 && (
-          <div className="filter-item">
-            <Select
-              onChange={(val) => this.setState({ country: val }, () => this.handleSubmit())}
-              style={{ width: '100%' }}
-              placeholder="Countries"
-              defaultValue=""
-              showSearch
-              optionFilterProp="label"
-            >
-              <Select.Option key="All" label="" value="">
-                All countries
-              </Select.Option>
-              {countries.map((c) => (
-                <Select.Option key={c.code} label={c.name} value={c.code}>
-                  <img alt="flag" src={c.flag} width="25px" />
-                  &nbsp;
-                  {c.name}
+            <div className="filter-item">
+              <Select
+                onChange={(val) => this.setState({ country: val }, () => this.handleSubmit())}
+                style={{ width: '100%' }}
+                placeholder="Countries"
+                defaultValue=""
+                showSearch
+                optionFilterProp="label"
+              >
+                <Select.Option key="All" label="" value="">
+                  <div className="text-primaryColor">
+
+                    All countries
+                  </div>
+
                 </Select.Option>
-              ))}
-            </Select>
-          </div>
+                {countries.map((c) => (
+                  <Select.Option key={c.code} label={c.name} value={c.code}>
+                    <div className="text-primaryColor">
+
+                      <img alt="flag" src={c.flag} width="25px" />
+                      &nbsp;
+                      {c.name}
+                    </div>
+
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
           )}
           <div className="filter-item">
             <Select
@@ -125,11 +165,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All genders
+                <div className="text-primaryColor">
+
+                  All genders
+                </div>
+
               </Select.Option>
               {genders.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -141,11 +189,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All sexual orientations
+                <div className="text-primaryColor">
+
+                  All sexual orientations
+                </div>
+
               </Select.Option>
               {sexualOrientations.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -158,11 +214,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All ages
+                <div className="text-primaryColor">
+
+                  All ages
+                </div>
+
               </Select.Option>
               {ages.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -175,11 +239,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All eye colors
+                <div className="text-primaryColor">
+
+                  All eye colors
+                </div>
+
               </Select.Option>
               {eyes.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -192,11 +264,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All hair colors
+                <div className="text-primaryColor">
+
+                  All hair colors
+                </div>
+
               </Select.Option>
               {hairs.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -209,11 +289,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All butt size
+                <div className="text-primaryColor">
+
+                  All butt size
+                </div>
+
               </Select.Option>
               {butts.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -226,11 +314,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All heights
+                <div className="text-primaryColor">
+
+                  All heights
+                </div>
+
               </Select.Option>
               {heights.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -243,11 +339,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All weights
+                <div className="text-primaryColor">
+
+                  All weights
+                </div>
+
               </Select.Option>
               {weights.map((i) => (
                 <Select.Option key={i.text} value={i.text}>
-                  {i.text}
+                  <div className="text-primaryColor">
+
+                    {i.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -260,11 +364,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All ethnicities
+                <div className="text-primaryColor">
+
+                  All ethnicities
+                </div>
+
               </Select.Option>
               {ethnicities.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>
@@ -277,11 +389,19 @@ export class PerformerAdvancedFilter extends PureComponent<IProps> {
               defaultValue=""
             >
               <Select.Option key="all" value="">
-                All body types
+                <div className="text-primaryColor">
+
+                  All body types
+                </div>
+
               </Select.Option>
               {bodyTypes.map((s) => (
                 <Select.Option key={s.value} value={s.value}>
-                  {s.text}
+                  <div className="text-primaryColor">
+
+                    {s.text}
+                  </div>
+
                 </Select.Option>
               ))}
             </Select>

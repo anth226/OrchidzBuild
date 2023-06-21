@@ -85,39 +85,42 @@ class PerformerCard extends PureComponent<IProps> {
           pathname: '/model/profile',
           query: { username: performer?.username || performer?._id }
         }}
+        className="cursor-pointer"
         as={`/${performer?.username || performer?._id}`}
       >
-        <div
-          className="bg-center py-6 rounded-2xl"
-          style={{
-            backgroundImage: `url(${performer?.cover || '/static/banner-image.jpg'})`
-          }}
-        >
-          <div className="flex items-center ml-12">
-            <div className="bg-primaryColor rounded-full ">
-              <div className="relative p-1">
-                <div className="w-16 h-16 rounded-full overflow-hidden">
-                  <img
-                    className=" w-full h-full"
-                    src={performer?.avatar || '/static/no-avatar.png'}
-                    alt="Profile"
-                  />
+        <div className="border-2 rounded-2xl border-primaryColor px-1.5 py-1.5">
+          <div
+            className="bg-center py-6 rounded-2xl "
+            style={{
+              backgroundImage: `url(${performer?.cover || '/static/banner-image.jpg'})`,
+            }}
+          >
+            <div className="flex items-center ml-12">
+              <div className="bg-primaryColor rounded-full ">
+                <div className="relative p-1">
+                  <div className="w-16 h-16 rounded-full overflow-hidden">
+                    <img
+                      className=" w-full h-full"
+                      src={performer?.avatar || '/static/no-avatar.png'}
+                      alt="Profile"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col items-start ml-6">
-              <div className="flex">
-                <span className="text-2xl text-white stroke-black">
-                  {performer?.name || 'N/A'}
+              <div className="flex flex-col items-start ml-6">
+                <div className="flex">
+                  <span className="text-2xl text-white stroke-black">
+                    {performer?.name || 'N/A'}
+                  </span>
+                  {performer?.verifiedAccount && <TickIcon className="text-white " />}
+                  {country && (
+                    <img alt="performer-country" className="model-country" src={country?.flag} />
+                  )}
+                </div>
+                <span className="text-lg text-white">
+                  {`@${performer?.username || 'n/a'}`}
                 </span>
-                {performer?.verifiedAccount && <TickIcon className="text-white " />}
-                {country && (
-                  <img alt="performer-country" className="model-country" src={country?.flag} />
-                )}
               </div>
-              <span className="text-lg text-white">
-                {`@${performer?.username || 'n/a'}`}
-              </span>
             </div>
           </div>
         </div>

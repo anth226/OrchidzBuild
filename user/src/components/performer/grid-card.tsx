@@ -78,45 +78,46 @@ class PerformerGridCard extends PureComponent<IProps> {
     const country = countries && countries.length && countries.find((c) => c.code === performer.country);
 
     return (
-      <div className="grid-card " style={{ backgroundImage: `url(${performer?.avatar || '/static/no-avatar.png'})` }}>
-        {/* {performer?.isFreeSubscription && <span className="free-status">Free</span>} */}
-        <span className={performer?.isOnline > 0 ? 'online-status active' : 'online-status'} />
-        {performer?.live > 0 && <div className="live-status">Live</div>}
-        {!user?.isPerformer && (
-        <a aria-hidden onClick={() => this.handleFollow()} className={!isFollowed ? 'follow-btn' : 'follow-btn active'}>
-          {isFollowed ? <Tooltip title="Following"><HeartFilled /></Tooltip> : <Tooltip title="Follow"><HeartOutlined /></Tooltip>}
-        </a>
-        )}
-        <div className="card-stat">
-          <span>
-            {shortenLargeNumber(performer?.score || 0)}
-            {' '}
-            <StarOutlined />
-          </span>
-          {performer?.dateOfBirth && (
-          <span>
-            {dobToAge(performer?.dateOfBirth)}
-          </span>
-          )}
-        </div>
-        <Link
-          href={{
-            pathname: '/model/profile',
-            query: { username: performer?.username || performer?._id }
-          }}
-          as={`/${performer?.username || performer?._id}`}
-        >
-          <a>
-            <div className="model-name">
-              {country && (
-              <img alt="performer-country" className="model-country" src={country?.flag} />
-              )}
-              {performer?.name || performer?.username || 'N/A'}
-              {performer?.verifiedAccount && <TickIcon />}
-            </div>
+      <div className="border-2 border-primaryColor p-2 rounded-xl">
 
-          </a>
-        </Link>
+        <div className="grid-card" style={{ backgroundImage: `url(${performer?.avatar || '/static/no-avatar.png'})` }}>
+          {/* {performer?.isFreeSubscription && <span className="free-status">Free</span>} */}
+          <span className={performer?.isOnline > 0 ? 'online-status active' : 'online-status'} />
+          {performer?.live > 0 && <div className="live-status">Live</div>}
+          {!user?.isPerformer && (
+            <a aria-hidden onClick={() => this.handleFollow()} className={!isFollowed ? 'follow-btn' : 'follow-btn active'}>
+              {isFollowed ? <Tooltip title="Following"><HeartFilled /></Tooltip> : <Tooltip title="Follow"><HeartOutlined /></Tooltip>}
+            </a>
+          )}
+          <div className="card-stat">
+            <span>
+              {shortenLargeNumber(performer?.score || 0)}
+              {' '}
+              <StarOutlined />
+            </span>
+            {performer?.dateOfBirth && (
+              <span>
+                {dobToAge(performer?.dateOfBirth)}
+              </span>
+            )}
+          </div>
+          <Link
+            href={{
+              pathname: '/model/profile',
+              query: { username: performer?.username || performer?._id }
+            }}
+            as={`/${performer?.username || performer?._id}`}
+          >
+              <div className="model-name cursor-pointer">
+              {/* <div className="model-name cursor-pointer bg-secoundaryColor"> */}
+                {/* {country && (
+                <img alt="performer-country" className="model-country" src={country?.flag} />
+              )} */}
+                {performer?.name || performer?.username || 'N/A'}
+                {performer?.verifiedAccount && <TickIcon />}
+              </div>
+          </Link>
+        </div>
       </div>
     );
   }
