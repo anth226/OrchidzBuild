@@ -126,7 +126,7 @@ class UserAccountSettingPage extends PureComponent<IProps, IState> {
       authorization: authService.getToken()
     };
     return (
-      <Layout>
+      <div>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -134,8 +134,9 @@ class UserAccountSettingPage extends PureComponent<IProps, IState> {
             | Edit Profile
           </title>
         </Head>
+
         <div className="main-container user-account">
-          <PageHeading title="Edit Profile" icon={<EditOutlined />} />
+          <PageHeading title="Edit Profile " icon={<EditOutlined />} />
           <UserAccountForm
             onFinish={this.onFinish.bind(this)}
             updating={updating || emailSending}
@@ -150,7 +151,7 @@ class UserAccountSettingPage extends PureComponent<IProps, IState> {
             onSwitchToPerformer={this.handleSwitchToPerformer.bind(this)}
           />
         </div>
-      </Layout>
+      </div>
     );
   }
 }

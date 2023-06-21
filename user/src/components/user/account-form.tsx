@@ -132,7 +132,7 @@ export const UserAccountForm = ({
                       {' '}
                       {countTime < 60 && `${countTime}s`}
                     </Button>
-                    )}
+                  )}
                 >
                   <a className="error-color">Not verified!</a>
                 </Popover>
@@ -171,17 +171,25 @@ export const UserAccountForm = ({
         <Form.Item
           name="gender"
           label="Gender"
+          className="bg-black"
           rules={[{ required: true, message: 'Please select gender!' }]}
         >
+
           <Select>
-            <Select.Option value="male" key="male">
-              Male
-            </Select.Option>
+              <Select.Option value="male" key="male">
+            {/* <div className="text-primaryColor"> */}
+                Male
+            {/* </div> */}
+              </Select.Option>
             <Select.Option value="female" key="female">
+            {/* <div className="text-primaryColor"> */}
               Female
+            {/* </div> */}
             </Select.Option>
             <Select.Option value="transgender" key="transgender">
+            {/* <div className="text-primaryColor"> */}
               Transgender
+            {/* </div> */}
             </Select.Option>
           </Select>
         </Form.Item>
