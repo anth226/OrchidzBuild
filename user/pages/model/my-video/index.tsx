@@ -117,7 +117,7 @@ class Videos extends PureComponent<IProps> {
     ];
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui?.siteName}
@@ -125,7 +125,7 @@ class Videos extends PureComponent<IProps> {
             | My Videos
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Videos" icon={<VideoCameraOutlined />} />
           <div>
             <Row>
@@ -171,7 +171,7 @@ class Videos extends PureComponent<IProps> {
             />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

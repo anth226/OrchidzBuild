@@ -93,7 +93,7 @@ class ModelOrderPage extends PureComponent<IProps> {
     const { ui, user } = this.props;
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -101,7 +101,7 @@ class ModelOrderPage extends PureComponent<IProps> {
             | My Orders
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Orders" icon={<ShoppingCartOutlined />} />
           <OrderSearchFilter
             onSubmit={this.handleFilter.bind(this)}
@@ -115,7 +115,7 @@ class ModelOrderPage extends PureComponent<IProps> {
             onChange={this.handleTableChange.bind(this)}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

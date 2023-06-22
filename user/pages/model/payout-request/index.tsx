@@ -75,7 +75,7 @@ class PerformerPayoutRequestPage extends PureComponent<IProps> {
         <Head>
           <title>Payout Requests</title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="Payout Requests" icon={<NotificationOutlined />} />
           <div style={{ margin: '10px 0' }}>
             <Button

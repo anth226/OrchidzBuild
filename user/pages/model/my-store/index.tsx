@@ -127,7 +127,7 @@ class Products extends PureComponent<IProps> {
     ];
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -135,7 +135,7 @@ class Products extends PureComponent<IProps> {
             | My Products
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Products" icon={<ShopOutlined />} />
           <div>
             <Row>
@@ -166,7 +166,7 @@ class Products extends PureComponent<IProps> {
             />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

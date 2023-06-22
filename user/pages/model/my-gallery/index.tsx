@@ -132,7 +132,7 @@ class GalleryListingPage extends PureComponent<IProps, IStates> {
       }
     ];
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {' '}
@@ -141,7 +141,7 @@ class GalleryListingPage extends PureComponent<IProps, IStates> {
             | My Galleries
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Galleries" icon={<PictureOutlined />} />
           <div>
             <Row>
@@ -172,7 +172,7 @@ class GalleryListingPage extends PureComponent<IProps, IStates> {
             />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

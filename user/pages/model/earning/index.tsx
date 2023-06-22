@@ -125,13 +125,13 @@ class EarningPage extends PureComponent<IProps, IStates> {
     } = this.state;
     const { ui } = this.props;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {`${ui?.siteName} | Earnings`}
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading icon={<DollarOutlined />} title="Earnings" />
           <SearchFilter
             type={[
@@ -149,7 +149,7 @@ class EarningPage extends PureComponent<IProps, IStates> {
             onSubmit={this.handleFilter.bind(this)}
             dateRange
           />
-          <div className="stats-earning">
+          <div className="stats-earning ">
             <Statistic
               title="Total"
               prefix="$"
@@ -179,7 +179,7 @@ class EarningPage extends PureComponent<IProps, IStates> {
             />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

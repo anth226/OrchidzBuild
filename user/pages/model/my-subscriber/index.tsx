@@ -127,7 +127,7 @@ class SubscriberPage extends PureComponent<IProps, IStates> {
       }
     ];
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -135,7 +135,7 @@ class SubscriberPage extends PureComponent<IProps, IStates> {
             | My Subscribers
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="My Subscribers" icon={<UserAddOutlined />} />
           <SearchFilter
             subscriptionTypes={types}
@@ -153,7 +153,7 @@ class SubscriberPage extends PureComponent<IProps, IStates> {
             />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }

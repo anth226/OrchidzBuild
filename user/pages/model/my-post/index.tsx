@@ -114,7 +114,7 @@ class PostListing extends PureComponent<IProps> {
       // }
     ];
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             { ui?.siteName }
@@ -122,7 +122,7 @@ class PostListing extends PureComponent<IProps> {
             | My Posts
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container mt-2">
           <div className="page-heading" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span>My Posts</span>
             <Link href="/model/my-post/create">
@@ -152,7 +152,7 @@ class PostListing extends PureComponent<IProps> {
             onDelete={this.deleteFeed.bind(this)}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }
