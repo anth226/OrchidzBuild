@@ -62,7 +62,7 @@ class BlockCountries extends PureComponent<IProps> {
     } = this.props;
     const { submiting } = this.state;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -79,7 +79,7 @@ class BlockCountries extends PureComponent<IProps> {
             countries={countries}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

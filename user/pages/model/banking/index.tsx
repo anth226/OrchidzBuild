@@ -122,7 +122,7 @@ class BankingSettings extends PureComponent<IProps> {
       loading, submiting, loginUrl, stripeAccount
     } = this.state;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -130,14 +130,14 @@ class BankingSettings extends PureComponent<IProps> {
             | Banking (to earn)
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading icon={<BankOutlined />} title="Banking (to earn)" />
-          <Tabs>
-            {/* {settings.paymentGateway === 'stripe' && (
+          <Tabs className="banking-tabs">
+            {settings.paymentGateway === 'stripe' && (
             <Tabs.TabPane
               tab={(
                 <span>
-                  <img src="/static/stripe-icon.jpeg" alt="stripe-icon" height="30px" />
+                  <img width={200} src="/static/stripe-icon.jpeg" alt="stripe-icon" height="30px" />
                 </span>
               )}
               key="stripe"
@@ -149,11 +149,11 @@ class BankingSettings extends PureComponent<IProps> {
                 onConnectAccount={this.connectAccount.bind(this)}
               />
             </Tabs.TabPane>
-            )} */}
+            )}
             <Tabs.TabPane
               tab={(
                 <span>
-                  <img src="/static/banking-ico.png" alt="banking-icon" height="30px" />
+                  <img width={100} src="/static/banking-ico.png" alt="banking-icon" height="30px" />
                 </span>
               )}
               key="banking"
@@ -168,7 +168,7 @@ class BankingSettings extends PureComponent<IProps> {
             <Tabs.TabPane
               tab={(
                 <span>
-                  <img src="/static/paypal-ico.png" alt="paypal-icon" height="30px" />
+                  <img width={200} src="/static/paypal-ico.png" alt="paypal-icon" height="30px" />
                 </span>
               )}
               key="paypal"
@@ -181,7 +181,7 @@ class BankingSettings extends PureComponent<IProps> {
             </Tabs.TabPane>
           </Tabs>
         </div>
-      </Layout>
+      </>
     );
   }
 }
