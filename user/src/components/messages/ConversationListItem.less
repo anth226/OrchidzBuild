@@ -5,12 +5,21 @@
   align-items: center;
   padding: 10px;
   position: relative;
-  color: @white;
+  color: @text-color;
+  border: 2px solid @primary-color;
+  border-radius: 12px;
 
   &:hover,
   &.active {
     background: @background-conversation;
     cursor: pointer;
+    .conversation-title {
+      color: @primary-color;
+    }
+    .conversation-snippet {
+      color: @secondary-color;
+    }
+
   }
 
   &.active {
@@ -60,8 +69,8 @@
     font-weight: 600;
     text-transform: capitalize;
     margin: 0;
-    color: @grey-color;
-
+    color: @text-color;
+    
     .re-name {
       max-width: 150px;
       word-wrap: break-word;

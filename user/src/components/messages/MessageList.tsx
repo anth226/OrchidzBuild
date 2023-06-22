@@ -9,7 +9,8 @@ import Link from 'next/link';
 import Router from 'next/router';
 import Compose from './Compose';
 import Message from './Message';
-import './MessageList.less';
+
+require('./MessageList.less');
 
 interface IProps {
   deactiveConversation: Function;

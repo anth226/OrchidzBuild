@@ -7,16 +7,14 @@
   width: calc(100% + 2px);
   bottom: -1px;
   left: -1px;
-  border: 1px solid @light-card;
-  background-color: @white;
-
+  margin-bottom:0.5rem;
   .toolbar-button {
-    color: @grey-color;
+    color: @text-color;
     margin-left: 15px;
   }
 
   .toolbar-button:hover {
-    color: @grey-color;
+    color: @text-color;
   }
 
   .compose-input {
@@ -24,14 +22,20 @@
     border: none;
     font-size: 14px;
     height: 48px;
-    background: none;
-    color: @black;
+    color: @text-color;
     outline: thin;
     padding: 5px 10px;
+    background-color: @primary-color;
+  border-radius: 12px;
+  margin-left: 1rem;
+
+
   }
 
   .compose-input::placeholder {
-    opacity: 0.3;
+    opacity: 0.5;
+    color: @text-color;
+
   }
 
   .grp-icons {
@@ -39,7 +43,7 @@
     cursor: pointer;
     position: relative;
     font-size: 22px;
-    color: @grey-color;
+    color: @text-color;
 
     &.custom {
       display: flex;
@@ -84,9 +88,15 @@
   }
 
   .grp-send {
+    margin-right: 0.6rem;
     height: 48px;
-    background: @theme-color;
+    background: @primary-color;
     padding: 12px 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 
     .anticon {
       font-size: 18px;

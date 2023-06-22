@@ -40,9 +40,9 @@ class PrimaryLayout extends PureComponent<DefaultProps> {
     return (
       <div className=" text-textColor bg-gradient-to-bl from-primaryColor from-1% via-bgColor via-20% to-bgColor to-79%">
           <div className="flex">
-            <div className="h-screen w-2/12">
+            {/* <div className="h-screen w-2/12">
               <Header />
-            </div>
+            </div> */}
             <div className="flex-auto overflow-y-auto h-screen w-8/12">
               <Layout.Content>
                 {routerChange ? <Loader /> :

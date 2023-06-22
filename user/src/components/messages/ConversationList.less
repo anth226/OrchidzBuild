@@ -9,6 +9,7 @@
   .c-list-container {
     overflow: auto;
     max-height: calc(100% - 100px);
+    color: @text-color;
   }
 }
 
@@ -16,7 +17,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: @primary-color;
+  color: @text-color;
+  gap: 8px;
   font-size: 15px;
   padding: 5px 25px;
   height: 43px;
@@ -27,5 +29,6 @@
   text-transform: capitalize;
   .anticon {
     font-size: 25px;
+
   }
 }

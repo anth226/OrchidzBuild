@@ -2,7 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { Image, Avatar } from 'antd';
 import { IUser } from '@interfaces/index';
-import './Message.less';
+
+require('./Message.less')
 
 interface IProps {
   data: any;

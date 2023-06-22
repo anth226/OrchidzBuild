@@ -2,7 +2,8 @@ import { Badge, Avatar } from 'antd';
 import { TickIcon } from 'src/icons';
 import { formatDateFromnow } from '@lib/index';
 import { IConversation } from '@interfaces/message';
-import './ConversationListItem.less';
+
+require('./ConversationListItem.less');
 
 interface IProps {
   data: IConversation;

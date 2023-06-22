@@ -12,7 +12,8 @@ import { IUIConfig } from 'src/interfaces';
 import { updateBalance } from '@redux/user/actions';
 import Router from 'next/router';
 import { Emotions } from './emotions';
-import './Compose.less';
+
+require('./Compose.less');
 
 interface IProps {
   ui: IUIConfig;
@@ -134,7 +135,7 @@ class Compose extends PureComponent<IProps> {
             <DollarOutlined />
           </div>
         </div> */}
-        <div className="grp-icons">
+        <div className="grp-icons ">
           <div className="grp-file-icon">
             <ImageMessageUpload
               disabled={disabled}
