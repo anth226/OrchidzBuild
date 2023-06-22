@@ -117,7 +117,7 @@ class AccountSettings extends PureComponent<IProps> {
       authorization: authService.getToken()
     };
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -177,7 +177,7 @@ class AccountSettings extends PureComponent<IProps> {
             </Tabs.TabPane> */}
           </Tabs>
         </div>
-      </Layout>
+      </>
     );
   }
 }

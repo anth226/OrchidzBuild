@@ -102,11 +102,11 @@ class blockPage extends PureComponent<IProps> {
      } = this.state;
      const { ui } = this.props;
      return (
-       <Layout>
+       <>
          <Head>
            <title>{`${ui?.siteName} | Blacklist`}</title>
          </Head>
-         <div className="main-container">
+         <div className="main-container pt-4">
            <PageHeading icon={<BlockOutlined />} title="Blacklist" />
            <div className="block-user">
              <Button className="" type="primary" onClick={() => this.setState({ openBlockModal: true })}>
@@ -172,7 +172,7 @@ class blockPage extends PureComponent<IProps> {
              </Form.Item>
            </Form>
          </Modal>
-       </Layout>
+       </>
      );
    }
 }

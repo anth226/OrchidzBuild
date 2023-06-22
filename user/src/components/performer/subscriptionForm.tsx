@@ -50,20 +50,24 @@ export class PerformerSubscriptionForm extends PureComponent<IProps> {
         scrollToFirstError
       >
         <Row>
-          <Col xl={12} md={12} xs={24}>
+          <Col lg={24} md={24} xs={24}>
             <Form.Item name="isFreeSubscription" valuePropName="checked">
               <Switch unCheckedChildren="Paid Subscription" checkedChildren="Unpaid Subcription" onChange={(val) => this.setState({ isFreeSubscription: val })} />
             </Form.Item>
             {isFreeSubscription && (
-            <Form.Item
-              name="durationFreeSubscriptionDays"
-              label="Duration (days)"
-              help="Try free subscription for xx days"
-              rules={[{ required: true }]}
-            >
-              <InputNumber min={1} />
-            </Form.Item>
+              <Form.Item
+                name="durationFreeSubscriptionDays"
+                label="Duration (days)"
+                help="Try free subscription for xx days"
+                rules={[{ required: true }]}
+
+              >
+                <InputNumber min={1} />
+              </Form.Item>
             )}
+          </Col>
+          <Col lg={12} md={12} xs={24}>
+
             <Form.Item
               name="monthlyPrice"
               label="Monthly Subscription Price"
@@ -71,6 +75,9 @@ export class PerformerSubscriptionForm extends PureComponent<IProps> {
             >
               <InputNumber min={1} />
             </Form.Item>
+          </Col>
+          <Col lg={12} md={12} xs={24}>
+
             <Form.Item
               name="yearlyPrice"
               label="Yearly Subscription Price"
@@ -78,6 +85,8 @@ export class PerformerSubscriptionForm extends PureComponent<IProps> {
             >
               <InputNumber min={1} />
             </Form.Item>
+          </Col>
+          <Col lg={12} md={12} xs={24}>
             <Form.Item
               key="publicChatPrice"
               name="publicChatPrice"

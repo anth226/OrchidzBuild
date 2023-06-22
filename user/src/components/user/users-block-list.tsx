@@ -81,7 +81,7 @@ const UsersBlockList = ({
     <Table
       dataSource={dataSource}
       columns={columns}
-      className="table"
+      className="table w-full"
       pagination={{
         total,
         pageSize
