@@ -56,11 +56,17 @@ export const CreateNftCollectionForm: React.FC<any> = ({
   const createNFT = async (metadata: CreateNftType): Promise<number> => {
     setLoading(true);
     const urii = await storage.upload({ ...metadata, image: imgUrlIPFS });
-    const durii = await storage.download(urii);
+    // const durii = await storage.download(urii);
     // console.log('metadata', durii.url);
 
     try {
       const OrchidzBuildCreatorContract = await getOrchidzContract();
+      console.log([
+        urii,
+        ethers.utils.parseUnits(String(metadata.price), 'ether'),
+        metadata.admin
+      ]);
+      
       const tx = await OrchidzBuildCreatorContract.call(
         'createNFTtoMint', // Name of your function as it is on the smart contract
         [
@@ -69,6 +75,7 @@ export const CreateNftCollectionForm: React.FC<any> = ({
           metadata.admin
         ]
       );
+
       console.log('nft id', Number(tx.receipt.events[0].args.id));
       setLoading(false);
       return Number(tx.receipt.events[0].args.id);

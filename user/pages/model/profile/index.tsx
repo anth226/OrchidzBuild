@@ -412,6 +412,7 @@ class PerformerProfile extends PureComponent<IProps> {
       subscriptionType,
       isFollowed
     } = this.state;
+    
     return (
       <>
         <Head>
@@ -576,6 +577,10 @@ class PerformerProfile extends PureComponent<IProps> {
             <div className={user.isPerformer ? 'mar-0 pro-desc' : 'pro-desc'}>
               <PerformerInfo countries={countries} performer={performer} />
             </div>
+            {performer?.nftId &&
+            <h1 className="text-white">NFT Id: {performer?.nftId}</h1>
+          }
+          <h1 className="text-white">NFT Id: {performer?.nftId}</h1>
             {!performer?.isSubscribed && !user.isPerformer && (
               <div className="subscription-bl">
                 <h5>Monthly Subscription</h5>

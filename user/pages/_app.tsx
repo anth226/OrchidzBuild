@@ -256,9 +256,9 @@ class Application extends App<IApp> {
     const { layout } = Component;
     return (
       <ThirdwebProvider
-        activeChain="ganache"
+        activeChain="mumbai"
         // activeChain="mumbai"
-        supportedChains={[Ganache, Polygon, Mumbai]}
+        supportedChains={[Mumbai, Ganache]}
       >
         <Web3ConnectionWrapper>
           <Provider store={store}>

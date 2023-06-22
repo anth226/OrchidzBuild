@@ -108,7 +108,7 @@ class CreateProduct extends PureComponent<IProps> {
     const { ui, user } = this.props;
 
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {ui && ui.siteName}
@@ -116,7 +116,7 @@ class CreateProduct extends PureComponent<IProps> {
             | New product
           </title>
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <PageHeading title="New Product" icon={<ShopOutlined />} />
           <FormProduct
             submit={this.submit.bind(this)}
@@ -126,7 +126,7 @@ class CreateProduct extends PureComponent<IProps> {
             user={user}
           />
         </div>
-      </Layout>
+      </>
     );
   }
 }

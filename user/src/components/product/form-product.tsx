@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
-import { PureComponent, createRef, useContext } from 'react';
+import { PureComponent, createRef, useContext, useEffect } from 'react';
 import {
   Form,
   Input,
@@ -20,6 +20,7 @@ import { FormInstance } from 'antd/lib/form';
 import { getGlobalConfig } from '@services/config';
 import { Web3ConnectionContext } from 'src/smartContract/Web3ConnectionContext';
 import FormCreateNftCollection from './form-create-nft-collection';
+import ModelNftDetails from './nft-details';
 
 enum ProductType {
   Physical = 'physical',
@@ -325,95 +326,15 @@ export class FormProduct extends PureComponent<IProps> {
       product, user, uploading, uploadPercentage
     } = this.props;
     const { contractModalOpen, previewImageProduct } = this.state;
-    const haveProduct = !!product;
-    const { address, loading } = this.context;
-
-    console.log(address, loading);
-    console.log('user');
-    console.log(user);
-    console.log('user');
+    // const haveProduct = !!product;
+    // const { address, loading, getOrchidzContract } = this.context;
 
     return (
       <>
-        {user.contractAddress && (
-          <>
-            <h1>
-              You have Created Nft. Your Nft Id:
-              {user.nftId}
-            </h1>
-            <Col md={12} xs={24}>
-              <Form.Item
-                name="name"
-                rules={[{ required: true, message: 'Please enter a name for your NFT' }]}
-                label="NFT Name"
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item name="description" label="Description">
-                <Input.TextArea rows={3} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="price"
-                rules={[{ required: true, message: 'Please enter a price for your NFT' }]}
-                label="Price Per NFT"
-              >
-                <InputNumber style={{ width: '100%' }} min={0} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="maxClaimableSupply"
-                label="Total Amount Available (Unlimited when empty)"
-              >
-                <InputNumber style={{ width: '100%' }} min={0} />
-              </Form.Item>
-            </Col>
-            <Col md={12} xs={12}>
-              <Form.Item label="Image">
-                <Upload
-                  accept="image/*"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  multiple={false}
-                  showUploadList={false}
-                  disabled={uploading}
-                  beforeUpload={this.beforeUploadThumb.bind(this)}
-                  customRequest={() => false}
-                >
-                  {previewImageProduct && (
-                    <img
-                      src={previewImageProduct}
-                      alt="file"
-                      style={{ width: '100%' }}
-                    />
-                  )}
-                  <CameraOutlined />
-                </Upload>
-              </Form.Item>
-            </Col>
-            <Col xs={24}>
-              {uploadPercentage > 0 ? (
-                <Progress percent={Math.round(uploadPercentage)} />
-              ) : null}
-              <Form.Item>
-                <Button
-                  className="primary"
-                  type="primary"
-                  htmlType="submit"
-                  loading={uploading}
-                  disabled={uploading}
-                >
-                  Update
-                </Button>
-              </Form.Item>
-            </Col>
-          </>
+        {Number(user.nftId) > 0 && (
+          <ModelNftDetails user={user} />
         )}
-        {!user.nftId && (
+        {Number(user.nftId) < 1 && (
           <>
             <Col xs={24}>
               <Form.Item>
