@@ -23,7 +23,7 @@ export class FeedGridCard extends PureComponent<IProps> {
       : (feed?.thumbnail?.thumbnails && feed?.thumbnail?.thumbnails[0]) || (images && images[0] && images[0]?.thumbnails && images[0]?.thumbnails[0]) || (videos && videos[0] && videos[0]?.thumbnails && videos[0]?.thumbnails[0]))
      || '/static/leaf.jpg';
     return (
-      <div className="feed-grid-card" key={feed._id}>
+      <div className="feed-grid-card border-primaryColor border-2 shadow-xl rounded-2xl p-2 drop-shadow-lg translateZ(100px)" key={feed._id}>
         <Link
           href={{ pathname: '/post', query: { id: feed.slug || feed._id } }}
           as={`/post/${feed.slug || feed._id}`}

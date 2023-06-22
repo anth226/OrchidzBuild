@@ -139,6 +139,8 @@
             font-size: 14px;
             font-family: @primary-font-bold;
             width: auto;
+            background-color: @primary-color;
+            margin-top: 8px;
           }
 
           &.ant-btn-link {
@@ -645,17 +647,18 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  gap: 4px;
 
   .feed-grid-card {
-    width: 33.33%;
-    padding: 0 5px;
+    width: 33%;
+    // padding: 0 5px;
     margin-bottom: 10px;
     overflow: hidden;
-
+    
     &:hover {
       opacity: 0.9;
     }
-
+    
     .card-thumb {
       position: relative;
       height: 400px;

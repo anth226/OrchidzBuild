@@ -19,6 +19,7 @@ import {
   reactionService, feedService, tokenTransctionService, paymentService, reportService
 } from '@services/index';
 import { connect } from 'react-redux';
+import { FaComment, FaCommentAlt, FaComments, FaHeart, FaRegComment, FaRegComments, FaRegHeart } from 'react-icons/fa';
 import { TipPerformerForm } from '@components/performer/tip-form';
 import ReactMomentCountDown from 'react-moment-countdown';
 import moment from 'moment';
@@ -32,7 +33,6 @@ import { IFeed, ISettings, IUser } from 'src/interfaces';
 import { PurchaseFeedForm } from './confirm-purchase';
 import FeedSlider from './post-slider';
 import './index.less';
-import { FaComment, FaCommentAlt, FaComments, FaHeart, FaRegComment, FaRegComments, FaRegHeart } from 'react-icons/fa';
 
 interface IProps {
   feed: IFeed;
@@ -435,7 +435,7 @@ class FeedCard extends Component<IProps> {
           {dropdown}
           </div>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 feed-container ">
           <div className="">
             <span className="text-sm">
             {feed.text}

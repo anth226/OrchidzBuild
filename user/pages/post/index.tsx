@@ -57,7 +57,7 @@ class PostDetails extends PureComponent<IProps> {
     }
     const { performer } = feed;
     return (
-      <Layout>
+      <>
         <Head>
           <title>
             {`${ui?.siteName} | ${performer?.name || performer?.username}`}
@@ -91,7 +91,7 @@ class PostDetails extends PureComponent<IProps> {
             content={feed?.text}
           />
         </Head>
-        <div className="main-container">
+        <div className="main-container pt-2">
           <div className="page-heading">
             <a aria-hidden onClick={() => Router.back()}>
               <ArrowLeftOutlined />
@@ -103,7 +103,7 @@ class PostDetails extends PureComponent<IProps> {
             <FeedCard feed={feed} onDelete={this.onDelete.bind(this)} />
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 }
