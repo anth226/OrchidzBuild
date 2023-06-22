@@ -4,7 +4,8 @@ import { deactiveConversation } from '@redux/message/actions';
 import { IConversation } from 'src/interfaces/message';
 import ConversationList from './ConversationList';
 import MessageList from './MessageList';
-import './Messenger.less';
+
+require("./Messenger.less")
 
 interface IProps {
   toSource?: string;

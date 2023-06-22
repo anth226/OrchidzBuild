@@ -1,6 +1,7 @@
 import React from 'react';
-import './ConversationSearch.less';
 import { SearchOutlined } from '@ant-design/icons';
+
+require('./ConversationSearch.less');
 
 interface IProps {
   onSearch: any;

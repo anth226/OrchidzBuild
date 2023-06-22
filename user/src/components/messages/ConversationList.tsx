@@ -11,7 +11,8 @@ import { debounce } from 'lodash';
 import { IUser } from 'src/interfaces';
 import ConversationSearch from './ConversationSearch';
 import ConversationListItem from './ConversationListItem';
-import './ConversationList.less';
+
+require('./ConversationList.less');
 
 interface IProps {
   searchConversations: Function;

@@ -37,11 +37,11 @@ class Messages extends PureComponent<IProps> {
             | Messages
           </title>
         </Head>
-        <Layout>
+        <>
           <div className="main-container">
             <Messenger toSource={query.toSource} toId={query.toId} />
           </div>
-        </Layout>
+        </>
       </>
     );
   }
