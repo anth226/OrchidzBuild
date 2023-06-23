@@ -315,7 +315,6 @@ class HomePage extends PureComponent<IProps> {
                 </div>
               )}
               <div className="mt-8 mx-4">
-
                 <ScrollListFeed
                   items={feeds}
                   canLoadmore={feeds && feeds.length < totalFeeds}

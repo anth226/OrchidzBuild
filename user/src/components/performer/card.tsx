@@ -114,7 +114,7 @@ class PerformerCard extends PureComponent<IProps> {
                   </span>
                   {performer?.verifiedAccount && <TickIcon className="text-white " />}
                   {country && (
-                    <img alt="performer-country" className="model-country" src={country?.flag} />
+                    <img width={24} alt="performer-country" className="model-country" src={country?.flag} />
                   )}
                 </div>
                 <span className="text-lg text-white">
