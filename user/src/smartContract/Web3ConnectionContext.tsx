@@ -94,11 +94,10 @@ const Web3ConnectionWrapper = (props) => {
         }
       );
       console.log(tx);
-      
+
       return true;
     } catch (error) {
       console.log("mintNft error", error);
-
       return false
     }
   }

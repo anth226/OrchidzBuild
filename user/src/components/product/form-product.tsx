@@ -334,7 +334,7 @@ export class FormProduct extends PureComponent<IProps> {
         {Number(user.nftId) > 0 && (
           <ModelNftDetails user={user} />
         )}
-        {Number(user.nftId) < 1 && (
+        {Number(user.nftId) > 0 && (
           <>
             <Col xs={24}>
               <Form.Item>
