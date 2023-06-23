@@ -38,6 +38,8 @@ import Link from 'next/link';
 import Router from 'next/router';
 import Error from 'next/error';
 import '@components/performer/performer.less';
+import ModelNftDetails from '@components/product/nft-details';
+import MintNftDetails from '@components/performer/mint-nft-detail';
 
 interface IProps {
   ui: IUIConfig;
@@ -412,7 +414,9 @@ class PerformerProfile extends PureComponent<IProps> {
       subscriptionType,
       isFollowed
     } = this.state;
-    
+
+    console.log("performer", performer);
+    console.log("user", user);
     return (
       <>
         <Head>
@@ -574,13 +578,20 @@ class PerformerProfile extends PureComponent<IProps> {
                 </Button>
               </Popover>
             </div>
-            <div className={user.isPerformer ? 'mar-0 pro-desc' : 'pro-desc'}>
-              <PerformerInfo countries={countries} performer={performer} />
+            <div className="pro-info-box">
+              <div className={user.isPerformer ? 'mar-0 pro-desc' : 'pro-desc'}>
+                <PerformerInfo countries={countries} performer={performer} />
+              </div>
+              {performer?.nftId &&
+                <div className="mt-2">
+                  <div className={user.isPerformer ? 'mar-0 pro-desc' : 'pro-desc'}>
+                    {/* <h1 className="text-white">NFT Id: {performer?.nftId}</h1> */}
+                    <MintNftDetails user={performer} />
+                  </div>
+
+                </div>
+              }
             </div>
-            {performer?.nftId &&
-            <h1 className="text-white">NFT Id: {performer?.nftId}</h1>
-          }
-          <h1 className="text-white">NFT Id: {performer?.nftId}</h1>
             {!performer?.isSubscribed && !user.isPerformer && (
               <div className="subscription-bl">
                 <h5>Monthly Subscription</h5>

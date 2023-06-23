@@ -364,7 +364,8 @@ export class PerformerDto {
       bodyType: this.bodyType,
       sexualOrientation: this.sexualOrientation,
       isPerformer: true,
-      isFollowed: this.isFollowed
+      isFollowed: this.isFollowed,
+      nftId: this.nftId
     };
     const privateInfo = {
       firstName: this.firstName,
@@ -441,7 +442,8 @@ export class PerformerDto {
       live: this.live,
       streamingStatus: this.streamingStatus,
       isFollowed: this.isFollowed,
-      dateOfBirth: this.dateOfBirth
+      dateOfBirth: this.dateOfBirth,
+      nftId: this.nftId
     };
   }
 
@@ -496,7 +498,8 @@ export class PerformerDto {
       dateOfBirth: this.dateOfBirth,
       bodyType: this.bodyType,
       isPerformer: true,
-      isFollowed: this.isFollowed
+      isFollowed: this.isFollowed,
+      nftId: this.nftId
     };
   }
 }

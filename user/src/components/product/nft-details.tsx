@@ -27,7 +27,7 @@ type NftMetaDataType = {
 export const ModelNftDetails: React.FC<any> = ({
     user
 }) => {
-    const { address, getOrchidzContract, storage } = useContext(
+    const { address, getNftMetaData, storage } = useContext(
         Web3ConnectionContext
     );
 
@@ -41,34 +41,17 @@ export const ModelNftDetails: React.FC<any> = ({
         image: ""
     })
 
-    const loadingNftDetails = async () => {        
+    const loadingNftDetails = async () => {
         const nftId = user?.nftId;
         if (!nftId) return;
 
         try {
-            const OrchidzBuildCreatorContract = await getOrchidzContract();
-            const tx = await OrchidzBuildCreatorContract.call(
-                'nftDetailOf', // Name of your function as it is on the smart contract
-                [
-                    Number(nftId)
-                ]
-                );
-                // console.log(tx);
-                
-                const durii = await storage.download(tx.uri);
-                
-                const metadataReq = await fetch(durii.url);
-                const metadata = await metadataReq.json();
-                const _imgurl = await storage.download(metadata.image);
-                
-                setNftMetaData({
-                    ...metadata,
-                    price: Number(Number(tx.mintPrice) / 10 ** 18),
-                    image: _imgurl.url
-                });
-            } catch (error) {
-                console.log(error);
-            }
+            const _metadata = await getNftMetaData(nftId);
+
+            setNftMetaData(_metadata);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     if (!address) {
@@ -79,16 +62,11 @@ export const ModelNftDetails: React.FC<any> = ({
                 </Col>
             </Row>
         );
+    } else {
+        useEffect(() => {
+            loadingNftDetails()
+        }, [])
     }
-
-    useEffect(() => {
-        loadingNftDetails()
-    }, [])
-
-    useEffect(() => {
-        console.log("nftMetaData", nftMetaData);
-    }, [nftMetaData])
-
     return (
 
         nftMetaData.name !== "" ?

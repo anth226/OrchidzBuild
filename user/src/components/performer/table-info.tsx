@@ -34,7 +34,7 @@ export class PerformerInfo extends PureComponent<IProps> {
     const { performer, countries = [] } = this.props;
     const country = countries.length && countries.find((c) => c.code === performer?.country);
     return (
-      <div className="per-infor mx-1 my-2 rounded-lg px-2 py-1">
+      <div className="per-infor ">
         <Collapse defaultActiveKey={['0']} bordered={false} accordion>
           <Collapse.Panel
             header={<span className="flex items-center text-lg text-primaryColor">
