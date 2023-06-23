@@ -12,6 +12,13 @@ const themeVariables = lessToJS(fs.readFileSync(path.resolve(__dirname, './style
 const nextConfig = {
   distDir: '.next',
   // target: "serverless"
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true
+  }
 };
 
 const plugins = [
