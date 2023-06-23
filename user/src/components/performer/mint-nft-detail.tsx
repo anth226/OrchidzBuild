@@ -17,6 +17,7 @@ import {
 
 import { ethers } from 'ethers';
 import { Web3ConnectionContext } from 'src/smartContract/Web3ConnectionContext';
+import SimpleLoader from '@components/loader/loader';
 
 type NftMetaDataType = {
     name: string;
@@ -29,7 +30,7 @@ type NftMetaDataType = {
 export const MintNftDetails: React.FC<any> = ({
     user
 }) => {
-    const { address, getOrchidzContract, storage, getNftMetaData, getUserNftBalance, mintNft } = useContext(
+    const { address, getNftMetaData, getUserNftBalance, mintNft } = useContext(
         Web3ConnectionContext
     );
 
@@ -55,7 +56,7 @@ export const MintNftDetails: React.FC<any> = ({
     const loadingNftDetails = async () => {
         const nftId = user?.nftId;
         if (!nftId) return;
-
+        setLoading(true);
         try {
             const _metadata = await getNftMetaData(Number(nftId));
             await loadUserBalance();
@@ -63,6 +64,7 @@ export const MintNftDetails: React.FC<any> = ({
         } catch (error) {
             console.log(error);
         }
+        setLoading(false);
     };
 
     const mintOneNftForUser = async () => {
@@ -91,7 +93,7 @@ export const MintNftDetails: React.FC<any> = ({
     }
     return (
         <div className="per-infor">
-            <Collapse defaultActiveKey={['1']} bordered={false} accordion>
+            <Collapse defaultActiveKey={['0']} bordered={false} accordion>
                 <Collapse.Panel
                     header={<span className="flex items-center text-lg text-primaryColor">
                         Mint NFT
@@ -111,45 +113,54 @@ export const MintNftDetails: React.FC<any> = ({
                             ** Mint one nft and get access to all content of user
                         </h1>
                     </Col>
-                    <div className="mint-details">
-                        {nftMetaData?.name !== "" ?
-                            <div>
 
-                                <Row>
-                                    <Col xl={6} md={12} xs={24}>
-                                        <h1 className="text-white">
-                                            You Have: {userNftBalance} Nfts
-                                        </h1>
-                                    </Col>
-                                    <Col xl={6} md={12} xs={24}>
-                                        <h1 className="text-white">
-                                            Nft Name: {nftMetaData.name}
-                                        </h1>
-                                    </Col>
-                                    <Col xl={6} md={12} xs={24}>
-                                        <h1 className="text-white">
-                                            Nft Price: {nftMetaData.price} Matic
-                                        </h1>
-                                    </Col>
-                                    <Col xs={24}>
-                                        <Button
-                                            className="primary"
-                                            type="primary"
-                                            htmlType="submit"
-                                            loading={loading || minting}
-                                            disabled={loading || minting}
-                                            onClick={mintOneNftForUser}
-                                        >
-                                            {minting ? 'Minting' : 'Mint Nft'}
-                                        </Button>
-                                    </Col>
+                    {loading ?
+                        <Col xs={24} className="text-center mt-4">
+                            <SimpleLoader className="w-14 h-14 text-primaryColor" />
+                        </Col>
 
-                                </Row>
-                            </div>
-                            :
-                            <>
-                            </>}
-                    </div>
+                        :
+                        <div className="mint-details">
+                            {nftMetaData?.name !== "" ?
+                                <div>
+
+                                    <Row>
+                                        <Col xl={6} md={12} xs={24}>
+                                            <h1 className="text-white">
+                                                You Have: {userNftBalance} Nfts
+                                            </h1>
+                                        </Col>
+                                        <Col xl={6} md={12} xs={24}>
+                                            <h1 className="text-white">
+                                                Nft Name: {nftMetaData?.name}
+                                            </h1>
+                                        </Col>
+                                        <Col xl={6} md={12} xs={24}>
+                                            <h1 className="text-white">
+                                                Nft Price: {nftMetaData?.price} Matic
+                                            </h1>
+                                        </Col>
+                                        <Col xs={24}>
+                                            <Button
+                                                className="primary"
+                                                type="primary"
+                                                htmlType="submit"
+                                                loading={minting}
+                                                disabled={minting}
+                                                onClick={mintOneNftForUser}
+                                            >
+                                                {minting ? 'Minting' : 'Mint Nft'}
+                                            </Button>
+                                        </Col>
+
+                                    </Row>
+                                </div>
+                                :
+                                <>
+                                </>}
+                        </div>
+                    }
+
                 </Collapse.Panel>
             </Collapse>
         </div>

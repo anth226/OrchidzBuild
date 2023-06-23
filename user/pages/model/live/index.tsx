@@ -195,7 +195,7 @@ class PerformerLivePage extends PureComponent<IProps, IStates> {
     } = this.state;
     return (
       <AgoraProvider config={{ mode: 'live', codec: 'h264', role: 'host' }}>
-        <Layout>
+        <>
           <Head>
             <title>
               {`${ui?.siteName} | Live`}
@@ -206,7 +206,7 @@ class PerformerLivePage extends PureComponent<IProps, IStates> {
             handler={this.onRoomChange.bind(this)}
           />
           <div>
-            <Row className="main-container">
+            <Row className="main-container pt-2">
               <Col xs={24} sm={24} md={16} style={{ padding: 10 }}>
                 <ForwardedPublisher
                   uid={user._id}
@@ -306,7 +306,7 @@ class PerformerLivePage extends PureComponent<IProps, IStates> {
               </Modal>
             </Row>
           </div>
-        </Layout>
+        </>
       </AgoraProvider>
     );
   }

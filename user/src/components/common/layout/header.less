@@ -321,12 +321,19 @@
         cursor: pointer;
         font-size: 15px;
         opacity: 0.8;
+        display: flex;
+        align-items: center;
+        gap:6px;
 
         &.active,
         &:hover {
-          background-color: @theme-color;
+          background-color: @secondary-color;
           color: @white;
           border-radius: 5px;
+
+        .anticon {
+          color: @text-color;
+        }
         }
 
         .anticon {

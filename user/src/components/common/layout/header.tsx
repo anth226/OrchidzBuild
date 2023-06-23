@@ -13,7 +13,7 @@ import {
   ShoppingCartOutlined, UserOutlined, HistoryOutlined, CreditCardOutlined,
   VideoCameraOutlined, FireOutlined, NotificationOutlined, BookOutlined,
   DollarOutlined, PictureOutlined, StarOutlined, ShoppingOutlined, BankOutlined,
-  LogoutOutlined, HeartOutlined, BlockOutlined, PlusCircleOutlined, StopOutlined
+  LogoutOutlined, HeartOutlined, BlockOutlined, PlusCircleOutlined, StopOutlined, GiftOutlined
 } from '@ant-design/icons';
 import {
   HomeIcon, ModelIcon, PlusIcon, MessageIcon, UserIcon, LiveIcon, TickIcon, WalletSvg
@@ -28,8 +28,8 @@ import { updateUIValue } from 'src/redux/ui/actions';
 import { updateBalance } from '@redux/user/actions';
 import { shortenLargeNumber } from '@lib/number';
 import { SubscribePerformerModal } from 'src/components/subscription/subscribe-performer-modal';
-import { FaHome, FaPlus, FaPlusSquare, FaRegPlusSquare, FaUser } from 'react-icons/fa';
-import { AiOutlineMessage } from 'react-icons/ai';
+import { FaFantasyFlightGames, FaGripfire, FaHome, FaPlus, FaPlusSquare, FaRegPlusSquare, FaUser } from 'react-icons/fa';
+import { AiOutlineGift, AiOutlineMessage } from 'react-icons/ai';
 import { CgMoreO } from 'react-icons/cg';
 
 interface IProps {
@@ -345,8 +345,16 @@ class Header extends PureComponent<IProps> {
                 <Link href="/model/my-gallery" as="/model/my-gallery">
                   <div className={router.pathname === '/model/my-gallery' ? 'menu-item active' : 'menu-item'}>
                     <PictureOutlined />
+
                     {' '}
                     My Galleries
+                  </div>
+                </Link>
+                <Link href="/model/my-nfts" as="/model/my-nft">
+                  <div className={router.pathname === '/model/my-nft' ? 'menu-item active' : 'menu-item'}>
+                    <GiftOutlined />
+                    {' '}
+                    My Nft
                   </div>
                 </Link>
                 <Divider />
