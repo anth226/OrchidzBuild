@@ -7,6 +7,7 @@ interface IProps {
   loading?: boolean;
   className?: string;
   inner?: boolean;
+  children: any
 }
 
 export default class Page extends PureComponent<IProps> {

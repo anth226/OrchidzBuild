@@ -291,4 +291,3 @@ import {
     updateCurrentUser
   };
   export default connect(mapStatesToProps, mapDispatchToProps)(Login);
-  

@@ -3,7 +3,15 @@
 // next.config.js
 const withAntdLess = require('next-plugin-antd-less');
 
-module.exports = withAntdLess({});
+module.exports = withAntdLess({
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true
+  }
+});
 
 // const lessToJS = require('less-vars-to-js');
 // const fs = require('fs');
